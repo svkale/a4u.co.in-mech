@@ -1,8 +1,8 @@
 :root
 {
-	--main-color: #f1f4f8;
-	--main-color-2: #023b5e;
-	--main-color-3: darkcyan;
+	--main-color: #ffffff;
+	--main-color-2: #023BA2;
+	--main-color-3: darkmagenta;
 	--background-image-src: url('/images/logo.png');
 	/*--main-color-2: #044955;*/
 }

@@ -1,1 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Academics for you</title>
+		<link rel="stylesheet" type="text/css" href="./css/variables.css">
+		<link rel="stylesheet" type="text/css" href="https://sites-admin.github.io/website-modules/design/layout.css">
+		<link rel="stylesheet" type="text/css" href="https://sites-admin.github.io/website-modules/design/default.css">
+		<link rel="stylesheet" type="text/css" href="https://sites-admin.github.io/website-modules/elements/nav/nav.css">
+		<link rel="stylesheet" type="text/css" href="https://sites-admin.github.io/website-modules/elements/media/media.css">
+		<link rel="stylesheet" type="text/css" href="https://sites-admin.github.io/website-modules/utils/putins/putins.css">
+		<link rel="stylesheet" type="text/css" href="https://sites-admin.github.io/website-modules/utils/css/loading.css">
+		<link rel="stylesheet" type="text/css" href="https://sites-admin.github.io/website-modules/utils/putins/google.css">
+		<link rel="stylesheet" type="text/css" href="https://sites-admin.github.io/website-modules/design/keyframes/plain.css">
+		<!-- https://sites-admin.github.io/website-modules -->
+	</head>
+	<body>
+		<header class="cont1" style="margin: 0;">
+			<img class="cont1" src="./images/logo.jpg">
+		</header>
+		<main class="cont1">
+			<section style="text-align: center;overflow: hidden;background-color: var(--main-color-2);" class="u1">
+				<span style="text-align: center;float: left;background-color: var(--main-color-2);color: var(--main-color);margin-top: 4px;margin-bottom: 4px;animation: move_lr 16s infinite;" class="cont1">
+					Welcome to a4u.co.in
+				</span>
+			</section>
 
+			<section class="u1">
+				<button class="u1 hide_md button_visibility_control" data-button-status="visible" data-button-target="page_menus">
+					<span>Menu</span>
+				</button>
+				<section class="cont cont_xs1 cont_sm1" style="--cont-width: 20%;" id="page_menus">
+					<nav class="nav_one_active_light">
+						<ul id="contents_nav"></ul>
+					</nav>
+				</section>
+
+				<section id="contents_page" class="cont cont_xs1 cont_sm1" style="--cont-width: 80%;float: right;"></section>
+			</section>
+		</main>
+
+		<footer class="cont1" id="contact"></footer>
+	</body>
+
+	<script src="https://sites-admin.github.io/website-modules/includes/request/request.js" type="text/javascript"></script>
+	<script src="https://sites-admin.github.io/website-modules/includes/request/google.js" type="text/javascript"></script>
+	<script src="https://sites-admin.github.io/website-modules/utils/css/loading.js" type="text/javascript"></script>
+	<script src="https://sites-admin.github.io/website-modules/utils/putins/putins.js" type="text/javascript"></script>
+	<script src="https://sites-admin.github.io/website-modules/utils/putins/google.js" type="text/javascript"></script>
+	<script src="https://sites-admin.github.io/website-modules/elements/nav/nav.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		request_promise("https://static-data.a4u.co.in/mech/staff-gdoc-links.json")
+			.then(
+				(res)=>
+				{
+					const staff_pages=JSON.parse(res.response.replaceAll("\n","").replaceAll("\t",""))["stafflist"];
+					for(let staff of staff_pages)
+					{
+						let path_arr=location.pathname.split("/");
+						if(path_arr[1]==staff[0])
+						{
+							request(staff[1],"putins_make_page_from_gdoc","contents_nav","contents_page","Home");
+							return;
+						}
+					}
+					document.getElementById('contents_page').innerHTML="<big>404 Page not found.</big>"
+
+				},
+				(error)=>
+				{
+					console.error(error);
+					document.getElementById('contents_page').innerHTML="<big>404 Page not found.</big>"
+				});
+		
+	</script>
+</html>
