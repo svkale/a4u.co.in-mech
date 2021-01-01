@@ -22,7 +22,7 @@
 		</header>
 		<main class="cont1">
 			<section style="text-align: center;overflow: hidden;background-color: var(--main-color-2);" class="u1">
-				<span style="text-align: center;float: left;background-color: var(--main-color-2);color: var(--main-color);margin-top: 4px;margin-bottom: 4px;animation: move_lr 16s infinite;" class="cont1">
+				<span id="top_scroll_text" style="text-align: center;float: left;background-color: var(--main-color-2);color: var(--main-color);margin-top: 4px;margin-bottom: 4px;animation: move_lr 16s infinite;" class="cont1">
 					Welcome to a4u.co.in
 				</span>
 			</section>
@@ -31,6 +31,12 @@
 				<button class="u1 hide_md button_visibility_control" data-button-status="visible" data-button-target="page_menus">
 					<span>Menu</span>
 				</button>
+				<style type="text/css">
+					#page_menus *
+					{
+						background: transparent;
+					}
+				</style>
 				<section class="cont cont_xs1 cont_sm1" style="--cont-width: 20%;" id="page_menus">
 					<nav class="nav_one_active_light">
 						<ul id="contents_nav"></ul>
@@ -41,7 +47,9 @@
 			</section>
 		</main>
 
-		<footer class="cont1" id="contact"></footer>
+		<footer class="cont1" id="contact">
+			<span style="float: right;padding-top: 1%;padding-right: 1%;">Developed by Dr. Vinayak Kale</span>
+		</footer>
 	</body>
 
 	<script src="https://sites-admin.github.io/website-modules/includes/request/request.js" type="text/javascript"></script>
