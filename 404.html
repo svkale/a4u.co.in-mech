@@ -70,6 +70,7 @@
 						let path_arr=location.pathname.split("/");
 						if(path_arr[1]==staff[0].replaceAll(" ","").toLowerCase())
 						{
+							document.getElementsByTagName('title').innerText=staff[0];
 							request(staff[1],"putins_make_page_from_gdoc","contents_nav","contents_page","Home");
 							return;
 						}
