@@ -40,14 +40,7 @@
 							User group:
 						</td>
 						<td>
-							<select onchange="document.getElementById('login_type').innerText=this.value;" name="user_group">
-								<option value="HOD">HOD</option>
-								<option value="Faculty">Faculty</option>
-								<option value="Placement">Placement</option>
-								<option value="Project">Project</option>
-								<option value="iMESA">iMESA</option>
-								<option value="Exam">Exam</option>
-							</select>
+							<select id="roles" onchange="document.getElementById('login_type').innerText=this.value;" name="user_group"></select>
 						</td>
 					</tr>
 					<tr>
@@ -204,6 +197,26 @@
     		autogrow: true
 		});
 	</script>
+	<script type="text/javascript">
+		request_promise("https://static-data.a4u.co.in/mech/roles.json")
+			.then(
+				(res)=>
+				{
+					const roles=JSON.parse(res.response.replaceAll("\n","").replaceAll("\t",""))["roles"];
+					for(let role of roles)
+					{
+						document.getElementById("roles").insertAdjacentHTML("beforeend","<option value=\""+role+"\">"+role+"</option>");
+					}
+
+				},
+				(error)=>
+				{
+					console.error(error);
+					document.getElementById('contents_page').innerHTML="<big>404 Page not found.</big>"
+				});
+		
+	</script>
+
 	<style type="text/css">
 		#notice_contents *
 		{
