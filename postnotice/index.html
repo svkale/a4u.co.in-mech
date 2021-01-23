@@ -148,6 +148,10 @@
 				{
 					document.getElementById('notice_form').style.display="revert";
 				}
+				window.addEventListener("beforeunload",function()
+				{
+					sessionStorage.clear();
+				});
 			</script>
 		</main>
 
