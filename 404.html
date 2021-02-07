@@ -93,6 +93,7 @@
 		{
 			document.getElementById('contents_page').innerHTML="Notice is loading....";
 			document.getElementById('contents_page').parentElement.outerHTML=document.getElementById('contents_page').outerHTML;
+			document.getElementsByTagName('header')[0].remove();
 			document.getElementById('contents_page').setAttribute("class","u1");
 			request_promise("https://script.google.com/macros/s/AKfycbzKuzI3GRcXzWsibOhd6S9astw-GGRvsGT3rIa8D1p1JnxE5KsVlPL_/exec?notice_id="+location.pathname.substring(8))
 				.then(
