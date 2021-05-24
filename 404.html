@@ -19,8 +19,11 @@
 	</head>
 	<body>
 		<header class="cont1" style="margin: 0;">
-			<a target="_blank" href="https://a4u.co.in/"><img class="cont1" src="/images/logo.jpg"></a>
+			<a target="_blank" href="https://a4u.co.in/"><img id="top_img" class="cont1"></a>
 		</header>
+		<script type="text/javascript">
+			document.getElementById("top_img").src= location.pathname=="/mm2021"?"https://static-data.a4u.co.in/mech/images/mm2021.jpg":"/images/logo.jpg";
+		</script>
 		<main class="cont1">
 			<section style="text-align: center;overflow: hidden;background-color: var(--main-color-2);" class="u1">
 				<span id="top_scroll_text" style="text-align: center;float: left;background-color: var(--main-color-2);color: var(--main-color);margin-top: 4px;margin-bottom: 4px;animation: move_lr 16s infinite;" class="cont1">
