@@ -58,7 +58,7 @@
 	<script src="https://lib.ameonlinesolutions.com/elements/nav/nav.js" type="text/javascript"></script>
 	<script src="https://lib.ameonlinesolutions.com/elements/button/button.js" type="text/javascript"></script>
 	<script type="text/javascript">
-		let page=location.hash;
+		let page=location.hash.substr(1);
 		if(!page) page="Home";
 		request("https://docs.google.com/document/d/e/2PACX-1vQjXPMkabDnMPoib_iUfutrY9hdmFU_4qDt7WKflz2nlHOW6s7xo84AyglPA9XIKf8AbkyQpYyvlkrX/pub?embedded=true","putins_make_page_from_gdoc","contents_nav","contents_page",page);
 	</script>
