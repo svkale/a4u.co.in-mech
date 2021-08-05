@@ -6,17 +6,17 @@
 		<base target="_blank">
 		<title>Academics for you</title>
 		<link rel="stylesheet" type="text/css" href="/css/variables.css">
-		<link rel="stylesheet" type="text/css" id="layout_css" href="https://lib.a4u.co.in/design/layout.css">
-		<link rel="stylesheet" type="text/css" id="default_css" href="https://lib.a4u.co.in/design/default.css">
-		<link rel="stylesheet" type="text/css" href="https://lib.a4u.co.in/elements/nav/nav.css">
-		<link rel="stylesheet" type="text/css" href="https://lib.a4u.co.in/elements/media/media.css">
-		<link rel="stylesheet" type="text/css" href="https://lib.a4u.co.in/utils/putins/putins.css">
-		<link rel="stylesheet" type="text/css" id="notices_css" href="https://lib.a4u.co.in/utils/notices/notices.css">
-		<link rel="stylesheet" type="text/css" href="https://lib.a4u.co.in/elements/button/button.css">
-		<link rel="stylesheet" type="text/css" href="https://lib.a4u.co.in/utils/css/loading.css">
-		<link rel="stylesheet" type="text/css" href="https://lib.a4u.co.in/utils/putins/google.css">
-		<link rel="stylesheet" type="text/css" href="https://lib.a4u.co.in/design/keyframes/plain.css">
-		<!-- https://lib.a4u.co.in -->
+		<link rel="stylesheet" type="text/css" id="layout_css" href="https://lib.ameonlinesolutions.com/design/layout.css">
+		<link rel="stylesheet" type="text/css" id="default_css" href="https://lib.ameonlinesolutions.com/design/default.css">
+		<link rel="stylesheet" type="text/css" href="https://lib.ameonlinesolutions.com/elements/nav/nav.css">
+		<link rel="stylesheet" type="text/css" href="https://lib.ameonlinesolutions.com/elements/media/media.css">
+		<link rel="stylesheet" type="text/css" href="https://lib.ameonlinesolutions.com/utils/putins/putins.css">
+		<link rel="stylesheet" type="text/css" id="notices_css" href="https://lib.ameonlinesolutions.com/utils/notices/notices.css">
+		<link rel="stylesheet" type="text/css" href="https://lib.ameonlinesolutions.com/elements/button/button.css">
+		<link rel="stylesheet" type="text/css" href="https://lib.ameonlinesolutions.com/utils/css/loading.css">
+		<link rel="stylesheet" type="text/css" href="https://lib.ameonlinesolutions.com/utils/putins/google.css">
+		<link rel="stylesheet" type="text/css" href="https://lib.ameonlinesolutions.com/design/keyframes/plain.css">
+		<!-- https://lib.ameonlinesolutions.com -->
 	</head>
 	<body>
 		<header class="cont1" style="margin: 0;">
@@ -54,28 +54,28 @@
 		</footer>
 	</body>
 
-	<script src="https://lib.a4u.co.in/includes/request/request.js" type="text/javascript"></script>
+	<script src="https://lib.ameonlinesolutions.com/includes/request/request.js" type="text/javascript"></script>
 		<script type="text/javascript">
-			request_exist("https://static-data.a4u.co.in/mech/images"+location.pathname+".jpg").then(
+			request_exist("https://static-data.ameonlinesolutions.com/mech/images"+location.pathname+".jpg").then(
 				(res,err)=>
 				{
-					document.getElementById("top_img").src=res?"https://static-data.a4u.co.in/mech/images"+location.pathname+".jpg":"/images/logo.jpg";
+					document.getElementById("top_img").src=res?"https://static-data.ameonlinesolutions.com/mech/images"+location.pathname+".jpg":"/images/logo.jpg";
 				}
 			);
 		</script>
-	<script src="https://lib.a4u.co.in/includes/request/google.js" type="text/javascript"></script>
-	<script src="https://lib.a4u.co.in/design/default.js" type="text/javascript"></script>
-	<script src="https://lib.a4u.co.in/elements/button/button.js" type="text/javascript"></script>
-	<script src="https://lib.a4u.co.in/utils/css/loading.js" type="text/javascript"></script>
-	<script src="https://lib.a4u.co.in/utils/putins/putins.js" type="text/javascript"></script>
-	<script src="https://lib.a4u.co.in/utils/notices/notices.js" type="text/javascript"></script>
-	<script src="https://lib.a4u.co.in/utils/putins/google.js" type="text/javascript"></script>
-	<script src="https://lib.a4u.co.in/elements/nav/nav.js" type="text/javascript"></script>
+	<script src="https://lib.ameonlinesolutions.com/includes/request/google.js" type="text/javascript"></script>
+	<script src="https://lib.ameonlinesolutions.com/design/default.js" type="text/javascript"></script>
+	<script src="https://lib.ameonlinesolutions.com/elements/button/button.js" type="text/javascript"></script>
+	<script src="https://lib.ameonlinesolutions.com/utils/css/loading.js" type="text/javascript"></script>
+	<script src="https://lib.ameonlinesolutions.com/utils/putins/putins.js" type="text/javascript"></script>
+	<script src="https://lib.ameonlinesolutions.com/utils/notices/notices.js" type="text/javascript"></script>
+	<script src="https://lib.ameonlinesolutions.com/utils/putins/google.js" type="text/javascript"></script>
+	<script src="https://lib.ameonlinesolutions.com/elements/nav/nav.js" type="text/javascript"></script>
 	<script type="text/javascript">
 		let path_arr=location.pathname.split("/");
 		if(path_arr[1]!="notice")
 		{
-			request_promise("https://static-data.a4u.co.in/mech/staff-gdoc-links.json")
+			request_promise("https://static-data.ameonlinesolutions.com/mech/staff-gdoc-links.json")
 				.then(
 					(res)=>
 					{
@@ -88,7 +88,7 @@
 								document.getElementsByTagName('title')[0].innerText=staff[0];
 								let page=location.hash.substr(1);
 								if(!page) page="Home";
-								request(staff[1],"putins_make_page_from_gdoc","contents_nav","contents_page",page,"https://static-data.a4u.co.in/mech/images/");
+								request(staff[1],"putins_make_page_from_gdoc","contents_nav","contents_page",page,"https://static-data.ameonlinesolutions.com/mech/images/");
 								return;
 							}
 						}
