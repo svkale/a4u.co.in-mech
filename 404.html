@@ -75,7 +75,7 @@
 		let path_arr=location.pathname.split("/");
 		if(path_arr[1]!="notice")
 		{
-			request_promise("https://static-data.ameonlinesolutions.com/mech/staff-gdoc-links.json")
+			request_promise("https://static-data.a4u.co.in/mech/staff-gdoc-links.json")
 				.then(
 					(res)=>
 					{
@@ -88,7 +88,7 @@
 								document.getElementsByTagName('title')[0].innerText=staff[0];
 								let page=location.hash.substr(1);
 								if(!page) page="Home";
-								request(staff[1],"putins_make_page_from_gdoc","contents_nav","contents_page",page,"https://static-data.ameonlinesolutions.com/mech/images/");
+								request(staff[1],"putins_make_page_from_gdoc","contents_nav","contents_page",page,"https://static-data.a4u.co.in/mech/images/");
 								return;
 							}
 						}
