@@ -28,11 +28,19 @@
 		</header>
 		<main class="cont1">
 
-			<form class="media1" onsubmit='event.preventDefault();form_wait(event.target);alert(JSON.stringify(event.target));form_JSON_send(event.target);' class="u1" data-form-submit-target="https://script.google.com/macros/s/AKfycbzwun7oDW9cDky9JUiWsJdctiqb1tiBfk2rbY-_bHpJ6UuwX8h-IEEikmcMO8qv3eDE/exec" data-show-id="no" data-custom-JSON-to-send-string='{"gscript_callback_function": "login_or_delete"}' style="display: none;" id="login_form">
+			<form class="media1" onsubmit='event.preventDefault();form_wait(event.target);form_JSON_send(event.target)' class="u1" data-form-submit-target="https://script.google.com/macros/s/AKfycbzwun7oDW9cDky9JUiWsJdctiqb1tiBfk2rbY-_bHpJ6UuwX8h-IEEikmcMO8qv3eDE/exec" data-show-id="no" data-custom-JSON-to-send-string='{"gscript_callback_function": "login_or_delete"}' style="display: none;" id="login_form">
 				<table class="u1">
 					<tr>
 						<td colspan="2">
 							<h4>Please enter the credentials: </h4>
+						</td>
+					</tr>
+					<tr>
+						<td style="width: 25%;">
+							User group:
+						</td>
+						<td>
+							<select id="roles" onchange="document.getElementById('login_type').innerText=this.value;" name="user_group"></select>
 						</td>
 					</tr>
 					<tr>
@@ -52,12 +60,23 @@
 						</td>
 					</tr>
 					<tr>
+						<td>
+							Task:
+						</td>
+						<td>
+							<select onchange="if(this.value=='delete'){this.parentElement.parentElement.insertAdjacentHTML('afterend','<tr id=\'ref_no\'><td>Reference no.:</td><td><input type=\'text\' name=\'ref_no\'></td></tr>');document.getElementById('submit_button').value='Delete notice';}else{document.getElementById('ref_no').outerHTML='';document.getElementById('submit_button').value='Submit';}" name="task">
+								<option value="add">Add notice</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
 						<td colspan="2">
 							<div class="media1"><div class="media1"><input id="submit_button" class="u1" style="margin-top: 0;" type="submit" name="Submit" value="Login"></div></div>
 						</td>
 					</tr>
 				</table>
 			</form>
+
 
 			<section id="contents_page" class="cont1 gdoc_published_contents"></section>
 
