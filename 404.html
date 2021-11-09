@@ -87,6 +87,7 @@
 						for(let staff of staff_pages)
 						{
 							let path_arr=location.pathname.split("/");
+							console.log(path_arr[1]+"   "+staff[0]);
 							if(path_arr[1]==staff[0].replaceAll(" ","").toLowerCase())
 							{
 								document.getElementsByTagName('title')[0].innerText=staff[0];
