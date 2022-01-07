@@ -178,11 +178,12 @@
 				{
 					document.getElementById('login_form').style.display="revert";
 				}
+				var request_as_it_is = e => e;
 				function form_show_next()
 				{
 					document.getElementById('notice_form').style.display="revert";
 					request("https://docs.google.com/document/d/e/2PACX-1vRsBaCi0cOGgO6cHJWORkhvZXds_JQN1227KHSd_TxXcaByTD3M-53RFnDPKzYF3klQV_CNilYOsmxU/pub?embedded=true","putin_paste",document.getElementById("contents_page"),"request_gdoc_published_inline_contents");
-					request("https://script.google.com/macros/s/AKfycbzy53ifIUTm2YNc_T_uv1Y0RV0PaLlE8i00V2DTvzBFCuG1Q8ocrvguw4mKUfkiykJSHA/exec?fn=myTargets&Name=Mahesh Bhong","putin_paste",document.getElementById("myTasks"));
+					request("https://script.google.com/macros/s/AKfycbzy53ifIUTm2YNc_T_uv1Y0RV0PaLlE8i00V2DTvzBFCuG1Q8ocrvguw4mKUfkiykJSHA/exec?fn=myTargets&Name=Mahesh Bhong","putin_paste",document.getElementById("myTasks"),"request_as_it_is");
 				}
 				window.addEventListener("beforeunload",function()
 				{
