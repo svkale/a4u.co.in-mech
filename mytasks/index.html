@@ -78,67 +78,6 @@
 				</table>
 			</form>
 
-			<form class="media1" onsubmit='event.preventDefault();form_wait(event.target);form_JSON_send(event.target)' class="u1" data-form-submit-target="https://script.google.com/macros/s/AKfycbzwun7oDW9cDky9JUiWsJdctiqb1tiBfk2rbY-_bHpJ6UuwX8h-IEEikmcMO8qv3eDE/exec" data-custom-JSON-to-send-string='{"gscript_callback_function": "notice_post"}' data-show-id="no" data-send-creds="yes" id="notice_form" style="display: none;">
-				<span>You are logged in as <span id="login_type">HOD</span>.</span>
-				<table class="u1" style="overflow-x: scroll;">
-					<tr>
-						<td colspan="2">
-							<h4>Add a notice: </h4>
-						</td>
-					</tr>
-					<tr>
-						<td style="width: 25%;min-width: 80px;">
-							Title:
-						</td>
-						<td>
-							<input type="text" name="notice_title" autocomplete="off" required style="width: 100%;"><br>
-							This will be only visible in the index and home page. This will not be displayed in the notice contents. 
-						</td>
-					</tr>
-					<tr>
-						<td colspan="2">
-							Notice is for
-							<select name="student_year">
-								<option value="all">all</option>
-								<option value="SE">SE</option>
-								<option value="TE">TE</option>
-								<option value="BE">BE</option>
-							</select>
-							year 
-							<select name="student_stream">
-								<option value="all">all</option>
-								<option value="MECH">MECH</option>
-								<option value="MSW">MSW</option>
-							</select>
-							stream 
-							<select name="student_division">
-								<option value="all">all</option>
-								<option value="I">I</option>
-								<option value="II">II</option>
-								<option value="III">III</option>
-							</select>
-							division students.
-						</td>
-					</tr>
-					<tr>
-						<td>
-							Notice contents:
-						</td>
-						<td>
-							<!-- <div name="notice_contents" contenteditable="true" style="min-height: 400px;"></div> -->
-							<div name="notice_contents" id="notice_contents"></div>
-							Copy your notice from Microsoft office word, or similer software.
-						</td>
-					</tr>
-					<tr>
-						<td colspan="2">
-							<div class="media1"><div class="media1">
-								<input class="u1" style="margin-top: 0;" type="submit" name="Submit" value="Add notice">
-							</div></div>
-						</td>
-					</tr>
-				</table>
-			</form>
 			<section id="myTasks" class="cont1"></section>
 			<section id="contents_page" class="cont1 gdoc_published_contents"></section>
 
@@ -180,7 +119,6 @@
 				}
 				function form_show_next()
 				{
-					document.getElementById('notice_form').style.display="revert";
 					request("https://docs.google.com/document/d/e/2PACX-1vRsBaCi0cOGgO6cHJWORkhvZXds_JQN1227KHSd_TxXcaByTD3M-53RFnDPKzYF3klQV_CNilYOsmxU/pub?embedded=true","putin_paste",document.getElementById("contents_page"),"request_gdoc_published_inline_contents");
 					request("https://script.google.com/macros/s/AKfycbzy53ifIUTm2YNc_T_uv1Y0RV0PaLlE8i00V2DTvzBFCuG1Q8ocrvguw4mKUfkiykJSHA/exec?fn=myTargets&Name="+(sessionStorage ? sessionStorage.username : ""),"putin_paste",document.getElementById("myTasks"),"request_response");
 				}
