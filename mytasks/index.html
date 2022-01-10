@@ -40,7 +40,9 @@
 							User group:
 						</td>
 						<td>
-							<select id="roles" value="Faculty" name="user_group"></select>
+							<select id="roles" name="user_group">
+								<option value="Faculty" selected>Faculty</option>
+							</select>
 						</td>
 					</tr>
 					<tr>
@@ -64,9 +66,8 @@
 							Task:
 						</td>
 						<td>
-							<select value="add" name="task">
-								//<option value="add">Add notice</option>
-								//<option value="delete">Delete notice</option>
+							<select name="task">
+								<option value="add" selected>Add notice</option>
 							</select>
 						</td>
 					</tr>
@@ -127,53 +128,6 @@
 					sessionStorage.clear();
 				});
 			</script>
-	<script type="text/javascript">
-		$('#notice_contents').trumbowyg({
-			btns: [
-				// ['viewHTML'],
-				['undo', 'redo'], // Only supported in Blink browsers
-				['formatting'],
-				['strong', 'em', 'del'],
-				// ['superscript', 'subscript'],
-				['link'],
-				['insertImage'],
-				['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull'],
-				['unorderedList', 'orderedList'],
-				['foreColor', 'backColor'],
-				['horizontalRule'],
-				['removeformat'],
-				// ['fullscreen']
-			],
-			plugins: {
-				colors: {
-					colorList: [
-					'000', '888', 'f00', '0f0', '00f'
-					]
-				}
-			},
-    		autogrow: true
-		});
-	</script>
-	<script type="text/javascript">
-// 		request_promise("https://n.static-data.ameonlinesolutions.com/mech/roles.json")
-// 			.then(
-// 				(res)=>
-// 				{
-// 					const roles=JSON.parse(res.response.replaceAll("\n","").replaceAll("\t",""))["roles"];
-					const roles=["HOD","Faculty","Placement","iMESA","Project","Exam","Exam052"];
-					for(let role of roles)
-					{
-						document.getElementById("roles").insertAdjacentHTML("beforeend","<option value=\""+role+"\">"+role+"</option>");
-					}
-
-// 				},
-// 				(error)=>
-// 				{
-// 					console.error(error);
-// 					document.getElementById('contents_page').innerHTML="<big>404 Page not found.</big>"
-// 				});
-		
-	</script>
 
 	<style type="text/css">
 		#notice_contents *
