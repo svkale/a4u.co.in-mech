@@ -1,0 +1,82 @@
+.notice_board,.notice_full,.notice,.notices_author,.notices_date,.notices_for,.notice_contents,.notices_reg_no
+{
+	float: left;
+}
+.notice_board,.notice_full
+{
+	border: 1px solid var(--main-color-2);
+}
+.notice_full
+{
+	padding: 1%;
+}
+.notice h4,.notice_full h4
+{
+	color: revert;
+	text-align: center;
+}
+.notice_board>h4
+{
+	width: 100%;
+	background-color: var(--main-color-2);
+	color: var(--main-color);
+}
+.notices_reg_no,.notices_date,.notice_board .notice .notices_for,.notice_board .notice .notices_author
+{
+	font-size: 0.8em;
+}
+.notices_reg_no,.notices_date
+{
+	padding-top: 4px;
+}
+.notice_board .notice .notices_date
+{
+	clear: left;
+	padding-right: 10%;
+}
+.notice_board .notice .notices_date,.notice_full .notices_date
+{
+	float: right;
+	clear: none;
+	padding-right: 0;
+	text-align: right;
+}
+.notice_board .notice,.notices_count
+{
+	padding: 2%;
+}
+.notice_board .notice .notice_contents
+{
+	padding-bottom: 2.5%;
+}
+.notice .notice_contents
+{
+	overflow-x: auto;
+}
+.notice_full .notices_author
+{
+	width: 100%;
+}
+div.notice_cent_div
+{
+	text-align: center;
+}
+article.notice,article.notice *,.notices_count
+{
+	background-color: var(--main-color-4);
+}
+.notice b:hover
+{
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+@media print
+{
+	.notices_date
+	{
+		position: absolute;
+		top: 0;
+		right: 0;
+	}
+}

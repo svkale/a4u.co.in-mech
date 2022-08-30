@@ -1,0 +1,110 @@
+table
+{
+	overflow: auto;
+	margin-bottom: 0.6%;
+	table-layout: auto;
+	word-break: break-word;
+}
+table *
+{
+	/*background-color: var(--main-color-3);*/
+}
+table>thead>tr:nth-child(1)>th:nth-child(1)
+{
+	width: var(--table-column-width-1);
+}
+table>thead>tr:nth-child(1)>th:nth-child(2)
+{
+	width: var(--table-column-width-2);
+}
+table>thead>tr:nth-child(1)>th:nth-child(3)
+{
+	width: var(--table-column-width-3);
+}
+table>thead>tr:nth-child(1)>th:nth-child(4)
+{
+	width: var(--table-column-width-4);
+}
+table>thead>tr:nth-child(1)>th:nth-child(5)
+{
+	width: var(--table-column-width-5);
+}
+table>thead>tr:nth-child(1)>th:nth-child(6)
+{
+	width: var(--table-column-width-6);
+}
+table>thead>tr:nth-child(1)>th:nth-child(7)
+{
+	width: var(--table-column-width-7);
+}
+table>thead>tr:nth-child(1)>th:nth-child(8)
+{
+	width: var(--table-column-width-8);
+}
+table>thead>tr:nth-child(1)>th:nth-child(9)
+{
+	width: var(--table-column-width-9);
+}
+
+table.highlight_hovered_row>tbody>tr:hover
+{
+	box-shadow: 0px 0px 8px black;
+	background-color: black;
+	margin-bottom: 10px;
+	transform: scale(0.999);
+	cursor: pointer;
+}
+table.highlight_hovered_row>tbody>tr:hover>td
+{
+	background-color: #ab6507;
+	color: var(--main-color);
+}
+
+@media(max-width: 319px)/*xs*/
+{
+	table>tbody>tr>td
+	{
+		border: 1px solid var(--main-color-2);
+		padding: 1px;
+	}
+}
+@media(min-width: 320px) and (max-width: 575px)/*sm*/
+{
+	table>tbody>tr>td
+	{
+		border: 1px solid var(--main-color-2);
+		padding: 1.5px;
+	}
+}
+@media(min-width: 576px) and (max-width: 767px)/*md*/
+{
+	table>tbody>tr>td
+	{
+		border: 1.5px solid var(--main-color-2);
+		padding: 2px;
+	}
+}
+@media(min-width: 768px) and (max-width: 991px)/*lg*/
+{
+	table>tbody>tr>td
+	{
+		border: 2px solid var(--main-color-2);
+		padding: 2px;
+	}
+}
+@media(min-width: 992px) and (max-width: 1199px)/*xl*/
+{
+	table>tbody>tr>td
+	{
+		border: 2px solid var(--main-color-2);
+		padding: 3px;
+	}
+}
+@media(min-width: 1200px)/*xxl*/
+{
+	table>tbody>tr>td
+	{
+		border: 0.2vw solid var(--main-color-2);
+		padding: 0.5vw;
+	}
+}

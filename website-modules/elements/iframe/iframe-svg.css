@@ -1,0 +1,12 @@
+div.iframe_inline_svg_holder
+{
+	display: inline-block;
+	position: relative;
+	margin-top: 1%;
+}
+div.iframe_inline_svg_holder>iframe.iframe_inline_svg+a
+{
+	position: absolute;
+	left: 0;
+	background: transparent;
+}
