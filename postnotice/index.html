@@ -87,7 +87,7 @@
         class="media1"
         onsubmit="event.preventDefault();form_wait(event.target);form_JSON_send(event.target)"
         class="u1"
-        data-form-submit-target="https://script.google.com/macros/s/AKfycbzwun7oDW9cDky9JUiWsJdctiqb1tiBfk2rbY-_bHpJ6UuwX8h-IEEikmcMO8qv3eDE/exec"
+        data-form-submit-target="https://script.google.com/macros/s/AKfycbxVDhHoosBh8vEFVRdjsnrgMO8shVt_QQ9P4VZrexFPCmbFhzRVlupwND4-WYQGnQAT/exec"
         data-custom-JSON-to-send-string='{"gscript_callback_function": "login_or_delete"}'
         data-show-id="no"
         style="display: none"
@@ -100,13 +100,7 @@
             </td>
           </tr>
           <tr>
-            <td
-              style="
-                                width: 25%;
-                            "
-            >
-              User group:
-            </td>
+            <td style="width: 25%">User group:</td>
             <td>
               <select
                 id="roles"
@@ -116,13 +110,7 @@
             </td>
           </tr>
           <tr>
-            <td
-              style="
-                                width: 25%;
-                            "
-            >
-              User name:
-            </td>
+            <td style="width: 25%">User name:</td>
             <td>
               <input type="text" name="username" required />
             </td>
@@ -152,9 +140,7 @@
                   <input
                     id="submit_button"
                     class="u1"
-                    style="
-                                            margin-top: 0;
-                                        "
+                    style="margin-top: 0"
                     type="submit"
                     name="Submit"
                     value="Login"
@@ -170,7 +156,7 @@
         class="media1"
         onsubmit="event.preventDefault();form_wait(event.target);form_JSON_send(event.target)"
         class="u1"
-        data-form-submit-target="https://script.google.com/macros/s/AKfycbzwun7oDW9cDky9JUiWsJdctiqb1tiBfk2rbY-_bHpJ6UuwX8h-IEEikmcMO8qv3eDE/exec"
+        data-form-submit-target="https://script.google.com/macros/s/AKfycbxVDhHoosBh8vEFVRdjsnrgMO8shVt_QQ9P4VZrexFPCmbFhzRVlupwND4-WYQGnQAT/exec"
         data-custom-JSON-to-send-string='{"gscript_callback_function": "notice_post"}'
         data-show-id="no"
         data-send-creds="yes"
@@ -178,25 +164,37 @@
         style="display: none"
       >
         <span>You are logged in as <span id="login_type">HOD</span>.</span>
-        <table class="u1" style="overflow-x: scroll;">
+        <table class="u1" style="overflow-x: scroll">
           <tr>
             <td colspan="2">
               <h4>Add a notice:</h4>
             </td>
           </tr>
           <tr>
-            <td style="width: 25%; min-width: 80px;">Title:</td>
+            <td style="width: 25%; min-width: 80px">Title:</td>
             <td>
               <input
                 type="text"
                 name="notice_title"
                 autocomplete="off"
                 required
-                style="width: 100%;"
+                style="width: 100%"
               />
               <br />
               This will be only visible in the index and home page. This will
               not be displayed in the notice contents.
+            </td>
+          </tr>
+          <tr>
+            <td>Date:</td>
+            <td>
+              <input
+                type="date"
+                name="notice_date"
+                id="notice_date"
+                required
+                disabled
+              />
             </td>
           </tr>
           <tr>
@@ -238,9 +236,7 @@
                 <div class="media1">
                   <input
                     class="u1"
-                    style="
-                                            margin-top: 0;
-                                        "
+                    style="margin-top: 0"
                     type="submit"
                     name="Submit"
                     value="Add notice"
@@ -260,12 +256,7 @@
 
     <footer class="cont1" id="contact">
       <span
-        style="
-                    float: right;
-                    float: right;
-                    padding-top: 1%;
-                    padding-right: 1%;
-                "
+        style="float: right; float: right; padding-top: 1%; padding-right: 1%"
         >Developed by Dr. Vinayak Kale</span
       >
     </footer>
@@ -312,9 +303,20 @@
   ></script>
 
   <script type="text/javascript">
+    function show_notice_form() {
+      document.getElementById("notice_form").style.display = "revert";
+      document.getElementById("notice_date").value = new Date()
+        .toJSON()
+        .substr(0, 10);
+      if (document.getElementById("login_type").innerText == "HOD") {
+        document.getElementById("notice_date").removeAttribute("disabled");
+      } else {
+        document.getElementById("notice_date").setAttribute("disabled", "");
+      }
+    }
     if (sessionStorage) {
       if (sessionStorage.getItem("role") && sessionStorage.getItem("rolekey")) {
-        document.getElementById("notice_form").style.display = "revert";
+        show_notice_form();
       } else {
         document.getElementById("login_form").style.display = "revert";
       }
@@ -322,7 +324,7 @@
       document.getElementById("login_form").style.display = "revert";
     }
     function form_show_next() {
-      document.getElementById("notice_form").style.display = "revert";
+      show_notice_form();
       request(
         "https://docs.google.com/document/d/e/2PACX-1vRsBaCi0cOGgO6cHJWORkhvZXds_JQN1227KHSd_TxXcaByTD3M-53RFnDPKzYF3klQV_CNilYOsmxU/pub?embedded=true",
         "putin_paste",
@@ -394,10 +396,10 @@
 
   <style type="text/css">
     #notice_contents * {
-        list-style-type: revert;
-        margin: revert;
-        color: revert;
-        background-color: revert;
+      list-style-type: revert;
+      margin: revert;
+      color: revert;
+      background-color: revert;
     }
   </style>
 </html>
