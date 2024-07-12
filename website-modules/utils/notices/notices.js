@@ -2,16 +2,13 @@ var notices_obj, notices_classlist, target_ele_id;
 var notice_header_img = document.querySelector("header img:nth-child(1)"),
   img_src = notice_header_img.src;
 
-// var img_src_observer=new MutationObserver(function(mutations){
-// 	for(let mutation of mutations)
-// 	{
-// 		img_src=notice_header_img.src;
-// 	};
-// });
+var img_src_observer = new MutationObserver(function (mutations) {
+  for (let mutation of mutations) {
+    img_src = notice_header_img.src;
+  }
+});
 
-// img_src_observer.observe(notice_header_img,{attributes: true});
-
-img_src = "https://static-data.a4u.co.in/mech/images/MED-ICEM%20Header.jpg";
+img_src_observer.observe(notice_header_img, { attributes: true });
 
 function load_notice_as_page(id) {
   document.getElementById("contents_page").innerHTML = "Notice is loading....";
@@ -230,7 +227,7 @@ function notice_show_with_no(notice_group, notice_number) {
       notice_group.split("_")[0] +
       "/" +
       notices_obj[notice_group][notice_number][0] +
-      "</a>.<br>.<br><button onclick=\"var wind=window.open();wind.document.write(document.getElementsByClassName('notice_full')[0].outerHTML+'<style>*{font-size: 1.1em !important;float: none !important;}</style>'+document.getElementById('notices_css').outerHTML+document.getElementById('layout_css').outerHTML+document.getElementById('default_css').outerHTML);\"><span>Print Notice</span></button></div>"
+      "</a>.<br>.<br><button onclick=\"var wind=window.open();wind.document.write(document.getElementsByClassName('notice_full')[0].outerHTML.replace('https://www.a4u.co.in/images/logo.jpg','https://static-data.a4u.co.in/mech/images/MED-ICEM%20Header.jpg')+'<style>*{font-size: 1.1em !important;float: none !important;}</style>'+document.getElementById('notices_css').outerHTML+document.getElementById('layout_css').outerHTML+document.getElementById('default_css').outerHTML);\"><span>Print Notice</span></button></div>"
   );
   document
     .getElementById(target_ele_id)
