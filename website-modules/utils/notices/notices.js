@@ -287,7 +287,7 @@ function notice_parse(notice) {
   notice_container.insertAdjacentElement("beforeend", notice_sec);
   notice_container.insertAdjacentHTML(
     "beforeend",
-    "<div style=\"text-align: center;\">.<br><button onclick=\"var wind=window.open();wind.document.write(document.getElementsByClassName('notice_full')[0].outerHTML.replace('https://www.a4u.co.in/images/logo.jpg','https://static-data.a4u.co.in/mech/images/MED-ICEM%20Header.jpg')+'<style>*{font-size: 1.1em !important;float: none !important;}</style>'+document.getElementById('notices_css').outerHTML+document.getElementById('layout_css').outerHTML+document.getElementById('default_css').outerHTML);setTimeout(function() {document.window.print();},2000);\"><span>Print Notice</span></button></div>"
+    "<div style=\"text-align: center;\">.<br><button onclick=\"var wind=window.open();wind.document.write(document.getElementsByClassName('notice_full')[0].outerHTML.replace('https://www.a4u.co.in/images/logo.jpg','https://static-data.a4u.co.in/mech/images/MED-ICEM%20Header.jpg')+'<style>*{font-size: 1.1em !important;float: none !important;}</style>'+document.getElementById('notices_css').outerHTML+document.getElementById('layout_css').outerHTML+document.getElementById('default_css').outerHTML);setTimeout(function() {window.print();console.log('loaded');},1000);\"><span>Print Notice</span></button></div>"
   );
   // history.pushState("","","/notices/"+notice_group.substring(0,notice_group.length-8).replaceAll("_","-")+"/"+notices_obj["current_year"]+"/"+notice[0]);
   return notice_container;
