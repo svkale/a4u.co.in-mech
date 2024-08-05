@@ -296,6 +296,20 @@ function notice_parse(notice) {
     "beforeend",
     "<div class='notices_author'>From " + notice[1] + "</div>"
   );
+  notice_sec.insertAdjacentHTML(
+    "beforeend",
+    '<br><a target="_blank" href="/notice/' +
+      notice_group.split("_")[0] +
+      "/" +
+      notices_obj[notice_group][notice_number][0] +
+      '">' +
+      location.hostname +
+      "/notice/" +
+      notice_group.split("_")[0] +
+      "/" +
+      notices_obj[notice_group][notice_number][0] +
+      "</a>"
+  );
   notice_container.insertAdjacentElement("beforeend", notice_sec);
   notice_container.insertAdjacentHTML(
     "beforeend",
