@@ -100,7 +100,7 @@
             </td>
           </tr>
           <tr>
-            <td style="width: 25%">User group:</td>
+            <td style="width: 25%"></td>
             <td>
               <select hidden
                 id="roles"
@@ -122,7 +122,7 @@
             </td>
           </tr>
           <tr>
-            <td>Task:</td>
+            <td></td>
             <td>
               <select hidden
                 onchange="if(this.value=='delete'){this.parentElement.parentElement.insertAdjacentHTML('afterend','<tr id=\'ref_no\'><td>Reference no.:</td><td><input type=\'text\' name=\'ref_no\' placeholder=\'HOD/1\' required></td></tr>');document.getElementById('submit_button').value='Delete notice';}else{document.getElementById('ref_no').outerHTML='';document.getElementById('submit_button').value='Submit';}"
