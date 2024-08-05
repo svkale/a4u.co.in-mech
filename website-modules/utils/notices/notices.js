@@ -261,7 +261,7 @@ function notice_get_students_group(student_group) {
 }
 
 function notice_parse(notice) {
-  console.log("notice",notice);
+  console.log(location.href);
   let notice_container = document.createElement("section");
   notice_container.setAttribute("class", "u1 notice");
   let notice_sec = document.createElement("section");
@@ -299,7 +299,7 @@ function notice_parse(notice) {
   );
   notice_sec.insertAdjacentHTML(
     "beforeend",
-    '<br><a target="_blank" href=location.href>location.href</a>'
+    '<br><a target="_blank" href="https://www.a4u.co.in/notice/HOD/'+notice[0]+'">www.a4u.co.in/notice/HOD/'+notice[0]+'</a>'
   );
   notice_container.insertAdjacentElement("beforeend", notice_sec);
   notice_container.insertAdjacentHTML(
