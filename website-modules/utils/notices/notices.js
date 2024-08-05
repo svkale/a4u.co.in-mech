@@ -212,7 +212,17 @@ function notice_show_with_no(notice_group, notice_number) {
     "beforeend",
     "<div class='notices_author'>From " +
       notices_obj[notice_group][notice_number][1] +
-      "</div>"
+      "</div><a target='_blank' href='/notice/" +
+      notice_group.split('_')[0] +
+      '/' +
+      notices_obj[notice_group][notice_number][0] +
+      "'>" +
+      location.hostname +
+      '/notice/' +
+      notice_group.split('_')[0] +
+      '/' +
+      notices_obj[notice_group][notice_number][0] +
+      '</a>"
   );
   notice_container.insertAdjacentElement("beforeend", notice_sec);
   notice_container.insertAdjacentHTML(
@@ -282,7 +292,17 @@ function notice_parse(notice) {
   notice_sec.insertAdjacentHTML("beforeend", notice_str);
   notice_sec.insertAdjacentHTML(
     "beforeend",
-    "<div class='notices_author'>From " + notice[1] + "</div>"
+    "<div class='notices_author'>From " + notice[1] + "</div><a target='_blank' href='/notice/" +
+      notice_group.split('_')[0] +
+      '/' +
+      notices_obj[notice_group][notice_number][0] +
+      "'>" +
+      location.hostname +
+      '/notice/' +
+      notice_group.split('_')[0] +
+      '/' +
+      notices_obj[notice_group][notice_number][0] +
+      '</a>"
   );
   notice_container.insertAdjacentElement("beforeend", notice_sec);
   notice_container.insertAdjacentHTML(
