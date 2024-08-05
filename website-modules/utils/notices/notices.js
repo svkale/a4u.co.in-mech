@@ -296,6 +296,10 @@ function notice_parse(notice) {
     "beforeend",
     "<div class='notices_author'>From " + notice[1] + "</div>"
   );
+  notice_sec.insertAdjacentHTML(
+    "beforeend",
+    "<br>" + notice[0] +"console.log('"+JSON.stringify(notice)+"');
+  );
   notice_container.insertAdjacentElement("beforeend", notice_sec);
   notice_container.insertAdjacentHTML(
     "beforeend",
