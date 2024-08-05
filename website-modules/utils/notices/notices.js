@@ -298,7 +298,7 @@ function notice_parse(notice) {
   );
   notice_sec.insertAdjacentHTML(
     "beforeend",
-    "<br>" + notice[0] +"console.log('"+JSON.stringify(notice)+"');
+    "<br>" + notice[0]
   );
   notice_container.insertAdjacentElement("beforeend", notice_sec);
   notice_container.insertAdjacentHTML(
