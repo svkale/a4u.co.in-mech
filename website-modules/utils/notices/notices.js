@@ -212,7 +212,7 @@ function notice_show_with_no(notice_group, notice_number) {
     "beforeend",
     "<div class='notices_author'>From " + notices_obj[notice_group][notice_number][1] + "</div>"    
   );
-  notice_container.insertAdjacentHTML(
+  notice_sec.insertAdjacentHTML(
     "beforeend",
     '<br><a target="_blank" href="/notice/' +
       notice_group.split("_")[0] +
