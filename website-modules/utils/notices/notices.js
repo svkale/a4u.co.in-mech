@@ -298,7 +298,7 @@ function notice_parse(notice) {
   );
   notice_sec.insertAdjacentHTML(
     "beforeend",
-    '<br><a target="_blank" href="'+location.href+'">'+location.href+'</a>'
+    '<br><a target="_blank" href="'+location.href+'">'+location.href.replace("https://","")+'</a>'
   );
   notice_container.insertAdjacentElement("beforeend", notice_sec);
   notice_container.insertAdjacentHTML(
