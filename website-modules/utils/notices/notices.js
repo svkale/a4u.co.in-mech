@@ -299,7 +299,7 @@ function notice_parse(notice) {
   );
   notice_sec.insertAdjacentHTML(
     "beforeend",
-    '<br><a target="_blank" href="https://www.a4u.co.in/notice/HOD/'+notice[0]+'">www.a4u.co.in/notice/HOD/'+notice[0]+'</a>'
+    '<br><a target="_blank" href=location.href>location.href</a>'
   );
   notice_container.insertAdjacentElement("beforeend", notice_sec);
   notice_container.insertAdjacentHTML(
