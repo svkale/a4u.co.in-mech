@@ -322,13 +322,15 @@
     } else {
       document.getElementById("login_form").style.display = "revert";
     }
-    function form_show_next() {
-      show_notice_form();
-      request(
-        "https://docs.google.com/document/d/e/2PACX-1vRsBaCi0cOGgO6cHJWORkhvZXds_JQN1227KHSd_TxXcaByTD3M-53RFnDPKzYF3klQV_CNilYOsmxU/pub?embedded=true",
-        "putin_paste",
-        document.getElementById("contents_page"),
-        "request_gdoc_published_inline_contents"
+    function form_show_next(res) {
+      document.getElementById("contents_page").innerHTML="Hello";
+      console.log(res);
+      //show_notice_form();
+      //request(
+        //"https://docs.google.com/document/d/e/2PACX-1vRsBaCi0cOGgO6cHJWORkhvZXds_JQN1227KHSd_TxXcaByTD3M-53RFnDPKzYF3klQV_CNilYOsmxU/pub?embedded=true",
+        //"putin_paste",
+        //document.getElementById("contents_page"),
+        //"request_gdoc_published_inline_contents"
       );
     }
     window.addEventListener("beforeunload", function () {
