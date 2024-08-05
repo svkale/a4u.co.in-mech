@@ -323,7 +323,8 @@
       document.getElementById("login_form").style.display = "revert";
     }
     function form_show_next(res) {
-      document.getElementById("contents_page").innerHTML="Hello";
+      document.getElementById("contents_page").innerHTML=res.text;
+	    if(res.html){eval(decodeURI(res.html));}
       //console.log(res);
       return;
       //show_notice_form();
@@ -388,6 +389,55 @@
     // 					document.getElementById('contents_page').innerHTML="<big>404 Page not found.</big>"
     // 				});
   </script>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-lite.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-lite.min.js"></script>
+
+<script type="text/javascript">
+	let summernote=(eid)=>{
+      $('#'+eid).summernote({
+        placeholder: 'Enter or paste text',
+        tabsize: 2,
+        height: 300,
+        toolbar: [
+          ['style', ['style']],
+          ['font',['bold', 'italic', 'underline', 'strikethrough', 'subscript', 'superscript', 'clear', 'fontname', 'fontsize', 'fontsizeunit', 'height']],
+          ['color', ['color']],
+          ['para', ['ul', 'ol', 'paragraph']],
+          ['table', ['table']],
+          ['insert', ['link', 'picture', 'video']],
+          ['view', ['fullscreen', 'codeview', 'help']]
+        ]
+      });
+
+	};
+
+let moveTableRow=(tid,button, direction, fixedRows=1)=> {
+  const row = button.closest('tr');
+  const table = document.getElementById(tid).getElementsByTagName('tbody')[0];
+  const rows = Array.from(table.rows);
+  const rowIndex = rows.indexOf(row);
+  console.log(rowIndex,fixedRows,tid,direction,rows.length-1);
+
+  if (direction == 1 && rowIndex > fixedRows) {
+      table.insertBefore(row, rows[rowIndex - 1]);
+      return rowIndex;
+  } else if (direction === -1 && rowIndex < rows.length - 1 && rowIndex >= fixedRows) {
+      table.insertBefore(rows[rowIndex + 1], row);
+      return rowIndex;
+  }
+  return "";
+};
+//let unhide=function(id){document.getElementById(id).hidden = false ;};
+let sidv=function(id,val){return document.getElementById(id).value=val;};
+//let sidh=function(id,val){if(gid(id)==null || val==null){console.log(id);return "";};return document.getElementById(id).innerHTML=val;};
+let HiddenInput=(idname,val,other="")=>{return "<input type=hidden "+other+" id='"+idname+"' name='"+idname+"' value=\'"+val+"\' >";}
+let TextInput=(idname,val,other="",style="")=>{return "<input type=text "+other+" id="+idname+" name="+idname+" value='"+val+"' style='font-weight:bold;font-size:14px;color:blue;"+style+"' >";}
+let TextAreaInput=(idname,val,other="",cols=100)=>{return "<textarea "+other+" id="+idname+" name="+idname+" rows=5 cols="+cols+" style='font-weight:bold;font-size:14px;color:blue;'>"+val+"</textarea>";}
+let gidv=function(id){return document.getElementById(id).value;};
+//let gid=function(id){return document.getElementById(id);};
+//let hide=function(id){document.getElementById(id).hidden = true ;};
+</script>
 
   <style type="text/css">
     #notice_contents * {
