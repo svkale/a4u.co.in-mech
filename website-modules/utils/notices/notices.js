@@ -261,7 +261,7 @@ function notice_get_students_group(student_group) {
 }
 
 function notice_parse(notice) {
-  console.log(notice);
+  console.log("notice",notice);
   let notice_container = document.createElement("section");
   notice_container.setAttribute("class", "u1 notice");
   let notice_sec = document.createElement("section");
