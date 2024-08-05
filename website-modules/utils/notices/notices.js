@@ -261,6 +261,7 @@ function notice_get_students_group(student_group) {
 }
 
 function notice_parse(notice) {
+  console.log(notice);
   let notice_container = document.createElement("section");
   notice_container.setAttribute("class", "u1 notice");
   let notice_sec = document.createElement("section");
@@ -298,7 +299,7 @@ function notice_parse(notice) {
   );
   notice_sec.insertAdjacentHTML(
     "beforeend",
-    "<br>" + notice[0]
+    "<br>."
   );
   notice_container.insertAdjacentElement("beforeend", notice_sec);
   notice_container.insertAdjacentHTML(
