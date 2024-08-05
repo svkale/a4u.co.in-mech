@@ -215,6 +215,20 @@ function notice_show_with_no(notice_group, notice_number) {
   notice_container.insertAdjacentElement("beforeend", notice_sec);
   notice_container.insertAdjacentHTML(
     "beforeend",
+    '<br>The link for the notice is <a target="_blank" href="/notice/' +
+      notice_group.split("_")[0] +
+      "/" +
+      notices_obj[notice_group][notice_number][0] +
+      '">' +
+      location.hostname +
+      "/notice/" +
+      notice_group.split("_")[0] +
+      "/" +
+      notices_obj[notice_group][notice_number][0] +
+      "</a>"
+  );
+  notice_container.insertAdjacentHTML(
+    "beforeend",
     '<div style="text-align: center;">.<br>The link for the notice is <a target="_blank" href="/notice/' +
       notice_group.split("_")[0] +
       "/" +
