@@ -120,9 +120,8 @@ function request_post_promise(path,pars,content_type)
 		else if(content_type==3)
 		{
 			xmlhttp.setRequestHeader("Content-type","multipart/form-data");
-		}
-		console.log("content_type",content_type);console.log(pars);
-		xmlhttp.send(pars);
+		}		
+		//xmlhttp.send(pars);
 	});
 }
 
