@@ -121,7 +121,7 @@ function request_post_promise(path,pars,content_type)
 		{
 			xmlhttp.setRequestHeader("Content-type","multipart/form-data");
 		}		
-		//xmlhttp.send(pars);
+		xmlhttp.send(pars);
 	});
 }
 
