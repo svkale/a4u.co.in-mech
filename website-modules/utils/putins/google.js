@@ -11,7 +11,7 @@ function gsrfnts(query, target_id) {
 }
 function gsrfn(query, target_id) {
   var p =
-    "https://script.google.com/macros/s/AKfycbwKZSfqNx2BUVoIvTNtblJOz9fu5CqWFFpqlfLfUvYKb2H7b5qJkydytATOBY8P1tJppA/exec?" +
+    "https://script.google.com/macros/s/AKfycbwyvorZlwrj1QdlS6djiShTkpDsoLFDA45FaNPkJfDbP6zR1gBo1PjkB4y0PerLY_ww/exec?" +
     query;
   request_promise(p).then((res) => {
     if (document.getElementById(target_id)) {
@@ -21,7 +21,7 @@ function gsrfn(query, target_id) {
 }
 function gsrfnjq(query, target_id) {
   var p =
-    "https://script.google.com/macros/s/AKfycbwKZSfqNx2BUVoIvTNtblJOz9fu5CqWFFpqlfLfUvYKb2H7b5qJkydytATOBY8P1tJppA/exec?" +
+    "https://script.google.com/macros/s/AKfycbwyvorZlwrj1QdlS6djiShTkpDsoLFDA45FaNPkJfDbP6zR1gBo1PjkB4y0PerLY_ww/exec?" +
     query;
   request_promise(p).then((res) => {
     if (document.getElementById(target_id)) {
@@ -204,7 +204,7 @@ function putins_make_page_from_gdoc(request_obj, params) {
         nav_HTML += ">" + j[0] + "</div></li>";
       } else if (j[1] == "HitCounter") {
         nav_HTML +=
-          "<li class='u1 hit_counter' id='hit_counter'><big class='putins' data-target-url='https://script.google.com/macros/s/AKfycbwKZSfqNx2BUVoIvTNtblJOz9fu5CqWFFpqlfLfUvYKb2H7b5qJkydytATOBY8P1tJppA/exec?fn=hitCounter&site=" +
+          "<li class='u1 hit_counter' id='hit_counter'><big class='putins' data-target-url='https://script.google.com/macros/s/AKfycbwyvorZlwrj1QdlS6djiShTkpDsoLFDA45FaNPkJfDbP6zR1gBo1PjkB4y0PerLY_ww/exec?fn=hitCounter&site=" +
           j[2] +
           "' data-function-name='request_response'></big></li>";
         var hit_count_yn = true;
