@@ -92,7 +92,7 @@ function request_post_promise(path, pars, content_type) {
     } else if (content_type == 3) {
       xmlhttp.setRequestHeader("Content-type", "multipart/form-data");
     }
-    //console.log(pars);
+    console.log(pars);
     xmlhttp.send(pars);
   });
 }
