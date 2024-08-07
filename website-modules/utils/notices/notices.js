@@ -45,7 +45,7 @@ function load_notice_as_page(id) {
     }
   );
   request_promise(
-    "https://script.google.com/macros/s/AKfycbwyvorZlwrj1QdlS6djiShTkpDsoLFDA45FaNPkJfDbP6zR1gBo1PjkB4y0PerLY_ww/exec?fn=hitCounter&site=a4u.co.in"
+    "https://script.google.com/macros/s/AKfycbx1xmCRYQ1iJlTqNCguGtnjUBc3KUvlGY6G9I3nIfr2z8GMwzn6YGcgEElWziZIb97Ilg/exec?fn=hitCounter&site=a4u.co.in"
   ).then((res) => {});
 }
 
