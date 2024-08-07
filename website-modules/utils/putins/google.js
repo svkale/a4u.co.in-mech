@@ -1,46 +1,82 @@
 // google script run function and paste response text on target_id
-function gsrfnts(query,target_id)
-{
-	var p="https://script.google.com/macros/s/AKfycbxS0ArgmHoB0pYL9N053ItYk4dxeO2xgftvdiXl_EeJJgugAdLCDrqmxgdppvC2Scb2zQ/exec?"+query;
-	request_promise(p).then((res)=>{if(document.getElementById(target_id)) {document.getElementById(target_id).innerHTML=res.responseText;}});
+function gsrfnts(query, target_id) {
+  var p =
+    "https://script.google.com/macros/s/AKfycbxS0ArgmHoB0pYL9N053ItYk4dxeO2xgftvdiXl_EeJJgugAdLCDrqmxgdppvC2Scb2zQ/exec?" +
+    query;
+  request_promise(p).then((res) => {
+    if (document.getElementById(target_id)) {
+      document.getElementById(target_id).innerHTML = res.responseText;
+    }
+  });
 }
-function gsrfn(query,target_id)
-{
-	var p="https://script.google.com/macros/s/AKfycbzy53ifIUTm2YNc_T_uv1Y0RV0PaLlE8i00V2DTvzBFCuG1Q8ocrvguw4mKUfkiykJSHA/exec?"+query;
-	request_promise(p).then((res)=>{if(document.getElementById(target_id)) {document.getElementById(target_id).innerHTML=res.responseText;}});
+function gsrfn(query, target_id) {
+  var p =
+    "https://script.google.com/macros/s/AKfycbwKZSfqNx2BUVoIvTNtblJOz9fu5CqWFFpqlfLfUvYKb2H7b5qJkydytATOBY8P1tJppA/exec?" +
+    query;
+  request_promise(p).then((res) => {
+    if (document.getElementById(target_id)) {
+      document.getElementById(target_id).innerHTML = res.responseText;
+    }
+  });
 }
-function gsrfnjq(query,target_id)
-{
-	var p="https://script.google.com/macros/s/AKfycbzy53ifIUTm2YNc_T_uv1Y0RV0PaLlE8i00V2DTvzBFCuG1Q8ocrvguw4mKUfkiykJSHA/exec?"+query;
-	request_promise(p).then((res)=>{
-		if(document.getElementById(target_id)) {
-			let rrt=res.responseText;
-			var msjq=rrt.toString().split(".jqscript.");
-			console.log("msjq.length = "+msjq.length);
-			if(msjq.length>1){
-			  html=[];
-			  for(var i=2;i<msjq.length;i=i+2){
-				html.push(msjq[i-1]);
-			  }
-			  for(var i=2;i<msjq.length;i=i+2){
-				rrt=rrt.replace(".jqscript."+html[i/2-1]+".jqscript.","");
-			  }
-			  html=html.join("");html=decodeURI(html);
-			}
-			document.getElementById(target_id).innerHTML=rrt;
-			//console.log(html)
-			if(html!=null && html!=""){var F=new Function (html);  return(F());}
-		}
-	});
+function gsrfnjq(query, target_id) {
+  var p =
+    "https://script.google.com/macros/s/AKfycbwKZSfqNx2BUVoIvTNtblJOz9fu5CqWFFpqlfLfUvYKb2H7b5qJkydytATOBY8P1tJppA/exec?" +
+    query;
+  request_promise(p).then((res) => {
+    if (document.getElementById(target_id)) {
+      let rrt = res.responseText;
+      var msjq = rrt.toString().split(".jqscript.");
+      console.log("msjq.length = " + msjq.length);
+      if (msjq.length > 1) {
+        html = [];
+        for (var i = 2; i < msjq.length; i = i + 2) {
+          html.push(msjq[i - 1]);
+        }
+        for (var i = 2; i < msjq.length; i = i + 2) {
+          rrt = rrt.replace(".jqscript." + html[i / 2 - 1] + ".jqscript.", "");
+        }
+        html = html.join("");
+        html = decodeURI(html);
+      }
+      document.getElementById(target_id).innerHTML = rrt;
+      //console.log(html)
+      if (html != null && html != "") {
+        var F = new Function(html);
+        return F();
+      }
+    }
+  });
 }
-function gid(id){return document.getElementById(id);}
-function sidh(id,val){if(gid(id)==null){console.log(id);};return document.getElementById(id).innerHTML=val;}
-function unhide(id){document.getElementById(id).hidden = false ;}
-function hide(id){document.getElementById(id).hidden = true ;}
-function gidh(id){if(gid(id)==null){console.log(id);return "";};return document.getElementById(id).innerHTML;}
-function gidbg(id){return document.getElementById(id).style.backgroundColor;}
-function sidbg(id,color){return document.getElementById(id).style.backgroundColor=color;}
-function SelectMCQ(evt, cityName,QNo) {
+function gid(id) {
+  return document.getElementById(id);
+}
+function sidh(id, val) {
+  if (gid(id) == null) {
+    console.log(id);
+  }
+  return (document.getElementById(id).innerHTML = val);
+}
+function unhide(id) {
+  document.getElementById(id).hidden = false;
+}
+function hide(id) {
+  document.getElementById(id).hidden = true;
+}
+function gidh(id) {
+  if (gid(id) == null) {
+    console.log(id);
+    return "";
+  }
+  return document.getElementById(id).innerHTML;
+}
+function gidbg(id) {
+  return document.getElementById(id).style.backgroundColor;
+}
+function sidbg(id, color) {
+  return (document.getElementById(id).style.backgroundColor = color);
+}
+function SelectMCQ(evt, cityName, QNo) {
   var i, tabcontent, tablinks;
   tabcontent = document.getElementsByClassName("MCQtabcontent");
   for (i = 0; i < tabcontent.length; i++) {
@@ -51,156 +87,182 @@ function SelectMCQ(evt, cityName,QNo) {
     tablinks[i].className = tablinks[i].className.replace(" active", "");
   }
   document.getElementById(cityName).style.display = "block";
-  if(QNo!=null){
-    tablinks[Number(QNo)+1].className += " active";
-  }else{
+  if (QNo != null) {
+    tablinks[Number(QNo) + 1].className += " active";
+  } else {
     evt.currentTarget.className += " active";
   }
   return false;
 }
 
-var doc_ele_HTML,style_loaded=0;
-function putins_make_page_from_gdoc(request_obj,params)
-{
-	let nav_ele_id=params[0],doc_ele_id=params[1],element=decodeURI(params[2]);
-	if(params[3])
-	{
-		var parentURL=params[3];
-	}
-	let nav_ele=document.getElementById(nav_ele_id);
-	let nav_ele_mob=document.getElementById(nav_ele_id+"_mob");
-	let doc_ele=document.getElementById(doc_ele_id);
-	if(!doc_ele_HTML)
-	{
-		doc_ele_HTML=request_gdoc_published_inline_contents(request_obj,[doc_ele_id]);
-	}
-	let domParser=new DOMParser(),dom;
-	dom=domParser.parseFromString(doc_ele_HTML,"text/html");
-	//console.log(dom.documentElement);
-	while(dom.documentElement.querySelector("style"))
-	{
-		document.getElementsByTagName("head")[0].insertAdjacentElement("beforeend",dom.documentElement.querySelector("style"));
-	}
-	let nav_contents=dom.documentElement.querySelector("body").innerText.substring(dom.documentElement.querySelector("body").innerText.search("{NAVIGATION}")+12,dom.documentElement.querySelector("body").innerText.search("{/NAVIGATION}")).split("|"),nav_HTML="",head_no=0,exec_dropdown_script=0;
-	for(let i of nav_contents)
-	{
-		let j=i.split("<>");
-		if(j.length>=2)
-		{
-			if(j[1]=="Heading")
-			{
-				if(head_no!=0)
-				{
-					nav_HTML+="</div>";
-				}
-				head_no=1;
-				nav_HTML+="<div class=\"cont1\" data-button-target-selector=\""+j[0].substr(j[0].search("&nbsp;")+6)+"\"><li class=\"u1 nav_heading\" style=\"background-color: var(--main-color-2);\">"+j[0]+"</li>";
-			}
-			else if(j[1]=="Text")
-			{
-				if(!j[2])
-				{	
-					nav_HTML+="<span class=\"u1\" style=\"text-align: center;font-weight: bold;\">"+j[0]+"</span>";
-				}
-				else
-				{
-					nav_HTML+="<li class='u1 dyn_data'><div class='putins' data-target-url='"+j[2]+"' data-function-name='request_response'></div></li>";
-					var dyn_data_yn=true;
-				}
-			}
-			else if(j[1]=="EmptyLine")
-			{
-				nav_HTML+="<div class=\"u1 empty_line\">.</div>";
-			}
-			else if(j[1]=="UserPhotoLink")
-			{
-
-				nav_HTML+="<section class=\"cont\" style=\"--cont-width: 50%; margin-left: 25%;\"><img class='media1' src=\""+j[2]+"\"></section>";
-			}
-			else if(j[1]=="ImageLink")
-			{
-				nav_HTML+="<img class='cont' style='--cont-width: 60%;margin-left: 20%;' src=\""+j[2]+"\"></section>";
-			}
-			else if(j[1]=="Weblink")
-			{
-				nav_HTML+="<li><a class=\"u1 web_link\" target=\"_blank\" href=\""+j[2]+"\" style=\"padding-left: 4%;text-decoration: none;\">"+j[0]+" <svg height=\"12\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 512 512\"><path fill=\"var(--main-color-2)\" d=\"M432,320H400a16,16,0,0,0-16,16 V448 H64 V128 H208 a16,16,0,0,0,16-16 V80 a16,16,0,0,0-16-16 H48 A48,48,0,0,0,0,112 V464 a48,48,0,0,0,48,48 H400 a48,48,0,0,0,48-48 V336 A16,16,0,0,0,432,320ZM488,0h-128 c-21.37,0-32.05,25.91-17,41 l35.73,35.73 L135,320.37a24,24,0,0,0,0,34 L157.67,377 a24,24,0,0,0,34,0 L435.28,133.32,471,169 c15,15,41,4.5,41-17 V24 A24,24,0,0,0,488,0Z\"></path></svg></a></li>";
-			}
-			else if(j[1]=="Page")
-			{
-				nav_HTML+="<li class='u1 doc_page' onclick='putins_make_subpage(this.innerText.trim(),\""+doc_ele_id+"\");'><div";
-				if(j[0].endsWith("Home"))
-				{
-					nav_HTML+=" style=\"font-weight: bold;\"";
-				}
-				nav_HTML+=">"+j[0]+"</div></li>";
-			}
-			else if(j[1]=="FramePage")
-			{
-				nav_HTML+="<li class='u1 doc_page' onclick='let domParser=new DOMParser(),dom,doc_ele=document.getElementById(\""+doc_ele_id+"\");dom=domParser.parseFromString(\"<p>{frame_link}"+j[2]+"{/frame_link}</p>\",\"text/html\");putins_make_subpage_from_HTML(dom,doc_ele,this.innerText.trim());'><div";
-				if(j[0]=="Home") nav_HTML+=" style=\"font-weight: bold;\"";
-				nav_HTML+=">"+j[0]+"</div></li>";
-			}
-			else if(j[1]=="HitCounter")
-			{
-				nav_HTML+="<li class='u1 hit_counter' id='hit_counter'><big class='putins' data-target-url='https://script.google.com/macros/s/AKfycbzy53ifIUTm2YNc_T_uv1Y0RV0PaLlE8i00V2DTvzBFCuG1Q8ocrvguw4mKUfkiykJSHA/exec?fn=hitCounter&site="+j[2]+"' data-function-name='request_response'></big></li>";
-				var hit_count_yn=true;
-				
-			}
-			else if(j[1]=="HeaderImage")
-			{
-				document.getElementsByTagName('header')[0].getElementsByTagName('img')[0].setAttribute("src",parentURL+j[2]);
-				
-			}
-			else if(j[1]=="ScrollText")
-			{
-				if(document.getElementById("top_scroll_text"))
-				{
-					document.getElementById("top_scroll_text").innerHTML=j[2];
-				}
-			}
-			else if(j[1]=="InputText")
-			{
-				nav_HTML+="<input class=\"u1\" type=\"text\" id=\""+j[2]+"\" placeholder=\""+j[0]+"\" />";
-			}
-			else if(j[1]=="Button")
-			{
-				nav_HTML+="<button class=\"u1\" onclick=\""+j[2]+"\" style=\"text-align: center;\"><span>"+j[0]+"</span></button>";
-			}
-			else if(j[1]=="DropDown")
-			{
-				nav_HTML+="<section class=\"u1 hover_dropdown\"><button class=\"u1 hover_dropdown_button\" style=\"background-color: aliceblue;\">"+j[0]+" &#9662;</button><ul class=\"hover_dropdown_list\">";
-				exec_dropdown_script=1;
-			}
-			else if(j[1]=="DropDownItem")
-			{
-				if(j[2]!="")
-				{
-					nav_HTML+="<li style=\"padding: 0;\"><a target=\"_blank\" href=\""+j[2]+"\">"+j[0]+"</a></li>";
-				}
-				else
-				{
-					nav_HTML+="<li>"+j[0]+"</li>";
-				}
-			}
-			else if(j[1]=="DropDownEnd")
-			{
-				nav_HTML+="</ul></section>";
-			}
-			else if(j[1]=="SCRIPT")
-			{
-				var scr=document.createElement("script");
-				scr.setAttribute("type","text/javascript");
-				scr.innerHTML=j[2];
-				document.getElementsByTagName('html')[0].appendChild(scr);
-			}
-		}
-	}
-	nav_ele.innerHTML=nav_HTML;
-	if(exec_dropdown_script)
-	{
-		let dropdown_script=document.createElement("script");
-		dropdown_script.setAttribute("type","text/javascript");
-		dropdown_script.innerHTML=`
+var doc_ele_HTML,
+  style_loaded = 0;
+function putins_make_page_from_gdoc(request_obj, params) {
+  let nav_ele_id = params[0],
+    doc_ele_id = params[1],
+    element = decodeURI(params[2]);
+  if (params[3]) {
+    var parentURL = params[3];
+  }
+  let nav_ele = document.getElementById(nav_ele_id);
+  let nav_ele_mob = document.getElementById(nav_ele_id + "_mob");
+  let doc_ele = document.getElementById(doc_ele_id);
+  if (!doc_ele_HTML) {
+    doc_ele_HTML = request_gdoc_published_inline_contents(request_obj, [
+      doc_ele_id,
+    ]);
+  }
+  let domParser = new DOMParser(),
+    dom;
+  dom = domParser.parseFromString(doc_ele_HTML, "text/html");
+  //console.log(dom.documentElement);
+  while (dom.documentElement.querySelector("style")) {
+    document
+      .getElementsByTagName("head")[0]
+      .insertAdjacentElement(
+        "beforeend",
+        dom.documentElement.querySelector("style")
+      );
+  }
+  let nav_contents = dom.documentElement
+      .querySelector("body")
+      .innerText.substring(
+        dom.documentElement
+          .querySelector("body")
+          .innerText.search("{NAVIGATION}") + 12,
+        dom.documentElement
+          .querySelector("body")
+          .innerText.search("{/NAVIGATION}")
+      )
+      .split("|"),
+    nav_HTML = "",
+    head_no = 0,
+    exec_dropdown_script = 0;
+  for (let i of nav_contents) {
+    let j = i.split("<>");
+    if (j.length >= 2) {
+      if (j[1] == "Heading") {
+        if (head_no != 0) {
+          nav_HTML += "</div>";
+        }
+        head_no = 1;
+        nav_HTML +=
+          '<div class="cont1" data-button-target-selector="' +
+          j[0].substr(j[0].search("&nbsp;") + 6) +
+          '"><li class="u1 nav_heading" style="background-color: var(--main-color-2);">' +
+          j[0] +
+          "</li>";
+      } else if (j[1] == "Text") {
+        if (!j[2]) {
+          nav_HTML +=
+            '<span class="u1" style="text-align: center;font-weight: bold;">' +
+            j[0] +
+            "</span>";
+        } else {
+          nav_HTML +=
+            "<li class='u1 dyn_data'><div class='putins' data-target-url='" +
+            j[2] +
+            "' data-function-name='request_response'></div></li>";
+          var dyn_data_yn = true;
+        }
+      } else if (j[1] == "EmptyLine") {
+        nav_HTML += '<div class="u1 empty_line">.</div>';
+      } else if (j[1] == "UserPhotoLink") {
+        nav_HTML +=
+          '<section class="cont" style="--cont-width: 50%; margin-left: 25%;"><img class=\'media1\' src="' +
+          j[2] +
+          '"></section>';
+      } else if (j[1] == "ImageLink") {
+        nav_HTML +=
+          "<img class='cont' style='--cont-width: 60%;margin-left: 20%;' src=\"" +
+          j[2] +
+          '"></section>';
+      } else if (j[1] == "Weblink") {
+        nav_HTML +=
+          '<li><a class="u1 web_link" target="_blank" href="' +
+          j[2] +
+          '" style="padding-left: 4%;text-decoration: none;">' +
+          j[0] +
+          ' <svg height="12" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="var(--main-color-2)" d="M432,320H400a16,16,0,0,0-16,16 V448 H64 V128 H208 a16,16,0,0,0,16-16 V80 a16,16,0,0,0-16-16 H48 A48,48,0,0,0,0,112 V464 a48,48,0,0,0,48,48 H400 a48,48,0,0,0,48-48 V336 A16,16,0,0,0,432,320ZM488,0h-128 c-21.37,0-32.05,25.91-17,41 l35.73,35.73 L135,320.37a24,24,0,0,0,0,34 L157.67,377 a24,24,0,0,0,34,0 L435.28,133.32,471,169 c15,15,41,4.5,41-17 V24 A24,24,0,0,0,488,0Z"></path></svg></a></li>';
+      } else if (j[1] == "Page") {
+        nav_HTML +=
+          "<li class='u1 doc_page' onclick='putins_make_subpage(this.innerText.trim(),\"" +
+          doc_ele_id +
+          "\");'><div";
+        if (j[0].endsWith("Home")) {
+          nav_HTML += ' style="font-weight: bold;"';
+        }
+        nav_HTML += ">" + j[0] + "</div></li>";
+      } else if (j[1] == "FramePage") {
+        nav_HTML +=
+          "<li class='u1 doc_page' onclick='let domParser=new DOMParser(),dom,doc_ele=document.getElementById(\"" +
+          doc_ele_id +
+          '");dom=domParser.parseFromString("<p>{frame_link}' +
+          j[2] +
+          '{/frame_link}</p>","text/html");putins_make_subpage_from_HTML(dom,doc_ele,this.innerText.trim());\'><div';
+        if (j[0] == "Home") nav_HTML += ' style="font-weight: bold;"';
+        nav_HTML += ">" + j[0] + "</div></li>";
+      } else if (j[1] == "HitCounter") {
+        nav_HTML +=
+          "<li class='u1 hit_counter' id='hit_counter'><big class='putins' data-target-url='https://script.google.com/macros/s/AKfycbwKZSfqNx2BUVoIvTNtblJOz9fu5CqWFFpqlfLfUvYKb2H7b5qJkydytATOBY8P1tJppA/exec?fn=hitCounter&site=" +
+          j[2] +
+          "' data-function-name='request_response'></big></li>";
+        var hit_count_yn = true;
+      } else if (j[1] == "HeaderImage") {
+        document
+          .getElementsByTagName("header")[0]
+          .getElementsByTagName("img")[0]
+          .setAttribute("src", parentURL + j[2]);
+      } else if (j[1] == "ScrollText") {
+        if (document.getElementById("top_scroll_text")) {
+          document.getElementById("top_scroll_text").innerHTML = j[2];
+        }
+      } else if (j[1] == "InputText") {
+        nav_HTML +=
+          '<input class="u1" type="text" id="' +
+          j[2] +
+          '" placeholder="' +
+          j[0] +
+          '" />';
+      } else if (j[1] == "Button") {
+        nav_HTML +=
+          '<button class="u1" onclick="' +
+          j[2] +
+          '" style="text-align: center;"><span>' +
+          j[0] +
+          "</span></button>";
+      } else if (j[1] == "DropDown") {
+        nav_HTML +=
+          '<section class="u1 hover_dropdown"><button class="u1 hover_dropdown_button" style="background-color: aliceblue;">' +
+          j[0] +
+          ' &#9662;</button><ul class="hover_dropdown_list">';
+        exec_dropdown_script = 1;
+      } else if (j[1] == "DropDownItem") {
+        if (j[2] != "") {
+          nav_HTML +=
+            '<li style="padding: 0;"><a target="_blank" href="' +
+            j[2] +
+            '">' +
+            j[0] +
+            "</a></li>";
+        } else {
+          nav_HTML += "<li>" + j[0] + "</li>";
+        }
+      } else if (j[1] == "DropDownEnd") {
+        nav_HTML += "</ul></section>";
+      } else if (j[1] == "SCRIPT") {
+        var scr = document.createElement("script");
+        scr.setAttribute("type", "text/javascript");
+        scr.innerHTML = j[2];
+        document.getElementsByTagName("html")[0].appendChild(scr);
+      }
+    }
+  }
+  nav_ele.innerHTML = nav_HTML;
+  if (exec_dropdown_script) {
+    let dropdown_script = document.createElement("script");
+    dropdown_script.setAttribute("type", "text/javascript");
+    dropdown_script.innerHTML = `
 		let dropdowns=document.querySelectorAll(".hover_dropdown");
 		function setDropDown(obj)
 		{
@@ -215,216 +277,357 @@ function putins_make_page_from_gdoc(request_obj,params)
 			new ResizeObserver(setDropDown).observe(i.parentElement);
 		}
 		`;
-		document.getElementsByTagName('html')[0].appendChild(dropdown_script);
-	}
-	if(hit_count_yn)
-	{
-		putins_load('hit_counter');
-	}
-	if(dyn_data_yn)
-	{
-		putins_load('dyn_data',true);
-	}
-	if(nav_ele_mob)
-	{
-		nav_ele_mob.innerHTML="";
-		let nav_ele_innersvgs=document.querySelectorAll("#"+nav_ele_id+" svg");
-		let nav_count=0;
-		for(k of nav_ele_innersvgs)
-		{
-			if(k.parentElement.classList.contains("nav_heading"))
-			{
-				j=k.cloneNode("true");
-				j.style.height="var(--nav_svgs)";
-				j.style.width="var(--nav_svgs)";
-				j.style.paddingLeft="3%";
-				j.style.paddingRight="3%";
-				j.classList.add("button_visibility_control");
-				j.classList.add("hide_md");
-				j.setAttribute("data-button-target",k.parentElement.innerText.trim());
-				j.setAttribute("data-button-get-from","attribute");
-				if(window.innerWidth>575)
-				{
-					j.setAttribute("data-button-status","visible");
-				}
-				else
-				{
-					j.setAttribute("data-button-status","hidden");
-				}
-				nav_ele_mob.appendChild(j);
-				nav_count++;
-			}
-		}
-		load_buttons();
-		nav_ele_mob.setAttribute("style",nav_ele_mob.getAttribute("style")+";--nav_svgs: "+100/nav_count+"%;");
-	}
-	let nav_load_script=document.createElement("script");
-	nav_load_script.setAttribute("type","text/javascript");
-	nav_load_script.innerHTML="load_navs();";
-	document.getElementsByTagName("body")[0].appendChild(nav_load_script);
-	putins_make_subpage(element,doc_ele_id);
-	return;
+    document.getElementsByTagName("html")[0].appendChild(dropdown_script);
+  }
+  if (hit_count_yn) {
+    putins_load("hit_counter");
+  }
+  if (dyn_data_yn) {
+    putins_load("dyn_data", true);
+  }
+  if (nav_ele_mob) {
+    nav_ele_mob.innerHTML = "";
+    let nav_ele_innersvgs = document.querySelectorAll(
+      "#" + nav_ele_id + " svg"
+    );
+    let nav_count = 0;
+    for (k of nav_ele_innersvgs) {
+      if (k.parentElement.classList.contains("nav_heading")) {
+        j = k.cloneNode("true");
+        j.style.height = "var(--nav_svgs)";
+        j.style.width = "var(--nav_svgs)";
+        j.style.paddingLeft = "3%";
+        j.style.paddingRight = "3%";
+        j.classList.add("button_visibility_control");
+        j.classList.add("hide_md");
+        j.setAttribute("data-button-target", k.parentElement.innerText.trim());
+        j.setAttribute("data-button-get-from", "attribute");
+        if (window.innerWidth > 575) {
+          j.setAttribute("data-button-status", "visible");
+        } else {
+          j.setAttribute("data-button-status", "hidden");
+        }
+        nav_ele_mob.appendChild(j);
+        nav_count++;
+      }
+    }
+    load_buttons();
+    nav_ele_mob.setAttribute(
+      "style",
+      nav_ele_mob.getAttribute("style") +
+        ";--nav_svgs: " +
+        100 / nav_count +
+        "%;"
+    );
+  }
+  let nav_load_script = document.createElement("script");
+  nav_load_script.setAttribute("type", "text/javascript");
+  nav_load_script.innerHTML = "load_navs();";
+  document.getElementsByTagName("body")[0].appendChild(nav_load_script);
+  putins_make_subpage(element, doc_ele_id);
+  return;
 }
-function putins_make_subpage(element,doc_ele_id)
-{
-	let domParser=new DOMParser(),dom,doc_ele=document.getElementById(doc_ele_id);
-	if(doc_ele_HTML.includes("{"+element+"}") && doc_ele_HTML.includes("{/"+element+"}")) {
-		dom=domParser.parseFromString(doc_ele_HTML.substring(doc_ele_HTML.indexOf("{"+element+"}")+2+element.length,doc_ele_HTML.indexOf("{/"+element+"}")),"text/html");
-	} else
-		return doc_ele.innerHTML="<span>Error! Tag not found.</span>";
-	putins_make_subpage_from_HTML(dom,doc_ele,element);
+function putins_make_subpage(element, doc_ele_id) {
+  let domParser = new DOMParser(),
+    dom,
+    doc_ele = document.getElementById(doc_ele_id);
+  if (
+    doc_ele_HTML.includes("{" + element + "}") &&
+    doc_ele_HTML.includes("{/" + element + "}")
+  ) {
+    dom = domParser.parseFromString(
+      doc_ele_HTML.substring(
+        doc_ele_HTML.indexOf("{" + element + "}") + 2 + element.length,
+        doc_ele_HTML.indexOf("{/" + element + "}")
+      ),
+      "text/html"
+    );
+  } else return (doc_ele.innerHTML = "<span>Error! Tag not found.</span>");
+  putins_make_subpage_from_HTML(dom, doc_ele, element);
 }
-function putins_make_subpage_from_HTML(dom,doc_ele,element)
-{
-	location.hash=element;
-	document.getElementById("contents_page").scrollIntoView(true);
-	let doc_text=dom.documentElement.innerText,exec_video_style_script=0,exec_frame_style_script=0,exec_internal_page_script=0,exec_nested_doc_style_script=0,exec_presentation_style_script=0,exec_noticeboard_script=0;
-	while((dom.documentElement.innerText.includes("{video_gdrive}") && dom.documentElement.innerText.includes("{/video_gdrive}")) || (dom.documentElement.innerText.includes("{video_youtube}") && dom.documentElement.innerText.includes("{/video_youtube}")))
-	{
-		video_type = dom.documentElement.innerText.includes("{video_gdrive}") ? "video_gdrive" : "video_youtube";
-		dom.documentElement.innerHTML=dom.documentElement.innerHTML.replace("{"+video_type+"}","<section class=\"u1\" style=\"margin-right: 1%;position: relative;\"><div class=\"loading_half_circle\"></div><iframe class=\"media1 request_google_video\" src=\"").replace("{/"+video_type+"}","\" style=\"visibility: hidden;\" allow=\"accelerometer;autoplay;clipboard-white;encrypted-media;gyroscope;picture-in-picture\" allowfullscreen></iframe></section>");
-		exec_video_style_script=1;
-	}
-	let doc_frame_no=0;
-	while(dom.documentElement.innerText.includes("{frame_link}") && dom.documentElement.innerText.includes("{/frame_link}"))
-	{
-		doc_text=dom.documentElement.innerText;
-		let frame_ele="<section class=\"u1\" style=\"margin-right: 1%;position: relative;\"><iframe class=\"cont1 external_frame_from_doc\" src=\""+doc_text.substring(doc_text.search("{frame_link}")+12,doc_text.search("{/frame_link}"))+"\" style=\"border: 0;visibility: hidden;\" allow=\"encrypted-media;\" allowfullscreen></iframe></section>";
-		let frame_target=dom.evaluate("//*[contains(.,'"+doc_text.substring(doc_text.search("{frame_link}"),doc_text.search("{/frame_link}"))+"{/frame_link}"+"')]",dom,null, XPathResult.ANY_TYPE,null);
-		let l,ltemp=true;
-		while(ltemp)
-		{
-			l=ltemp;
-			if(l.innerText)
-			{
-				if(l.innerText==doc_text.substring(doc_text.search("{frame_link}"),doc_text.search("{/frame_link}"))+"{/frame_link}")
-				{
-					break;
-				}
-			}
-			ltemp=frame_target.iterateNext();
-		}
-		while(l.tagName=="HTML" || l.tagName=="BODY")
-		{
-			l=frame_target.iterateNext();
-		}
-		if(frame_ele.includes(window.location.hostname))
-		{
-			l.outerHTML=frame_ele.replace("external_frame_from_doc","internal_page").replace("visibility: hidden;","");
-			exec_internal_page_script=1;
-		}
-		else if(frame_ele.includes("https://docs.google.com/presentation/") && (frame_ele.includes("/preview") || frame_ele.includes("/embed")))
-		{
-			l.outerHTML=frame_ele.replace("external_frame_from_doc","external_presentation").replace("visibility: hidden;","");
-			exec_presentation_style_script=1;
-		}
-		else if(frame_ele.includes("https://docs.google.com/document/d/e") && frame_ele.includes("embedded=true"))
-		{
-			frame_ele="<section data-target-url=\""+doc_text.substring(doc_text.search("{frame_link}https://docs.google.com/document/d/e")+12,doc_text.search("embedded=true{/frame_link}"))+"embedded=true\" class=\"u1 putins\" data-function-name=\"request_gdoc_published_inline_contents\" id=\"doc_frame_"+doc_frame_no+"\" data-parameter-custom=\"doc_frame_"+doc_frame_no+"\"></section>";
-			l.outerHTML=frame_ele;
-			exec_nested_doc_style_script=1;
-			doc_frame_no++;
-		}
-		else
-		{
-			l.outerHTML=frame_ele;
-			exec_frame_style_script=1;
-		}
-	}
-	var count=0;
-	while(dom.documentElement.innerText.includes("{COLUMN2}") && dom.documentElement.innerText.includes("{/COLUMN2}"))
-	{
-		dom.documentElement.innerHTML=dom.documentElement.innerHTML.replace("{COLUMN2}","<section class=\"u1 md2\">").replace("{/COLUMN2}","</section>");
-	}
-	count=0;
-	while(dom.documentElement.innerText.includes("{COLUMN3}") && dom.documentElement.innerText.includes("{/COLUMN3}"))
-	{
-		dom.documentElement.innerHTML=dom.documentElement.innerHTML.replace("{COLUMN3}","<section class=\"u1 lg3\">").replace("{/COLUMN3}","</section>");
-	}
-	while(dom.documentElement.innerText.includes("{noticeboard}") && dom.documentElement.innerText.includes("{/noticeboard}") && dom.documentElement.innerText.includes("{noticeboard_layout}") && dom.documentElement.innerText.includes("{/noticeboard_layout}"))
-	{
-		var notice_script_link=doc_text.substring(doc_text.search("{noticeboard}")+13,doc_text.search("{/noticeboard}"));
+function putins_make_subpage_from_HTML(dom, doc_ele, element) {
+  location.hash = element;
+  document.getElementById("contents_page").scrollIntoView(true);
+  let doc_text = dom.documentElement.innerText,
+    exec_video_style_script = 0,
+    exec_frame_style_script = 0,
+    exec_internal_page_script = 0,
+    exec_nested_doc_style_script = 0,
+    exec_presentation_style_script = 0,
+    exec_noticeboard_script = 0;
+  while (
+    (dom.documentElement.innerText.includes("{video_gdrive}") &&
+      dom.documentElement.innerText.includes("{/video_gdrive}")) ||
+    (dom.documentElement.innerText.includes("{video_youtube}") &&
+      dom.documentElement.innerText.includes("{/video_youtube}"))
+  ) {
+    video_type = dom.documentElement.innerText.includes("{video_gdrive}")
+      ? "video_gdrive"
+      : "video_youtube";
+    dom.documentElement.innerHTML = dom.documentElement.innerHTML
+      .replace(
+        "{" + video_type + "}",
+        '<section class="u1" style="margin-right: 1%;position: relative;"><div class="loading_half_circle"></div><iframe class="media1 request_google_video" src="'
+      )
+      .replace(
+        "{/" + video_type + "}",
+        '" style="visibility: hidden;" allow="accelerometer;autoplay;clipboard-white;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe></section>'
+      );
+    exec_video_style_script = 1;
+  }
+  let doc_frame_no = 0;
+  while (
+    dom.documentElement.innerText.includes("{frame_link}") &&
+    dom.documentElement.innerText.includes("{/frame_link}")
+  ) {
+    doc_text = dom.documentElement.innerText;
+    let frame_ele =
+      '<section class="u1" style="margin-right: 1%;position: relative;"><iframe class="cont1 external_frame_from_doc" src="' +
+      doc_text.substring(
+        doc_text.search("{frame_link}") + 12,
+        doc_text.search("{/frame_link}")
+      ) +
+      '" style="border: 0;visibility: hidden;" allow="encrypted-media;" allowfullscreen></iframe></section>';
+    let frame_target = dom.evaluate(
+      "//*[contains(.,'" +
+        doc_text.substring(
+          doc_text.search("{frame_link}"),
+          doc_text.search("{/frame_link}")
+        ) +
+        "{/frame_link}" +
+        "')]",
+      dom,
+      null,
+      XPathResult.ANY_TYPE,
+      null
+    );
+    let l,
+      ltemp = true;
+    while (ltemp) {
+      l = ltemp;
+      if (l.innerText) {
+        if (
+          l.innerText ==
+          doc_text.substring(
+            doc_text.search("{frame_link}"),
+            doc_text.search("{/frame_link}")
+          ) +
+            "{/frame_link}"
+        ) {
+          break;
+        }
+      }
+      ltemp = frame_target.iterateNext();
+    }
+    while (l.tagName == "HTML" || l.tagName == "BODY") {
+      l = frame_target.iterateNext();
+    }
+    if (frame_ele.includes(window.location.hostname)) {
+      l.outerHTML = frame_ele
+        .replace("external_frame_from_doc", "internal_page")
+        .replace("visibility: hidden;", "");
+      exec_internal_page_script = 1;
+    } else if (
+      frame_ele.includes("https://docs.google.com/presentation/") &&
+      (frame_ele.includes("/preview") || frame_ele.includes("/embed"))
+    ) {
+      l.outerHTML = frame_ele
+        .replace("external_frame_from_doc", "external_presentation")
+        .replace("visibility: hidden;", "");
+      exec_presentation_style_script = 1;
+    } else if (
+      frame_ele.includes("https://docs.google.com/document/d/e") &&
+      frame_ele.includes("embedded=true")
+    ) {
+      frame_ele =
+        '<section data-target-url="' +
+        doc_text.substring(
+          doc_text.search("{frame_link}https://docs.google.com/document/d/e") +
+            12,
+          doc_text.search("embedded=true{/frame_link}")
+        ) +
+        'embedded=true" class="u1 putins" data-function-name="request_gdoc_published_inline_contents" id="doc_frame_' +
+        doc_frame_no +
+        '" data-parameter-custom="doc_frame_' +
+        doc_frame_no +
+        '"></section>';
+      l.outerHTML = frame_ele;
+      exec_nested_doc_style_script = 1;
+      doc_frame_no++;
+    } else {
+      l.outerHTML = frame_ele;
+      exec_frame_style_script = 1;
+    }
+  }
+  var count = 0;
+  while (
+    dom.documentElement.innerText.includes("{COLUMN2}") &&
+    dom.documentElement.innerText.includes("{/COLUMN2}")
+  ) {
+    dom.documentElement.innerHTML = dom.documentElement.innerHTML
+      .replace("{COLUMN2}", '<section class="u1 md2">')
+      .replace("{/COLUMN2}", "</section>");
+  }
+  count = 0;
+  while (
+    dom.documentElement.innerText.includes("{COLUMN3}") &&
+    dom.documentElement.innerText.includes("{/COLUMN3}")
+  ) {
+    dom.documentElement.innerHTML = dom.documentElement.innerHTML
+      .replace("{COLUMN3}", '<section class="u1 lg3">')
+      .replace("{/COLUMN3}", "</section>");
+  }
+  while (
+    dom.documentElement.innerText.includes("{noticeboard}") &&
+    dom.documentElement.innerText.includes("{/noticeboard}") &&
+    dom.documentElement.innerText.includes("{noticeboard_layout}") &&
+    dom.documentElement.innerText.includes("{/noticeboard_layout}")
+  ) {
+    var notice_script_link = doc_text.substring(
+      doc_text.search("{noticeboard}") + 13,
+      doc_text.search("{/noticeboard}")
+    );
 
-		[...dom.documentElement.querySelectorAll("p")]
-			.filter(p => p.innerText.startsWith("{noticeboard}") && p.innerText.endsWith("{/noticeboard}"))
-			.forEach(p => p.innerHTML = "");
-		doc_text=dom.documentElement.innerText;
-		let doc_html=dom.documentElement.innerHTML;
-		dom.documentElement.innerHTML=dom.documentElement.innerHTML.replace("{noticeboard_layout}","<section id=\"notices\" class=\"cont1 ignore-revert\">").replace("{/noticeboard_layout}","</section>");
-		exec_noticeboard_script=1;
-	}
-	while(dom.documentElement.innerText.includes("{notice}") && dom.documentElement.innerText.includes("{/notice}"))
-	{
-		doc_text=dom.documentElement.innerText;
-		let doc_html=dom.documentElement.innerHTML;
-		dom.documentElement.innerHTML=dom.documentElement.innerHTML.replace(doc_html.substring(doc_html.search("{notice}"),doc_html.search("{/notice}")+9),"<section id=\""+doc_text.substring(doc_text.search("{notice}")+8,doc_text.search("{/notice}"))+"_notices\" class=\"cont1\"><div class=\"media1\" style=\"position: relative;\"><div class=\"u1 loading_half_circle_10px\"></div></div></section>");
-	}
+    [...dom.documentElement.querySelectorAll("p")]
+      .filter(
+        (p) =>
+          p.innerText.startsWith("{noticeboard}") &&
+          p.innerText.endsWith("{/noticeboard}")
+      )
+      .forEach((p) => (p.innerHTML = ""));
+    doc_text = dom.documentElement.innerText;
+    let doc_html = dom.documentElement.innerHTML;
+    dom.documentElement.innerHTML = dom.documentElement.innerHTML
+      .replace(
+        "{noticeboard_layout}",
+        '<section id="notices" class="cont1 ignore-revert">'
+      )
+      .replace("{/noticeboard_layout}", "</section>");
+    exec_noticeboard_script = 1;
+  }
+  while (
+    dom.documentElement.innerText.includes("{notice}") &&
+    dom.documentElement.innerText.includes("{/notice}")
+  ) {
+    doc_text = dom.documentElement.innerText;
+    let doc_html = dom.documentElement.innerHTML;
+    dom.documentElement.innerHTML = dom.documentElement.innerHTML.replace(
+      doc_html.substring(
+        doc_html.search("{notice}"),
+        doc_html.search("{/notice}") + 9
+      ),
+      '<section id="' +
+        doc_text.substring(
+          doc_text.search("{notice}") + 8,
+          doc_text.search("{/notice}")
+        ) +
+        '_notices" class="cont1"><div class="media1" style="position: relative;"><div class="u1 loading_half_circle_10px"></div></div></section>'
+    );
+  }
 
-	doc_text=dom.documentElement.innerText;
-	[...dom.documentElement.querySelectorAll("p")]
-		.filter(p => p.innerText.startsWith("{html}") && p.innerText.endsWith("{/html}"))
-		.forEach(p => console.log(p , p.innerText , p.innerHTML = p.innerText.substr(0,p.innerText.length-7).substr(6)));
+  doc_text = dom.documentElement.innerText;
+  [...dom.documentElement.querySelectorAll("p")]
+    .filter(
+      (p) => p.innerText.startsWith("{html}") && p.innerText.endsWith("{/html}")
+    )
+    .forEach((p) =>
+      console.log(
+        p,
+        p.innerText,
+        (p.innerHTML = p.innerText.substr(0, p.innerText.length - 7).substr(6))
+      )
+    );
 
+  while (
+    dom.documentElement.innerText.includes("{function}") &&
+    dom.documentElement.innerText.includes("{/function}")
+  ) {
+    doc_text = dom.documentElement.innerText;
+    let doc_html = dom.documentElement.innerHTML;
+    dom.documentElement.innerHTML = dom.documentElement.innerHTML.replace(
+      doc_html.substring(
+        doc_html.search("{function}"),
+        doc_html.search("{/function}") + 11
+      ),
+      window[
+        doc_text.substring(
+          doc_text.search("{function}") + 10,
+          doc_text.search("{/function}")
+        )
+      ]()
+    );
+  }
+  while (
+    dom.documentElement.innerText.includes("{eval}") &&
+    dom.documentElement.innerText.includes("{/eval}")
+  ) {
+    doc_text = dom.documentElement.innerText;
+    let doc_html = dom.documentElement.innerHTML;
+    let fs = document.createElement("script");
+    fs.setAttribute("type", "text/javascript");
+    fs.innerText = doc_text
+      .substring(doc_text.search("{eval}") + 6, doc_text.search("{/eval}"))
+      .replace(/%%quot%%/g, '"')
+      .replace(/%%apos%%/g, "'");
+    document.getElementsByTagName("html")[0].appendChild(fs);
+    //console.log(doc_html.search("{eval}"));
+    //console.log(doc_html.search("{/eval}"));
+    //console.log(doc_text.substring(doc_text.search("{eval}"),doc_text.search("{/eval}")+7));
+    dom.documentElement.innerHTML = dom.documentElement.innerHTML.replace(
+      doc_html.substring(
+        doc_html.search("{eval}"),
+        doc_html.search("{/eval}") + 7
+      ),
+      ""
+    );
+  }
+  while (dom.documentElement.innerText.includes("{StarRating}{/StarRating}")) {
+    let doc_html = dom.documentElement.innerHTML;
+    let html_text =
+      '<span>★ Rating: </span><span id=SRV_mytc></span><span>&nbsp;&nbsp;&nbsp;&nbsp;<select name="StarRating" id="StarRating" required onchange=alert("Thank_you_for_your_response.");this.disabled=true;gsrfn("fn=StarRating&value="+this.value+"&page="+(document.URL).replace("#","///")); ><option disabled selected value> -- Rate This Page -- </option><option value="1">&#9733;</option><option value="2">&#9733;&#9733;</option> <option value="3">&#9733;&#9733;&#9733;</option><option value="4">&#9733;&#9733;&#9733;&#9733;</option> <option value="5">&#9733;&#9733;&#9733;&#9733;&#9733;</option></select></span>';
 
-	while(dom.documentElement.innerText.includes("{function}") && dom.documentElement.innerText.includes("{/function}"))
-	{
-		doc_text=dom.documentElement.innerText;
-		let doc_html=dom.documentElement.innerHTML;
-		dom.documentElement.innerHTML=dom.documentElement.innerHTML.replace(doc_html.substring(doc_html.search("{function}"),doc_html.search("{/function}")+11),window[doc_text.substring(doc_text.search("{function}")+10,doc_text.search("{/function}"))]());
-	}
-	while(dom.documentElement.innerText.includes("{eval}") && dom.documentElement.innerText.includes("{/eval}"))
-	{
-		doc_text=dom.documentElement.innerText;
-		let doc_html=dom.documentElement.innerHTML;
-		let fs=document.createElement("script");
-		fs.setAttribute("type","text/javascript");
-		fs.innerText=doc_text.substring(doc_text.search("{eval}")+6,doc_text.search("{/eval}")).replace(/%%quot%%/g,'"').replace(/%%apos%%/g,"'");
-		document.getElementsByTagName('html')[0].appendChild(fs);
-		//console.log(doc_html.search("{eval}"));
-		//console.log(doc_html.search("{/eval}"));
-		//console.log(doc_text.substring(doc_text.search("{eval}"),doc_text.search("{/eval}")+7));
-		dom.documentElement.innerHTML=dom.documentElement.innerHTML.replace(doc_html.substring(doc_html.search("{eval}"),doc_html.search("{/eval}")+7),"");
-		
-	}
-	while(dom.documentElement.innerText.includes("{StarRating}{/StarRating}"))
-	{
-		let doc_html=dom.documentElement.innerHTML;
-		let html_text='<span>★ Rating: </span><span id=SRV_mytc></span><span>&nbsp;&nbsp;&nbsp;&nbsp;<select name="StarRating" id="StarRating" required onchange=alert("Thank_you_for_your_response.");this.disabled=true;gsrfn("fn=StarRating&value="+this.value+"&page="+(document.URL).replace("#","///")); ><option disabled selected value> -- Rate This Page -- </option><option value="1">&#9733;</option><option value="2">&#9733;&#9733;</option> <option value="3">&#9733;&#9733;&#9733;</option><option value="4">&#9733;&#9733;&#9733;&#9733;</option> <option value="5">&#9733;&#9733;&#9733;&#9733;&#9733;</option></select></span>';
-		
-		let srscript=document.createElement("script");
-		srscript.setAttribute("type","text/javascript");
-		srscript.innerHTML='gsrfn("fn=StarRating&page="+(document.URL).replace("#","///"),"SRV_mytc");';
-		document.getElementsByTagName('html')[0].appendChild(srscript);
-		
-		dom.documentElement.innerHTML=dom.documentElement.innerHTML.replace("{StarRating}{/StarRating}",html_text);
-	}
+    let srscript = document.createElement("script");
+    srscript.setAttribute("type", "text/javascript");
+    srscript.innerHTML =
+      'gsrfn("fn=StarRating&page="+(document.URL).replace("#","///"),"SRV_mytc");';
+    document.getElementsByTagName("html")[0].appendChild(srscript);
 
-	doc_ele.innerHTML=dom.documentElement.querySelector("body").outerHTML.replace("<body","<div").replace("</body>","</div>");
-	console.log(dom);
-	// if(dom.documentElement.querySelector("body>div"))	{
-	// 	doc_ele.insertAdjacentElement("beforeend",dom.documentElement.querySelector("body>div"));
-	// } else if(dom.documentElement.querySelector("body>section")) {
-	// 	doc_ele.insertAdjacentElement("beforeend",dom.documentElement.querySelector("body>section"));
-	// } else {
-	// 	doc_ele.insertAdjacentElement("beforeend",dom.documentElement.querySelector("body"));
-	// }
-	loading_show();
-	if(exec_noticeboard_script)
-	{
-		let frame_script=document.createElement("script");
-		frame_script.setAttribute("type","text/javascript");
-		frame_script.innerHTML=`
-		request(\"`+notice_script_link+`\",\"notice_board_process_gs_request\",\"notices\",\"cont1\",\"\");
+    dom.documentElement.innerHTML = dom.documentElement.innerHTML.replace(
+      "{StarRating}{/StarRating}",
+      html_text
+    );
+  }
+
+  doc_ele.innerHTML = dom.documentElement
+    .querySelector("body")
+    .outerHTML.replace("<body", "<div")
+    .replace("</body>", "</div>");
+  console.log(dom);
+  // if(dom.documentElement.querySelector("body>div"))	{
+  // 	doc_ele.insertAdjacentElement("beforeend",dom.documentElement.querySelector("body>div"));
+  // } else if(dom.documentElement.querySelector("body>section")) {
+  // 	doc_ele.insertAdjacentElement("beforeend",dom.documentElement.querySelector("body>section"));
+  // } else {
+  // 	doc_ele.insertAdjacentElement("beforeend",dom.documentElement.querySelector("body"));
+  // }
+  loading_show();
+  if (exec_noticeboard_script) {
+    let frame_script = document.createElement("script");
+    frame_script.setAttribute("type", "text/javascript");
+    frame_script.innerHTML =
+      `
+		request(\"` +
+      notice_script_link +
+      `\",\"notice_board_process_gs_request\",\"notices\",\"cont1\",\"\");
 		`;
-		document.getElementsByTagName('html')[0].appendChild(frame_script);
-	}
-	if(exec_video_style_script)
-	{
-		setTimeout(function(){
-			loading_show();
-			let video_drive_script=document.createElement("script");
-			video_drive_script.setAttribute("type","text/javascript");
-			video_drive_script.innerHTML=`
+    document.getElementsByTagName("html")[0].appendChild(frame_script);
+  }
+  if (exec_video_style_script) {
+    setTimeout(function () {
+      loading_show();
+      let video_drive_script = document.createElement("script");
+      video_drive_script.setAttribute("type", "text/javascript");
+      video_drive_script.innerHTML = `
 			var i;
 			var frame_videos=document.getElementsByClassName('request_google_video');
 			for(i=0;i<frame_videos.length;i++)
@@ -443,15 +646,14 @@ function putins_make_subpage_from_HTML(dom,doc_ele,element)
 				i++;
 			}
 			`;
-			document.getElementsByTagName('html')[0].appendChild(video_drive_script);
-		},500);
-	}
-	if(exec_frame_style_script==1)
-	{
-		setTimeout(function(){
-			var frame_script=document.createElement("script");
-			frame_script.setAttribute("type","text/javascript");
-			frame_script.innerHTML=`
+      document.getElementsByTagName("html")[0].appendChild(video_drive_script);
+    }, 500);
+  }
+  if (exec_frame_style_script == 1) {
+    setTimeout(function () {
+      var frame_script = document.createElement("script");
+      frame_script.setAttribute("type", "text/javascript");
+      frame_script.innerHTML = `
 			var frame_elements=document.getElementsByClassName('external_frame_from_doc');
 			var i;
 			for(i=0;i<frame_elements.length;i++)
@@ -470,15 +672,14 @@ function putins_make_subpage_from_HTML(dom,doc_ele,element)
 				i++;
 			}
 			`;
-			document.getElementsByTagName('html')[0].appendChild(frame_script);
-		},500);
-	}
-	if(exec_internal_page_script)
-	{
-		setTimeout(function(){
-			var frame_script=document.createElement("script");
-			frame_script.setAttribute("type","text/javascript");
-			frame_script.innerHTML=`
+      document.getElementsByTagName("html")[0].appendChild(frame_script);
+    }, 500);
+  }
+  if (exec_internal_page_script) {
+    setTimeout(function () {
+      var frame_script = document.createElement("script");
+      frame_script.setAttribute("type", "text/javascript");
+      frame_script.innerHTML = `
 			var internal_page_elements=document.getElementsByClassName('internal_page');
 			var i;
 			for(i=0;i<internal_page_elements.length;i++)
@@ -496,15 +697,14 @@ function putins_make_subpage_from_HTML(dom,doc_ele,element)
 			i=internal_page_elements.length-1;
 			while(i>=0) internal_page_elements[i--].classList.remove(\"internal_page\");
 			`;
-			document.getElementsByTagName('html')[0].appendChild(frame_script);
-		},500);
-	}
-	if(exec_presentation_style_script)
-	{
-		setTimeout(function(){
-			var frame_script=document.createElement("script");
-			frame_script.setAttribute("type","text/javascript");
-			frame_script.innerHTML=`
+      document.getElementsByTagName("html")[0].appendChild(frame_script);
+    }, 500);
+  }
+  if (exec_presentation_style_script) {
+    setTimeout(function () {
+      var frame_script = document.createElement("script");
+      frame_script.setAttribute("type", "text/javascript");
+      frame_script.innerHTML = `
 			var presentation_elements=document.getElementsByClassName('external_presentation');
 			var i;
 			for(i=0;i<presentation_elements.length;i++)
@@ -522,53 +722,64 @@ function putins_make_subpage_from_HTML(dom,doc_ele,element)
 				i--;
 			}
 			`;
-			document.getElementsByTagName('html')[0].appendChild(frame_script);
-		},500);
-	}
-	if(exec_nested_doc_style_script==1)
-	{
-		setTimeout(function(){
-			var nested_doc_script=document.createElement("script");
-			nested_doc_script.setAttribute("type","text/javascript");
-			nested_doc_script.innerHTML=`putins_load();`;
-			document.getElementsByTagName('html')[0].appendChild(nested_doc_script);
+      document.getElementsByTagName("html")[0].appendChild(frame_script);
+    }, 500);
+  }
+  if (exec_nested_doc_style_script == 1) {
+    setTimeout(function () {
+      var nested_doc_script = document.createElement("script");
+      nested_doc_script.setAttribute("type", "text/javascript");
+      nested_doc_script.innerHTML = `putins_load();`;
+      document.getElementsByTagName("html")[0].appendChild(nested_doc_script);
 
-			var nested_doc_style=document.createElement("style");
-			nested_doc_style.setAttribute("type","text/css");
-			let nested_doc_style_HTML="";
-			for(let i=0;i<doc_frame_no;i++)
-			{
-				nested_doc_style_HTML+="#doc_frame_"+i+" *,";
-			}
-			nested_doc_style_HTML=nested_doc_style_HTML.substring(0,nested_doc_style_HTML.length-1);
-			nested_doc_style_HTML+="{padding: initial;border: initial;color: initial;}";
-			for(let i=0;i<doc_frame_no;i++)
-			{
-				nested_doc_style_HTML+="#doc_frame_"+i+" *[class^='c'],";
-			}
-			nested_doc_style_HTML=nested_doc_style_HTML.substring(0,nested_doc_style_HTML.length-1);
-			nested_doc_style_HTML+="{margin: 0;padding: initial;text-indent: initial;border: initial;color: initial;font-size: initial;font-weight: initial;color: black;background-color: initial;text-decoration: initial;max-width: initial;line-height: initial;height: initial;}";
-			nested_doc_style.innerHTML=nested_doc_style_HTML;
-			if(!document.getElementsByTagName('head')[0].innerText.includes(nested_doc_style_HTML))
-			{
-				document.getElementsByTagName('head')[0].appendChild(nested_doc_style);
-			}
-		},500);
-	}
+      var nested_doc_style = document.createElement("style");
+      nested_doc_style.setAttribute("type", "text/css");
+      let nested_doc_style_HTML = "";
+      for (let i = 0; i < doc_frame_no; i++) {
+        nested_doc_style_HTML += "#doc_frame_" + i + " *,";
+      }
+      nested_doc_style_HTML = nested_doc_style_HTML.substring(
+        0,
+        nested_doc_style_HTML.length - 1
+      );
+      nested_doc_style_HTML +=
+        "{padding: initial;border: initial;color: initial;}";
+      for (let i = 0; i < doc_frame_no; i++) {
+        nested_doc_style_HTML += "#doc_frame_" + i + " *[class^='c'],";
+      }
+      nested_doc_style_HTML = nested_doc_style_HTML.substring(
+        0,
+        nested_doc_style_HTML.length - 1
+      );
+      nested_doc_style_HTML +=
+        "{margin: 0;padding: initial;text-indent: initial;border: initial;color: initial;font-size: initial;font-weight: initial;color: black;background-color: initial;text-decoration: initial;max-width: initial;line-height: initial;height: initial;}";
+      nested_doc_style.innerHTML = nested_doc_style_HTML;
+      if (
+        !document
+          .getElementsByTagName("head")[0]
+          .innerText.includes(nested_doc_style_HTML)
+      ) {
+        document.getElementsByTagName("head")[0].appendChild(nested_doc_style);
+      }
+    }, 500);
+  }
 
-	setTimeout(function(){
-		var frame_script=document.createElement("script");
-		frame_script.setAttribute("type","text/javascript");
-		frame_script.innerHTML=`
-		var inpage_a_elements=document.querySelectorAll("#`+doc_ele.getAttribute("id")+` a");
+  setTimeout(function () {
+    var frame_script = document.createElement("script");
+    frame_script.setAttribute("type", "text/javascript");
+    frame_script.innerHTML =
+      `
+		var inpage_a_elements=document.querySelectorAll("#` +
+      doc_ele.getAttribute("id") +
+      ` a");
 		for(var i of inpage_a_elements)
 		{
 			i.setAttribute("target","_blank");
 		}
 		putins_select_load();
 		`;
-		document.getElementsByTagName('html')[0].appendChild(frame_script);
-	},500);
+    document.getElementsByTagName("html")[0].appendChild(frame_script);
+  }, 500);
 
-	return;
+  return;
 }

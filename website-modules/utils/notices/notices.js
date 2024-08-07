@@ -45,7 +45,7 @@ function load_notice_as_page(id) {
     }
   );
   request_promise(
-    "https://script.google.com/macros/s/AKfycbzy53ifIUTm2YNc_T_uv1Y0RV0PaLlE8i00V2DTvzBFCuG1Q8ocrvguw4mKUfkiykJSHA/exec?fn=hitCounter&site=a4u.co.in"
+    "https://script.google.com/macros/s/AKfycbwKZSfqNx2BUVoIvTNtblJOz9fu5CqWFFpqlfLfUvYKb2H7b5qJkydytATOBY8P1tJppA/exec?fn=hitCounter&site=a4u.co.in"
   ).then((res) => {});
 }
 
@@ -210,7 +210,9 @@ function notice_show_with_no(notice_group, notice_number) {
   notice_sec.insertAdjacentHTML("beforeend", notice_str);
   notice_sec.insertAdjacentHTML(
     "beforeend",
-    "<div class='notices_author'>From " + notices_obj[notice_group][notice_number][1] + "</div>"    
+    "<div class='notices_author'>From " +
+      notices_obj[notice_group][notice_number][1] +
+      "</div>"
   );
   notice_sec.insertAdjacentHTML(
     "beforeend",
@@ -298,7 +300,11 @@ function notice_parse(notice) {
   );
   notice_sec.insertAdjacentHTML(
     "beforeend",
-    '<br><a target="_blank" href="'+location.href+'">'+location.href.replace("https://","")+'</a>'
+    '<br><a target="_blank" href="' +
+      location.href +
+      '">' +
+      location.href.replace("https://", "") +
+      "</a>"
   );
   notice_container.insertAdjacentElement("beforeend", notice_sec);
   notice_container.insertAdjacentHTML(

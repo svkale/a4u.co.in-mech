@@ -87,7 +87,7 @@
         class="media1"
         onsubmit="event.preventDefault();form_wait(event.target);form_JSON_send(event.target)"
         class="u1"
-        data-form-submit-target="https://script.google.com/macros/s/AKfycbzy53ifIUTm2YNc_T_uv1Y0RV0PaLlE8i00V2DTvzBFCuG1Q8ocrvguw4mKUfkiykJSHA/exec"
+        data-form-submit-target="https://script.google.com/macros/s/AKfycbwKZSfqNx2BUVoIvTNtblJOz9fu5CqWFFpqlfLfUvYKb2H7b5qJkydytATOBY8P1tJppA/exec"
         data-custom-JSON-to-send-string='{"fn": "editWebsiteLayout"}'
         data-show-id="no"
         style="display: none"
@@ -155,7 +155,7 @@
         class="media1"
         onsubmit="event.preventDefault();form_wait(event.target);form_JSON_send(event.target)"
         class="u1"
-        data-form-submit-target="https://script.google.com/macros/s/AKfycbzy53ifIUTm2YNc_T_uv1Y0RV0PaLlE8i00V2DTvzBFCuG1Q8ocrvguw4mKUfkiykJSHA/exec"
+        data-form-submit-target="https://script.google.com/macros/s/AKfycbwKZSfqNx2BUVoIvTNtblJOz9fu5CqWFFpqlfLfUvYKb2H7b5qJkydytATOBY8P1tJppA/exec"
         data-custom-JSON-to-send-string='{"fn": "editWebsiteLayout"}'
         data-show-id="no"
         data-send-creds="yes"
@@ -323,16 +323,18 @@
       document.getElementById("login_form").style.display = "revert";
     }
     function form_show_next(res) {
-      document.getElementById("contents_page").innerHTML=res.text;
-	    if(res.html){eval(decodeURI(res.html));}
+      document.getElementById("contents_page").innerHTML = res.text;
+      if (res.html) {
+        eval(decodeURI(res.html));
+      }
       //console.log(res);
       return;
       //show_notice_form();
       //request(
-        //"https://docs.google.com/document/d/e/2PACX-1vRsBaCi0cOGgO6cHJWORkhvZXds_JQN1227KHSd_TxXcaByTD3M-53RFnDPKzYF3klQV_CNilYOsmxU/pub?embedded=true",
-        //"putin_paste",
-        //document.getElementById("contents_page"),
-        //"request_gdoc_published_inline_contents"
+      //"https://docs.google.com/document/d/e/2PACX-1vRsBaCi0cOGgO6cHJWORkhvZXds_JQN1227KHSd_TxXcaByTD3M-53RFnDPKzYF3klQV_CNilYOsmxU/pub?embedded=true",
+      //"putin_paste",
+      //document.getElementById("contents_page"),
+      //"request_gdoc_published_inline_contents"
       //);
     }
     window.addEventListener("beforeunload", function () {
@@ -370,9 +372,7 @@
     // 				(res)=>
     // 				{
     // 					const roles=JSON.parse(res.response.replaceAll("\n","").replaceAll("\t",""))["roles"];
-    const roles = [
-      "Faculty",
-    ];
+    const roles = ["Faculty"];
     for (let role of roles) {
       document
         .getElementById("roles")
@@ -390,54 +390,121 @@
     // 				});
   </script>
 
-<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-lite.min.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-lite.min.js"></script>
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-lite.min.css"
+    rel="stylesheet"
+  />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-lite.min.js"></script>
 
-<script type="text/javascript">
-	let summernote=(eid)=>{
-      $('#'+eid).summernote({
-        placeholder: 'Enter or paste text',
+  <script type="text/javascript">
+    let summernote = (eid) => {
+      $("#" + eid).summernote({
+        placeholder: "Enter or paste text",
         tabsize: 2,
         height: 300,
         toolbar: [
-          ['style', ['style']],
-          ['font',['bold', 'italic', 'underline', 'strikethrough', 'subscript', 'superscript', 'clear', 'fontname', 'fontsize', 'fontsizeunit', 'height']],
-          ['color', ['color']],
-          ['para', ['ul', 'ol', 'paragraph']],
-          ['table', ['table']],
-          ['insert', ['link', 'picture', 'video']],
-          ['view', ['fullscreen', 'codeview', 'help']]
-        ]
+          ["style", ["style"]],
+          [
+            "font",
+            [
+              "bold",
+              "italic",
+              "underline",
+              "strikethrough",
+              "subscript",
+              "superscript",
+              "clear",
+              "fontname",
+              "fontsize",
+              "fontsizeunit",
+              "height",
+            ],
+          ],
+          ["color", ["color"]],
+          ["para", ["ul", "ol", "paragraph"]],
+          ["table", ["table"]],
+          ["insert", ["link", "picture", "video"]],
+          ["view", ["fullscreen", "codeview", "help"]],
+        ],
       });
+    };
 
-	};
+    let moveTableRow = (tid, button, direction, fixedRows = 1) => {
+      const row = button.closest("tr");
+      const table = document
+        .getElementById(tid)
+        .getElementsByTagName("tbody")[0];
+      const rows = Array.from(table.rows);
+      const rowIndex = rows.indexOf(row);
+      console.log(rowIndex, fixedRows, tid, direction, rows.length - 1);
 
-let moveTableRow=(tid,button, direction, fixedRows=1)=> {
-  const row = button.closest('tr');
-  const table = document.getElementById(tid).getElementsByTagName('tbody')[0];
-  const rows = Array.from(table.rows);
-  const rowIndex = rows.indexOf(row);
-  console.log(rowIndex,fixedRows,tid,direction,rows.length-1);
-
-  if (direction == 1 && rowIndex > fixedRows) {
-      table.insertBefore(row, rows[rowIndex - 1]);
-      return rowIndex;
-  } else if (direction === -1 && rowIndex < rows.length - 1 && rowIndex >= fixedRows) {
-      table.insertBefore(rows[rowIndex + 1], row);
-      return rowIndex;
-  }
-  return "";
-};
-//let unhide=function(id){document.getElementById(id).hidden = false ;};
-let sidv=function(id,val){return document.getElementById(id).value=val;};
-//let sidh=function(id,val){if(gid(id)==null || val==null){console.log(id);return "";};return document.getElementById(id).innerHTML=val;};
-let HiddenInput=(idname,val,other="")=>{return "<input type=hidden "+other+" id='"+idname+"' name='"+idname+"' value=\'"+val+"\' >";}
-let TextInput=(idname,val,other="",style="")=>{return "<input type=text "+other+" id="+idname+" name="+idname+" value='"+val+"' style='font-weight:bold;font-size:14px;color:blue;"+style+"' >";}
-let TextAreaInput=(idname,val,other="",cols=100)=>{return "<textarea "+other+" id="+idname+" name="+idname+" rows=5 cols="+cols+" style='font-weight:bold;font-size:14px;color:blue;'>"+val+"</textarea>";}
-let gidv=function(id){return document.getElementById(id).value;};
-//let gid=function(id){return document.getElementById(id);};
-//let hide=function(id){document.getElementById(id).hidden = true ;};
-</script>
+      if (direction == 1 && rowIndex > fixedRows) {
+        table.insertBefore(row, rows[rowIndex - 1]);
+        return rowIndex;
+      } else if (
+        direction === -1 &&
+        rowIndex < rows.length - 1 &&
+        rowIndex >= fixedRows
+      ) {
+        table.insertBefore(rows[rowIndex + 1], row);
+        return rowIndex;
+      }
+      return "";
+    };
+    //let unhide=function(id){document.getElementById(id).hidden = false ;};
+    let sidv = function (id, val) {
+      return (document.getElementById(id).value = val);
+    };
+    //let sidh=function(id,val){if(gid(id)==null || val==null){console.log(id);return "";};return document.getElementById(id).innerHTML=val;};
+    let HiddenInput = (idname, val, other = "") => {
+      return (
+        "<input type=hidden " +
+        other +
+        " id='" +
+        idname +
+        "' name='" +
+        idname +
+        "' value='" +
+        val +
+        "' >"
+      );
+    };
+    let TextInput = (idname, val, other = "", style = "") => {
+      return (
+        "<input type=text " +
+        other +
+        " id=" +
+        idname +
+        " name=" +
+        idname +
+        " value='" +
+        val +
+        "' style='font-weight:bold;font-size:14px;color:blue;" +
+        style +
+        "' >"
+      );
+    };
+    let TextAreaInput = (idname, val, other = "", cols = 100) => {
+      return (
+        "<textarea " +
+        other +
+        " id=" +
+        idname +
+        " name=" +
+        idname +
+        " rows=5 cols=" +
+        cols +
+        " style='font-weight:bold;font-size:14px;color:blue;'>" +
+        val +
+        "</textarea>"
+      );
+    };
+    let gidv = function (id) {
+      return document.getElementById(id).value;
+    };
+    //let gid=function(id){return document.getElementById(id);};
+    //let hide=function(id){document.getElementById(id).hidden = true ;};
+  </script>
 
   <style type="text/css">
     #notice_contents * {
