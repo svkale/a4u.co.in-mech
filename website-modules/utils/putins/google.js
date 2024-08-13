@@ -213,7 +213,7 @@ function putins_make_page_from_gdoc(request_obj, params) {
 	nav_HTML +=
           "<li class='u1 doc_page' onclick='document.getElementById(\"" +
           doc_ele_id +
-          "\").innerHTML=`decodeURI('" + rtfhtml + "');`><div";
+          "\").innerHTML=decodeURI('" + rtfhtml + "');><div";
         nav_HTML += ">" + j[0] + "</div></li>";
       } else if (j[1] == "FramePage" || j[1] == "PDF" || j[1] == "GOOGLEFORM") {
         nav_HTML +=
