@@ -199,13 +199,13 @@ function putins_make_page_from_gdoc(request_obj, params) {
 	  console.log(element,doc_ele_id,j);
 	  let doc_ele = document.getElementById(doc_ele_id), rtfhtml="";
 	  if (
-	    doc_ele_HTML.includes("{" + element + "}") &&
-	    doc_ele_HTML.includes("{/" + element + "}")
+	    doc_ele_HTML.includes("{" + j[0] + "}") &&
+	    doc_ele_HTML.includes("{/" + j[0] + "}")
 	  ) {
 	      rtfhtml = 
 	      doc_ele_HTML.substring(
-	        doc_ele_HTML.indexOf("{" + element + "}") + 2 + element.length,
-	        doc_ele_HTML.indexOf("{/" + element + "}")
+	        doc_ele_HTML.indexOf("{" + j[0] + "}") + 2 + j[0].length,
+	        doc_ele_HTML.indexOf("{/" + j[0] + "}")
 	      );		  
 	  } else rtfhtml = "<span>Error! Tag not found.</span>";  
 	console.log("rtfhtml");console.log(rtfhtml);
