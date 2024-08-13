@@ -208,12 +208,12 @@ function putins_make_page_from_gdoc(request_obj, params) {
 	      );		  
 	  } else rtfhtml = "<span>Error! Tag not found.</span>";  
 	console.log("rtfhtml");console.log(rtfhtml);
-	rtfhtml=encodeURI(rtfhtml);
+	rtfhtml=encodeURI(JSON.stingify(rtfhtml));
 	      
 	nav_HTML +=
           "<li class='u1 doc_page' onclick='document.getElementById(\"" +
           doc_ele_id +
-          "\").innerHTML=decodeURI(\"" + rtfhtml + "\");'><div";
+          "\").innerHTML=JSON.pase(decodeURI(\"" + rtfhtml + "\"));'><div";
         nav_HTML += ">" + j[0] + "</div></li>";
       } else if (j[1] == "FramePage" || j[1] == "PDF" || j[1] == "GOOGLEFORM") {
         nav_HTML +=
