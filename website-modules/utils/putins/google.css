@@ -33,6 +33,10 @@
 {
 	visibility: hidden;
 }
+.Separator
+{
+	border-bottom: 1px solid #aaa;
+}
 .hit_counter
 {
 	text-align: center;
