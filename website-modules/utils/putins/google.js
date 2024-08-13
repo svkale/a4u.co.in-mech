@@ -142,6 +142,7 @@ function putins_make_page_from_gdoc(request_obj, params) {
   for (let i of nav_contents) {
     let j = i.split("<>");
     if (j.length >= 2) {
+	    console.log(j);
       if (j[1] == "Heading") {
         if (head_no != 0) {
           nav_HTML += "</div>";
