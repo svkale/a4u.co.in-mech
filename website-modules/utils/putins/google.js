@@ -168,7 +168,7 @@ function putins_make_page_from_gdoc(request_obj, params) {
       } else if (j[1] == "EmptyLine") {
         nav_HTML += '<div class="u1 empty_line">.</div>';
       } else if (j[1] == "Separator") {
-        nav_HTML += '<div class="u1 Separator">.</div>';
+        nav_HTML += '<div class="u1 Separator"></div>';
       } else if (j[1] == "UserPhotoLink" || (j[1] == "Fixed" && j[0] == "UserPhotoLink")) {
         nav_HTML +=
           '<section class="cont" style="--cont-width: 50%; margin-left: 25%;"><img class=\'media1\' src="' +
@@ -197,7 +197,8 @@ function putins_make_page_from_gdoc(request_obj, params) {
         nav_HTML += ">" + j[0] + "</div></li>";
       } else if (j[1] == "RTF" || (j[1] == "Fixed" && j[0] == "Home")) {
         nav_HTML +=
-          "<li class='u1 doc_page' ><div>" + j[2] + "</div></li>";
+          "<li class='u1 doc_page' onclick='document.getElementById(doc_ele_id).innerHTML=(this.innerText.trim());'><div";
+        nav_HTML += ">" + j[0] + "</div></li>";
       } else if (j[1] == "FramePage" || j[1] == "PDF" || j[1] == "GOOGLEFORM") {
         nav_HTML +=
           "<li class='u1 doc_page' onclick='let domParser=new DOMParser(),dom,doc_ele=document.getElementById(\"" +
