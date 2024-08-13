@@ -206,7 +206,7 @@ function putins_make_page_from_gdoc(request_obj, params) {
 	        doc_ele_HTML.indexOf("{" + element + "}") + 2 + element.length,
 	        doc_ele_HTML.indexOf("{/" + element + "}")
 	      );		  
-	  } else rtfhtml = "<span>Error! Tag not found.</span>");  
+	  } else rtfhtml = "<span>Error! Tag not found.</span>";  
 	      
 	nav_HTML +=
           "<li class='u1 doc_page' onclick='document.getElementById(\"" +
