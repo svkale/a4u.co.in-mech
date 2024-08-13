@@ -101,6 +101,7 @@ function putins_make_page_from_gdoc(request_obj, params) {
   let nav_ele_id = params[0],
     doc_ele_id = params[1],
     element = decodeURI(params[2]);
+  console.log("element",element);
   if (params[3]) {
     var parentURL = params[3];
   }
