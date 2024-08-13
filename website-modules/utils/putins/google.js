@@ -212,7 +212,7 @@ function putins_make_page_from_gdoc(request_obj, params) {
 	rtfhtml=encodeURI(JSON.stringify(rtfhtml));
 	      
 	nav_HTML +=
-          "<li class='u1 doc_page' onclick='location.hash = \""+element+"\";document.getElementById(\"" +
+          "<li class='u1 doc_page' onclick='location.hash=this.innerText.trim();document.getElementById(\"" +
           doc_ele_id +
           "\").innerHTML=JSON.parse(decodeURI(\"" + rtfhtml + "\"));'><div";
         nav_HTML += ">" + j[0] + "</div></li>";	
