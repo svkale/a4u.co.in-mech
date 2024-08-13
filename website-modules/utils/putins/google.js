@@ -108,6 +108,7 @@ function putins_make_page_from_gdoc(request_obj, params) {
   let nav_ele = document.getElementById(nav_ele_id);
   let nav_ele_mob = document.getElementById(nav_ele_id + "_mob");
   let doc_ele = document.getElementById(doc_ele_id);
+  let elementIndex=-1,eidno=0;
   if (!doc_ele_HTML) {
     doc_ele_HTML = request_gdoc_published_inline_contents(request_obj, [
       doc_ele_id,
@@ -139,12 +140,12 @@ function putins_make_page_from_gdoc(request_obj, params) {
     nav_HTML = "",
     head_no = 0,
     exec_dropdown_script = 0;
-  let elementIndex=-1,eidno=0;
+  
   for (let i of nav_contents) {
     let j = i.split("<>");
     if (j.length >= 2) {
 	    console.log(j);
-      if(element==j[0]){elementIndex=eidno;console.log("hashindex",hashindex);}
+      if(element==j[0]){elementIndex=eidno;console.log("elementIndex",elementIndex);}
       if (j[1] == "Heading") {
         if (head_no != 0) {
           nav_HTML += "</div>";
@@ -352,7 +353,8 @@ function putins_make_page_from_gdoc(request_obj, params) {
   nav_load_script.innerHTML = "load_navs();";
   document.getElementsByTagName("body")[0].appendChild(nav_load_script);
   //putins_make_subpage(element, doc_ele_id);
-  document.getElementById("EID_"+hashindex+"").click(); 
+	console.log("EID_"+elementIndex);
+  document.getElementById("EID_"+elementIndex+"").click(); 
   return;
 }
 function putins_make_subpage(element, doc_ele_id) {
