@@ -355,7 +355,7 @@ function putins_make_page_from_gdoc(request_obj, params) {
   return;
 }
 function putins_make_subpage(element, doc_ele_id) {
-	console.log("element","doc_ele_id",doc_ele_id);
+	console.log("element",element,", doc_ele_id",doc_ele_id);
   let domParser = new DOMParser(),
     dom,
     doc_ele = document.getElementById(doc_ele_id);
