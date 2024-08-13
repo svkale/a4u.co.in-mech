@@ -195,8 +195,7 @@ function putins_make_page_from_gdoc(request_obj, params) {
           nav_HTML += ' style="font-weight: bold;"';
         }
         nav_HTML += ">" + j[0] + "</div></li>";
-      } else if (j[1] == "RTF" || (j[1] == "Fixed" && j[0] == "Home")) {
-	  location.hash = element;
+      } else if (j[1] == "RTF" || (j[1] == "Fixed" && j[0] == "Home")) {	  
 	  console.log(element,doc_ele_id,j);
 	  let doc_ele = document.getElementById(doc_ele_id), rtfhtml="";
 	  if (
@@ -213,7 +212,7 @@ function putins_make_page_from_gdoc(request_obj, params) {
 	rtfhtml=encodeURI(JSON.stringify(rtfhtml));
 	      
 	nav_HTML +=
-          "<li class='u1 doc_page' onclick='document.getElementById(\"" +
+          "<li class='u1 doc_page' onclick='location.hash = \""+element+"\";document.getElementById(\"" +
           doc_ele_id +
           "\").innerHTML=JSON.parse(decodeURI(\"" + rtfhtml + "\"));'><div";
         nav_HTML += ">" + j[0] + "</div></li>";	
