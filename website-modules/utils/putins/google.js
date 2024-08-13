@@ -139,12 +139,12 @@ function putins_make_page_from_gdoc(request_obj, params) {
     nav_HTML = "",
     head_no = 0,
     exec_dropdown_script = 0;
-  let hashindex=-1;
+  let elementIndex=-1,eidno=0;
   for (let i of nav_contents) {
     let j = i.split("<>");
     if (j.length >= 2) {
 	    console.log(j);
-      if(element==j[0]){hashindex=i;console.log("hashindex",hashindex);}
+      if(element==j[0]){elementIndex=eidno;console.log("hashindex",hashindex);}
       if (j[1] == "Heading") {
         if (head_no != 0) {
           nav_HTML += "</div>";
@@ -192,7 +192,7 @@ function putins_make_page_from_gdoc(request_obj, params) {
           ' <svg height="12" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="var(--main-color-2)" d="M432,320H400a16,16,0,0,0-16,16 V448 H64 V128 H208 a16,16,0,0,0,16-16 V80 a16,16,0,0,0-16-16 H48 A48,48,0,0,0,0,112 V464 a48,48,0,0,0,48,48 H400 a48,48,0,0,0,48-48 V336 A16,16,0,0,0,432,320ZM488,0h-128 c-21.37,0-32.05,25.91-17,41 l35.73,35.73 L135,320.37a24,24,0,0,0,0,34 L157.67,377 a24,24,0,0,0,34,0 L435.28,133.32,471,169 c15,15,41,4.5,41-17 V24 A24,24,0,0,0,488,0Z"></path></svg></a></li>';
       } else if (j[1] == "Page") {
         nav_HTML +=
-          "<li class='u1 doc_page' onclick='putins_make_subpage(this.innerText.trim(),\"" +
+          "<li id='EID_"+eidno+++"' class='u1 doc_page' onclick='putins_make_subpage(this.innerText.trim(),\"" +
           doc_ele_id +
           "\");'><div";
         if (j[0].endsWith("Home")) {
@@ -216,13 +216,13 @@ function putins_make_page_from_gdoc(request_obj, params) {
 	rtfhtml=encodeURI(JSON.stringify(rtfhtml));
 	      
 	nav_HTML +=
-          "<li class='u1 doc_page' onclick='location.hash=this.innerText.trim();document.getElementById(\"" +
+          "<li id='EID_"+eidno+++"' class='u1 doc_page' onclick='location.hash=this.innerText.trim();document.getElementById(\"" +
           doc_ele_id +
           "\").innerHTML=JSON.parse(decodeURI(\"" + rtfhtml + "\"));'><div";
         nav_HTML += ">" + j[0] + "</div></li>";	
       } else if (j[1] == "FramePage" || j[1] == "PDF" || j[1] == "GOOGLEFORM") {
         nav_HTML +=
-          "<li class='u1 doc_page' onclick='let domParser=new DOMParser(),dom,doc_ele=document.getElementById(\"" +
+          "<li id='EID_"+eidno+++"' class='u1 doc_page' onclick='let domParser=new DOMParser(),dom,doc_ele=document.getElementById(\"" +
           doc_ele_id +
           '");dom=domParser.parseFromString("<p>{frame_link}' +
           j[2] +
@@ -351,7 +351,8 @@ function putins_make_page_from_gdoc(request_obj, params) {
   nav_load_script.setAttribute("type", "text/javascript");
   nav_load_script.innerHTML = "load_navs();";
   document.getElementsByTagName("body")[0].appendChild(nav_load_script);
-  putins_make_subpage(element, doc_ele_id);
+  //putins_make_subpage(element, doc_ele_id);
+  document.getElementById("EID_"+hashindex+"").click(); 
   return;
 }
 function putins_make_subpage(element, doc_ele_id) {
