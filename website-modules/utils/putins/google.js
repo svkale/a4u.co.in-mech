@@ -200,7 +200,7 @@ function putins_make_page_from_gdoc(request_obj, params) {
           "<li class='u1 doc_page' onclick='document.getElementById(\"" +
           doc_ele_id +
           "\").innerHTML=\"" +
-          element +
+          j[2] +
           "\"'><div";
         nav_HTML += ">" + j[0] + "</div></li>";
       } else if (j[1] == "FramePage" || j[1] == "PDF" || j[1] == "GOOGLEFORM") {
