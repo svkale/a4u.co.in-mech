@@ -197,6 +197,7 @@ function putins_make_page_from_gdoc(request_obj, params) {
         nav_HTML += ">" + j[0] + "</div></li>";
       } else if (j[1] == "RTF" || (j[1] == "Fixed" && j[0] == "Home")) {
 	  location.hash = element;
+	  console.log(element,doc_ele_id);
 	  let doc_ele = document.getElementById(doc_ele_id), rtfhtml="";
 	  if (
 	    doc_ele_HTML.includes("{" + element + "}") &&
