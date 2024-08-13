@@ -139,10 +139,12 @@ function putins_make_page_from_gdoc(request_obj, params) {
     nav_HTML = "",
     head_no = 0,
     exec_dropdown_script = 0;
+  let hashindex=-1;
   for (let i of nav_contents) {
     let j = i.split("<>");
     if (j.length >= 2) {
 	    console.log(j);
+      if(element==j[0]){hashindex=i;console.log("hashindex",hashindex);}
       if (j[1] == "Heading") {
         if (head_no != 0) {
           nav_HTML += "</div>";
