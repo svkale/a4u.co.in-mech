@@ -197,7 +197,7 @@ function putins_make_page_from_gdoc(request_obj, params) {
         nav_HTML += ">" + j[0] + "</div></li>";
       } else if (j[1] == "RTF" || (j[1] == "Fixed" && j[0] == "Home")) {
 	  location.hash = element;
-	  console.log(element,doc_ele_id);
+	  console.log(element,doc_ele_id,j);
 	  let doc_ele = document.getElementById(doc_ele_id), rtfhtml="";
 	  if (
 	    doc_ele_HTML.includes("{" + element + "}") &&
@@ -209,7 +209,7 @@ function putins_make_page_from_gdoc(request_obj, params) {
 	        doc_ele_HTML.indexOf("{/" + element + "}")
 	      );		  
 	  } else rtfhtml = "<span>Error! Tag not found.</span>";  
-	console.log(doc_ele_id);console.log("rtfhtml");console.log(rtfhtml);
+	console.log("rtfhtml");console.log(rtfhtml);
 	rtfhtml=encodeURI(JSON.stringify(rtfhtml));
 	      
 	nav_HTML +=
