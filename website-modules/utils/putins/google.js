@@ -186,7 +186,7 @@ function putins_make_page_from_gdoc(request_obj, params) {
           '" style="padding-left: 4%;text-decoration: none;">' +
           j[0] +
           ' <svg height="12" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="var(--main-color-2)" d="M432,320H400a16,16,0,0,0-16,16 V448 H64 V128 H208 a16,16,0,0,0,16-16 V80 a16,16,0,0,0-16-16 H48 A48,48,0,0,0,0,112 V464 a48,48,0,0,0,48,48 H400 a48,48,0,0,0,48-48 V336 A16,16,0,0,0,432,320ZM488,0h-128 c-21.37,0-32.05,25.91-17,41 l35.73,35.73 L135,320.37a24,24,0,0,0,0,34 L157.67,377 a24,24,0,0,0,34,0 L435.28,133.32,471,169 c15,15,41,4.5,41-17 V24 A24,24,0,0,0,488,0Z"></path></svg></a></li>';
-      } else if (j[1] == "Page" || j[1] == "RTF" || (j[1] == "Fixed" && j[0] == "Home")) {
+      } else if (j[1] == "Page") {
         nav_HTML +=
           "<li class='u1 doc_page' onclick='putins_make_subpage(this.innerText.trim(),\"" +
           doc_ele_id +
@@ -195,6 +195,9 @@ function putins_make_page_from_gdoc(request_obj, params) {
           nav_HTML += ' style="font-weight: bold;"';
         }
         nav_HTML += ">" + j[0] + "</div></li>";
+      } else if (j[1] == "RTF" || (j[1] == "Fixed" && j[0] == "Home")) {
+        nav_HTML +=
+          "<li class='u1 doc_page' ><div>" + j[2] + "</div></li>";
       } else if (j[1] == "FramePage" || j[1] == "PDF" || j[1] == "GOOGLEFORM") {
         nav_HTML +=
           "<li class='u1 doc_page' onclick='let domParser=new DOMParser(),dom,doc_ele=document.getElementById(\"" +
