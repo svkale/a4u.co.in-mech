@@ -196,11 +196,23 @@ function putins_make_page_from_gdoc(request_obj, params) {
         }
         nav_HTML += ">" + j[0] + "</div></li>";
       } else if (j[1] == "RTF" || (j[1] == "Fixed" && j[0] == "Home")) {
-        nav_HTML +=
+	  let doc_ele = document.getElementById(doc_ele_id), rtfhtml="";
+	  if (
+	    doc_ele_HTML.includes("{" + element + "}") &&
+	    doc_ele_HTML.includes("{/" + element + "}")
+	  ) {
+	      rtfhtml = 
+	      doc_ele_HTML.substring(
+	        doc_ele_HTML.indexOf("{" + element + "}") + 2 + element.length,
+	        doc_ele_HTML.indexOf("{/" + element + "}")
+	      );		  
+	  } else rtfhtml = "<span>Error! Tag not found.</span>");  
+	      
+	nav_HTML +=
           "<li class='u1 doc_page' onclick='document.getElementById(\"" +
           doc_ele_id +
           "\").innerHTML=\"" +
-          j[2] +
+          rtfhtml +
           "\"'><div";
         nav_HTML += ">" + j[0] + "</div></li>";
       } else if (j[1] == "FramePage" || j[1] == "PDF" || j[1] == "GOOGLEFORM") {
@@ -355,6 +367,7 @@ function putins_make_subpage(element, doc_ele_id) {
   } else return (doc_ele.innerHTML = "<span>Error! Tag not found.</span>");
   putins_make_subpage_from_HTML(dom, doc_ele, element);
 }
+
 function putins_make_subpage_from_HTML(dom, doc_ele, element) {
   location.hash = element;
   document.getElementById("contents_page").scrollIntoView(true);
