@@ -230,7 +230,7 @@ function putins_make_page_from_gdoc(request_obj, params) {
           '{/frame_link}</p>","text/html");putins_make_subpage_from_HTML(dom,doc_ele,this.innerText.trim());\'><div';
         if (j[0] == "Home") nav_HTML += ' style="font-weight: bold;"';
         nav_HTML += ">" + j[0] + "</div></li>";
-      } else if (j[1] == "HitCounter") {
+      } else if (j[1] == "HitCounter" || j[1] == "Hitcount") {
         nav_HTML +=
           "<li class='u1 hit_counter' id='hit_counter'><big class='putins' data-target-url='https://script.google.com/macros/s/AKfycbw9eXxMIO6sw6CtNa7APdyeuFdiijxLlGpIe8UYY47LPGhitGU4qqbzOHnhIzy_s1oO3w/exec?fn=hitCounter&site=" +
           j[2] +
