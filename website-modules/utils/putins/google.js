@@ -161,7 +161,7 @@ function putins_make_page_from_gdoc(request_obj, params) {
         if (!j[2]) {
           nav_HTML +=
             '<span class="u1" style="text-align: center;font-weight: bold;">' +
-            j[0] +
+            j[1] +
             "</span>";
         } else {
           nav_HTML +=
@@ -172,7 +172,7 @@ function putins_make_page_from_gdoc(request_obj, params) {
         }
       } else if (j[1] == "EmptyLine") {
         nav_HTML += '<div class="u1 empty_line">.</div>';
-      } else if (j[1] == "Separator") {
+      } else if (j[1] == "Separator"  || (j[1] == "Fixed" && j[0] == "Separator")) {
         nav_HTML += '<div class="u1 Separator"></div>';
       } else if (j[1] == "UserPhotoLink" || (j[1] == "Fixed" && j[0] == "UserPhotoLink")) {
         nav_HTML +=
