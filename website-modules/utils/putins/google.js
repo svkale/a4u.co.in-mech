@@ -101,7 +101,7 @@ function putins_make_page_from_gdoc(request_obj, params) {
   let nav_ele_id = params[0],
     doc_ele_id = params[1],
     element = decodeURI(params[2]);
-  console.log("element",element);
+  //console.log("element",element);
   if (params[3]) {
     var parentURL = params[3];
   }
@@ -144,8 +144,8 @@ function putins_make_page_from_gdoc(request_obj, params) {
   for (let i of nav_contents) {
     let j = i.split("<>");
     if (j.length >= 2) {
-	    console.log(j);
-      if(element==j[0]){elementIndex=eidno;console.log("elementIndex",elementIndex);}
+	    //console.log(j);
+      if(element==j[0]){elementIndex=eidno;}  //console.log("elementIndex",elementIndex);}
       if (j[1] == "Heading") {
         if (head_no != 0) {
           nav_HTML += "</div>";
@@ -207,7 +207,7 @@ function putins_make_page_from_gdoc(request_obj, params) {
         }
         nav_HTML += ">" + j[0] + "</div></li>";
       } else if (j[1] == "RTF" || (j[1] == "Fixed" && j[0] == "Home")) {	  
-	  console.log(doc_ele_id,j);
+	  //console.log(doc_ele_id,j);
 	  let doc_ele = document.getElementById(doc_ele_id), rtfhtml="";
 	  if (
 	    doc_ele_HTML.includes("{" + j[0] + "}") &&
@@ -359,12 +359,12 @@ function putins_make_page_from_gdoc(request_obj, params) {
   nav_load_script.innerHTML = "load_navs();";
   document.getElementsByTagName("body")[0].appendChild(nav_load_script);
   //putins_make_subpage(element, doc_ele_id);
-	console.log("EID_"+elementIndex);
+	//console.log("EID_"+elementIndex);
   document.getElementById("EID_"+elementIndex+"").click(); 
   return;
 }
 function putins_make_subpage(element, doc_ele_id) {
-	console.log("element",element,", doc_ele_id",doc_ele_id);
+	//console.log("element",element,", doc_ele_id",doc_ele_id);
   let domParser = new DOMParser(),
     dom,
     doc_ele = document.getElementById(doc_ele_id);
