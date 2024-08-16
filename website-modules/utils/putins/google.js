@@ -231,7 +231,7 @@ function putins_make_page_from_gdoc(request_obj, params) {
 	nav_HTML +=
           "<li id='EID_"+eidno+++"' class='u1 doc_page' onclick='location.hash=this.innerText.trim();document.getElementById(\"" +
           doc_ele_id +
-          "\").innerHTML=decodeURI(\"" + encodeURI(j[2]) + "\");'><div";
+          "\").innerHTML=JSON.parse(\"" + JSON.stringify(j[2]) + "\");'><div";
         nav_HTML += ">" + j[0] + "</div></li>";	
       } else if (j[1] == "FramePage" || j[1] == "PDF" || j[1] == "GOOGLEFORM") {
         nav_HTML +=
