@@ -228,6 +228,7 @@ function putins_make_page_from_gdoc(request_obj, params) {
           "\").innerHTML=JSON.parse(decodeURI(\"" + rtfhtml + "\"));'><div";
         nav_HTML += ">" + j[0] + "</div></li>";	
       } else if (j[1] == "HTML") {
+	console.log(j[2]);
 	nav_HTML +=
           "<li id='EID_"+eidno+++"' class='u1 doc_page' onclick='location.hash=this.innerText.trim();document.getElementById(\"" +
           doc_ele_id +
