@@ -229,7 +229,7 @@ function putins_make_page_from_gdoc(request_obj, params) {
         nav_HTML += ">" + j[0] + "</div></li>";	
       } else if (j[1] == "Image") {
 	console.log(j[2]);
-	let img_str='<img src="'+j[2].replace("https://drive.google.com/file/d/","https://drive.google.com/thumbnail?id=").replace("/preview","")+'" >';
+	let img_str='<div align="center"><img src="'+j[2].replace("https://drive.google.com/file/d/","https://drive.google.com/thumbnail?id=").replace("/preview","")+'" ></div>';
 	nav_HTML +=
           "<li id='EID_"+eidno+++"' class='u1 doc_page' onclick='location.hash=this.innerText.trim();document.getElementById(\"" +
           doc_ele_id +
