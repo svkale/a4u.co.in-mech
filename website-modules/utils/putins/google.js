@@ -169,7 +169,8 @@ function putins_make_page_from_gdoc(request_obj, params) {
             j[2] +
             "' data-function-name='request_response'></div></li>";
 	  */
-          var dyn_data_yn = false;
+	      console.log("pasteHTML");
+          var dyn_data_yn = true;
           nav_HTML +=
             '<span class="u1" style="text-align: center;font-weight: bold;">' +
             j[2] +
