@@ -177,7 +177,7 @@ function putins_make_page_from_gdoc(request_obj, params) {
 			.then(data => {return data;})
 			.catch(error => {console.error(error);});    
 		console.log(data);
-		nav_HTML += '<span class="u1" style="text-align: center;font-weight: bold;">' + data + "</span>");
+		nav_HTML += '<span class="u1" style="text-align: center;font-weight: bold;">' + data + '</span>';
 	  }
 	  paste_HTML();
 	      
