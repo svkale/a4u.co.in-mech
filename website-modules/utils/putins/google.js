@@ -170,11 +170,15 @@ function putins_make_page_from_gdoc(request_obj, params) {
             "' data-function-name='request_response'></div></li>";
 	  */
 	      console.log("pasteHTML");
-          var dyn_data_yn = true;
-          nav_HTML +=
-            '<span class="u1" style="text-align: center;font-weight: bold;">' +
-            j[2] +
-            "</span>";
+	  //"https://script.google.com/macros/s/AKfycbx7kmBiPvF2HwSHvUKJArTMw510MuuuiToUiCOMk5yE6G881pa-6VDUkfBiXmwj33IL/exec?fn=GetCell&id=1lmMF-pV1qrh6qbHx3_I-iZdkYILNvEDQC7CjJTa01tw&ssn=RecentNotices&cell=D1"
+	  fetch (j[2])
+		.then(x => x.text())
+		.then(y => nav_HTML += '<span class="u1" style="text-align: center;font-weight: bold;">' + y + "</span>");
+          //var dyn_data_yn = true;
+          //nav_HTML +=
+          //  '<span class="u1" style="text-align: center;font-weight: bold;">' +
+          //  j[2] +
+          //  "</span>";
       } else if (j[1] == "EmptyLine") {
         nav_HTML += '<div class="u1 empty_line">.</div>';
       } else if (j[1] == "Separator"  || (j[1] == "Fixed" && j[0] == "Separator")) {
