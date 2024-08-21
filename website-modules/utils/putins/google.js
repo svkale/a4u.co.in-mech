@@ -158,12 +158,11 @@ function putins_make_page_from_gdoc(request_obj, params) {
           j[0] +
           "</li>";
       } else if (j[1] == "Text" || (j[1] == "Fixed" && j[0] == "Staff Name")) {
-        if (!j[2]) {
           nav_HTML +=
             '<span class="u1" style="text-align: center;font-weight: bold;">' +
-            j[1] +
+            j[2] +
             "</span>";
-        } else {
+      } else if (j[1] == "PasteHTML") {
 	  /*
           nav_HTML +=
             "<li class='u1 dyn_data'><div class='putins' data-target-url='" +
@@ -175,7 +174,6 @@ function putins_make_page_from_gdoc(request_obj, params) {
             '<span class="u1" style="text-align: center;font-weight: bold;">' +
             j[2] +
             "</span>";
-        }
       } else if (j[1] == "EmptyLine") {
         nav_HTML += '<div class="u1 empty_line">.</div>';
       } else if (j[1] == "Separator"  || (j[1] == "Fixed" && j[0] == "Separator")) {
