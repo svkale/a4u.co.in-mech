@@ -174,13 +174,12 @@ function putins_make_page_from_gdoc(request_obj, params) {
 	  async function paste_HTML(){
 		let data = await fetch(j[2])
   			.then(x => x.text())
-			.then(y => nav_HTML += '<span class="u1" style="text-align: center;font-weight: bold;">' + y + "</span>");
-  			.catch(error => { console.error(error); });
-    
+			.then(data => {return data;})
+			.catch(error => {console.error(error);});    
 		console.log(data);
-		document.getElementById("demo").innerHTML += "<br><br>"+data
+		nav_HTML += '<span class="u1" style="text-align: center;font-weight: bold;">' + data + "</span>");
 	  }
-	      paste_HTML();
+	  paste_HTML();
 	      
 	      
 	      //fetch (j[2])
