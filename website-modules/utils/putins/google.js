@@ -374,7 +374,7 @@ function putins_make_page_from_gdoc(request_obj, params) {
   document.getElementsByTagName("body")[0].appendChild(nav_load_script);
   //putins_make_subpage(element, doc_ele_id);
 	//console.log("EID_"+elementIndex);
-  document.getElementById("EID_"+elementIndex+"").click(); 
+  try{document.getElementById("EID_"+elementIndex+"").click(); }catch(err){document.getElementById("EID_0").click();}
   return;
 }
 function putins_make_subpage(element, doc_ele_id) {
