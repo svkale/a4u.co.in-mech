@@ -163,5 +163,5 @@
 }
 
 .rtfTable{border-collapse:collapse;border:1px solid silver;width:100%;}
-.rtfTable>tbody>tr>th{background-color:lightgray;padding:3px;text-align:center;}
+.rtfTable>tbody>tr>th,.rtfTable>tbody>tr>th>div{background-color:lightgray;padding:3px !important;text-align:center;}
 .rtfTable>tbody>tr>td{padding:10px;}
