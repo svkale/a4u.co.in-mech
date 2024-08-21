@@ -1,6 +1,7 @@
 function putins_load()
 {	
 	var putins;
+	console.log(arguments);
 	if(arguments[1])
 	{
 		putins=document.querySelectorAll("."+arguments[0]+" .putins");
