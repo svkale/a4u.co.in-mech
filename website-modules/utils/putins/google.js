@@ -171,7 +171,7 @@ function putins_make_page_from_gdoc(request_obj, params) {
 	  */
 	      console.log("pasteHTML.");
 	  //"https://script.google.com/macros/s/AKfycbx7kmBiPvF2HwSHvUKJArTMw510MuuuiToUiCOMk5yE6G881pa-6VDUkfBiXmwj33IL/exec?fn=GetCell&id=1lmMF-pV1qrh6qbHx3_I-iZdkYILNvEDQC7CjJTa01tw&ssn=RecentNotices&cell=D1"
-	  nav_HTML += '<span class="u1" style="text-align: center;font-weight: bold;" id=pasteHTML >' + data + '</span>';
+	  nav_HTML += '<span class="u1" style="text-align: center;font-weight: bold;" id=pasteHTML ></span>';
 	  async function paste_HTML(){
 		let data = await fetch(j[2])
   			.then(x => x.text())
