@@ -100,6 +100,7 @@ var doc_ele_HTML,
 function putins_make_page_from_gdoc(request_obj, params) {
   let nav_ele_id = params[0],
     doc_ele_id = params[1],
+    pastehtml=0,
     element = decodeURI(params[2]);
   //console.log("element",element);
   if (params[3]) {
@@ -171,16 +172,17 @@ function putins_make_page_from_gdoc(request_obj, params) {
 	  */
 	      console.log("pasteHTML.");
 	  //"https://script.google.com/macros/s/AKfycbx7kmBiPvF2HwSHvUKJArTMw510MuuuiToUiCOMk5yE6G881pa-6VDUkfBiXmwj33IL/exec?fn=GetCell&id=1lmMF-pV1qrh6qbHx3_I-iZdkYILNvEDQC7CjJTa01tw&ssn=RecentNotices&cell=D1"
-	  nav_HTML += '<span class="u1" style="text-align: center;font-weight: bold;" id=pasteHTML ></span>';
+	  nav_HTML += '<span class="u1" style="text-align: left;font-weight: bold;text-indent: 15px;" id="pasteHTML'+pastehtml+'" ></span>';
 	  async function paste_HTML(){
 		let data = await fetch(j[2])
   			.then(x => x.text())
 			.then(data => {return data;})
 			.catch(error => {console.error(error);});    
 		console.log(data);
-		document.getElementById("pasteHTML").innerHTML = data; //'<span class="u1" style="text-align: center;font-weight: bold;">' + data + '</span>';
+		document.getElementById("pasteHTML"+pastehtml).innerHTML = data; //'<span class="u1" style="text-align: center;font-weight: bold;">' + data + '</span>';
 	  }
 	  paste_HTML();
+	  pastehtml++;
 	      
 	      
 	      //fetch (j[2])
