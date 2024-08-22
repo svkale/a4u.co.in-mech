@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+        <title>Academics for you</title>
 <style>
 :root {
   /* colors */
@@ -11,9 +12,8 @@
     --main-color-4: #f4f4f4;
 }
 
-.column {   float: left;   padding: 10px;    } 
-.col1{width:30%;min-width:250px}
-.col2{}
+.col1{width:25%;padding: 10px;float: left;}
+.col2{left-margin:27%;padding: 10px;}
 .row:after {   content: "";   display: table;   clear: both; } 
 @media screen and (max-width: 600px) {   .column {     width: 100%;   } } 
 
@@ -24,13 +24,208 @@ ul.no-bullets {   list-style-type: none;   margin: 0;   padding: 0; }
 .nav_item{display: block;cursor: pointer;padding-left:10px !important;}
 .nav_item:hover{color:white;background:blue;}
 .nav_heading{background-color:var(--main-color-2);color:white !important;}
-.nav_iframe{border: 0px; width:100%;visibility: visible; height: 1478.67px;}
-
+.nav_iframe{border: 0px; width:70%;visibility: visible; height: 1478.67px;}
+#scrolltext{background-color:var(--main-color-2);color:white !important;padding:5px;}
 .Separator{	border-bottom: 1px solid #aaa;margin: 5px 0px;}
 </style>
 </head>
 <body>
-<header>Header</header>
+<header><img style="width:100%" src="https://a4u.co.in/images/logo.jpg" /></header>
+<div id=scrolltext>Scroll Text</div>
+<div class="row">
+  <div class="column col1" >
+    <div id=navmenu>navmenu</div>
+  </div>
+  <div class="column col2">
+    <div id=contents_page>contents_page</div>
+  </div>
+</div>
+
+
+<script>
+
+async function fetchMyDocument(url) {      
+  try {
+    let response = await fetch(url);
+    return await response.text();
+  } catch (err) {
+    console.log('Fetch error:' + err);
+    return "";
+  }
+}
+async function main() {
+  let url="https://docs.google.com/document/d/e/2PACX-1vT1j7ezM4Oyt8Zw1mGIgyaRzSnMOIbkNcEff_vz8jak9bWP2A13YdfsjDeLezDNbr86zjlIb9FQbM0A/pub?embedded=true";
+  let res=await fetchMyDocument(url);
+  //res=res.replace(/<[^>]*>/g, '');
+  console.log("res",res);
+  let nav_contents = res.substring(
+        res.search("{NAVIGATION}") + 12,
+        res.search("{/NAVIGATION}")
+      ).split("|")
+  console.log("nav_contents",nav_contents);
+  //numbers.forEach((item, index, arr)=>{return arr[index] = item * 10;})
+  let navHTML='<ul class="no-bullets">',listNo=0,fetchcounter=0;
+  nav_contents.forEach((item)=>{  
+    let ncnts=item.replace(/<[^>]*>/g, '').split("&lt;&gt;");
+    //document.body.innerHTML += "<br>..."+ ncnts.join("_"); //item.replace(/<[^>]*>/g, '');;
+    //let ddlist=["", "Heading", "PDF", "GOOGLEFORM","FramePage","Text", "Weblink", "EmptyLine", "RTF","Separator","Hitcount"]; //,"Remark","Page","Image","HeaderImage","DropDown","DropDownItem","DropDownEnd","HitCounter", "Remark"];
+    switch(ncnts[1]){      
+      case 'Fixed':
+      	switch(ncnts[0]){
+          case 'ScrollText':
+            if(ncnts[2].toString().length==0){hide('scrolltext');}else{
+              gid('scrolltext').innerHTML="<marquee behavior='scroll' direction='left'>"+ncnts[2]+"</marquee>";
+            }
+            break;
+          case 'UserPhotoLink':
+            navHTML += '<li style="text-align:center;">'+'<img style="width:150px;" src="'+ncnts[2]+'">'+'</li>';
+            break;
+          case 'Staff Name':
+            navHTML += '<li style="text-align:center;">'+ncnts[2]+'</li>';
+            break;
+          case 'Separator':
+          	navHTML += '<li align=center>'+'<hr>'+'</li>';
+            break;
+          case 'Home':
+            let text=getRTFContents(ncnts[0],res);
+            navHTML += '<li class="nav_item" id="nav'+listNo+++'" onclick="gid(\'contents_page\').innerHTML=decodeURI(\''+encodeURI(text)+'\');"  >'+ncnts[0]+'</li>';
+            break;
+        }
+        break;
+        
+      case 'EmptyLine':
+       	  navHTML += '<li>'+'<br>'+'</li>';
+          break;
+      case 'Separator':
+       	  navHTML += '<li>'+'<hr>'+'</li>';
+          break;
+      case 'Heading':
+        navHTML += '<li class="nav_heading" align=center>'+ncnts[0]+'</li>';
+        break;
+      case 'FramePage':
+      case 'GOOGLEFORM':
+      case 'PDF':
+        let text='<iframe class="nav_iframe" src="'+ncnts[2]+'"></iframe>';
+        navHTML += '<li class="nav_item" id="nav'+listNo+++'" onclick="gid(\'contents_page\').innerHTML=decodeURI(\''+encodeURI(text)+'\');"  >'+ncnts[0]+'</li>';
+      	
+        break;
+      case 'Text':
+        navHTML += '<li>'+ncnts[2]+'</li>';
+        break;
+      case 'Image':
+        break;
+      case 'Weblink':
+        navHTML += '<li class="nav_item"><a href="'+ncnts[2]+'" target="_blank" style="text-decoration: none;color:unset;">'+ncnts[0]+"&nbsp;"+weblinkicon()+'</a></li>';
+        break;
+      case 'Hitcount':
+      	navHTML += '<li id="nav_hitcount'+fetchcounter+'" style="text-align:center;"></li>';
+        getHitcount(ncnts[2],"nav_hitcount"+fetchcounter);
+        fetchcounter++;
+        break;
+      case 'PasteHTML':
+	    console.log("pasteHTML.");
+        navHTML += '<li id="pasteHTML'+fetchcounter+'" style="text-align:left;"></li>';
+	    //nav_HTML += '<li class="u1" style="text-align: left;font-weight: bold;padding-left: 15px;" id="pasteHTML'+pastehtml+'" ></span>';
+	  async function paste_HTML(fcounter){
+		let data = await fetch(ncnts[2])
+  			.then(x => x.text())
+			.then(data => {return data;})
+			.catch(error => {console.error(error);});    
+		console.log(data);
+		document.getElementById("pasteHTML"+fcounter).innerHTML = data; //'<span class="u1" style="text-align: center;font-weight: bold;">' + data + '</span>';
+	  }
+	  paste_HTML(fetchcounter);
+	  fetchcounter++;
+    }
+  });
+  navHTML+="</ul>";
+  gid("navmenu").innerHTML=navHTML;
+  gid("nav0").click();
+  //document.body.innerHTML += "<br><br>"+JSON.stringify(nav_contents);
+
+}
+main();
+
+
+async function getHitcount(site,eid){
+  let url='https://script.google.com/macros/s/AKfycbw9eXxMIO6sw6CtNa7APdyeuFdiijxLlGpIe8UYY47LPGhitGU4qqbzOHnhIzy_s1oO3w/exec?fn=hitCounter&site='+site;  //a4u.co.in/Test2
+
+  let hitcount=await fetchMyDocument(url);
+  //navHTML += '<li style="text-align:center;">'+hitcount+'</li>';
+  gid(eid).innerHTML=hitcount;
+}
+
+
+function getRTFContents(navele,res){
+  let page_contents = res.substring(
+        res.search("{"+navele+"}") + Number(navele.length)+2,
+        res.search("{/"+navele+"}")
+      );
+  if(!page_contents){page_contents="";}
+  return page_contents;
+}
+
+function weblinkicon(){
+  return '<svg height="12" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="var(--main-color-2)" d="M432,320H400a16,16,0,0,0-16,16 V448 H64 V128 H208 a16,16,0,0,0,16-16 V80 a16,16,0,0,0-16-16 H48 A48,48,0,0,0,0,112 V464 a48,48,0,0,0,48,48 H400 a48,48,0,0,0,48-48 V336 A16,16,0,0,0,432,320ZM488,0h-128 c-21.37,0-32.05,25.91-17,41 l35.73,35.73 L135,320.37a24,24,0,0,0,0,34 L157.67,377 a24,24,0,0,0,34,0 L435.28,133.32,471,169 c15,15,41,4.5,41-17 V24 A24,24,0,0,0,488,0Z"></path></svg>';
+}
+
+
+
+
+const unhide=function(id){document.getElementById(id).hidden = false ;};
+const hide=function(id){document.getElementById(id).hidden = true ;};
+const gidch=function(id,i,j){return document.getElementById(id).rows[i].cells[j].innerHTML;};
+const gid=function(id){return document.getElementById(id);};
+const gecn=function(className){return document.getElementsByClassName(className);}
+const gen=function(elementName){return document.getElementsByName(elementName);}
+const gidsd=function(id){return document.getElementById(id).style.display;};
+const sidsd=function(id,val){return document.getElementById(id).style.display=val;};
+const gidbg=function(id){return document.getElementById(id).style.backgroundColor;};
+const sidbg=function(id,color){return document.getElementById(id).style.backgroundColor=color;};
+const gidfg=function(id){return document.getElementById(id).style.Color;};
+const sidfg=function(id,color){return document.getElementById(id).style.Color=color;};
+const disableid=function(id){document.getElementById(id).disabled = true;};
+const enableid=function(id){document.getElementById(id).disabled = false;};
+const gidv=function(id){return document.getElementById(id).value;};
+const sidv=function(id,val){return document.getElementById(id).value=val;};
+const gidh=function(id){if(gid(id)==null){console.log(id);};return document.getElementById(id).innerHTML;};
+const sidh=function(id,val){if(gid(id)==null || val==null){console.log(id);return "";};return document.getElementById(id).innerHTML=val;};
+
+</script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+        <title>Academics for you</title>
+<style>
+:root {
+  /* colors */
+	--main-color: #ffffff;
+    --main-color-2: #023BA2;
+    --main-color-3: darkmagenta;
+    --main-color-3: #fafafa;
+    --main-color-4: #f4f4f4;
+}
+
+.col1{width:25%;padding: 10px;float: left;}
+.col2{left-margin:27%;padding: 10px;}
+.row:after {   content: "";   display: table;   clear: both; } 
+@media screen and (max-width: 600px) {   .column {     width: 100%;   } } 
+
+ul.no-bullets {   list-style-type: none;   margin: 0;   padding: 0; }
+.no-bullets>li{padding:5px 3px;text-align:left; color: var(--main-color-2);}
+
+#navmenu{}
+.nav_item{display: block;cursor: pointer;padding-left:10px !important;}
+.nav_item:hover{color:white;background:blue;}
+.nav_heading{background-color:var(--main-color-2);color:white !important;}
+.nav_iframe{border: 0px; width:70%;visibility: visible; height: 1478.67px;}
+#scrolltext{background-color:var(--main-color-2);color:white !important;padding:5px;}
+.Separator{	border-bottom: 1px solid #aaa;margin: 5px 0px;}
+</style>
+</head>
+<body>
+<header><img style="width:100%" src="https://a4u.co.in/images/logo.jpg" /></header>
 <div id=scrolltext>Scroll Text</div>
 <div class="row">
   <div class="column col1" >
