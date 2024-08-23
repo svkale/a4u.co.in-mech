@@ -12,10 +12,7 @@
     --main-color-4: #f4f4f4;
 }
 
-.col1{width:25%;padding: 10px;float: left;}
-.col2{left-margin:27%;padding: 10px;}
-.row:after {   content: "";   display: table;   clear: both; } 
-@media screen and (max-width: 600px) {   .column {     width: 100%;   } } 
+@media screen and (max-width: 600px) {.respdiv { width: 100% !important; color:white;  } } 
 
 ul.no-bullets {   list-style-type: none;   margin: 0;   padding: 0; }
 .no-bullets>li{padding:5px 3px;text-align:left; color: var(--main-color-2);}
@@ -32,15 +29,14 @@ ul.no-bullets {   list-style-type: none;   margin: 0;   padding: 0; }
 <body>
 <header><img style="width:100%" src="https://a4u.co.in/images/logo.jpg" /></header>
 <div id=scrolltext></div>
-<div class="row">
-  <div class="column col1" >
-    <div id=navmenu></div>
-  </div>
-  <div class="column col2">
-    <div id=contents_page></div>
-  </div>
+<div>
+    <div class=respdiv style="width:250px;background-color:green;display:inline-block;">
+        <div id=navmenu></div>
+    </div>
+    <div class=respdiv style="width:calc(100% - 270px);background-color:orange;display:inline-block;position:absolute;">
+        <div id=contents_page></div>
+    </div>
 </div>
-
 
 <script>
 let loc=window.location.href
@@ -57,8 +53,19 @@ async function fetchMyDocument(url) {
     return "";
   }
 }
-async function main() {
-  let url="https://docs.google.com/document/d/e/2PACX-1vT1j7ezM4Oyt8Zw1mGIgyaRzSnMOIbkNcEff_vz8jak9bWP2A13YdfsjDeLezDNbr86zjlIb9FQbM0A/pub?embedded=true";
+async function main(siteName="Test2") {
+  let url0="https://static-data.a4u.co.in/mech/staff-gdoc-links.json";
+  let res0=await fetchMyDocument(url0);
+  //res=res.replace(/<[^>]*>/g, '');
+  //console.log("res0",res0);
+  res0 =JSON.parse(res0)
+  //console.log(res0.stafflist);
+  //console.log(res0.stafflist.col(0));
+  let index=res0.stafflist.col(0).indexOf(siteName);
+  if(index==-1){gid("contents_page").innerHTML="Incorrect site address.";return "";}
+  //console.log(res0.stafflist[index][1]);
+  
+  let url=res0.stafflist[index][1];  //"https://docs.google.com/document/d/e/2PACX-1vT1j7ezM4Oyt8Zw1mGIgyaRzSnMOIbkNcEff_vz8jak9bWP2A13YdfsjDeLezDNbr86zjlIb9FQbM0A/pub?embedded=true";
   let res=await fetchMyDocument(url);
   //res=res.replace(/<[^>]*>/g, '');
   console.log("res",res);
@@ -194,6 +201,7 @@ const gidv=function(id){return document.getElementById(id).value;};
 const sidv=function(id,val){return document.getElementById(id).value=val;};
 const gidh=function(id){if(gid(id)==null){console.log(id);};return document.getElementById(id).innerHTML;};
 const sidh=function(id,val){if(gid(id)==null || val==null){console.log(id);return "";};return document.getElementById(id).innerHTML=val;};
+Array.prototype.col = function(cNo) {return this.map(function(value,index) {return value[cNo];});}
 
 </script>
 </body>
