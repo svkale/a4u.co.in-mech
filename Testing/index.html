@@ -111,6 +111,9 @@ async function main(siteName) {
         }
         break;
         
+      case 'HTML':
+       	  navHTML += '<li>'+'decodeURI(\"' + encodeURI(j[2]) + '\");'+'</li>';
+          break;
       case 'EmptyLine':
        	  navHTML += '<li>'+'<br>'+'</li>';
           break;
