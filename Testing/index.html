@@ -13,7 +13,7 @@
     --back-color: ghostwhite;
 }
 body{background-color:var(--back-color);}
-@media screen and (max-width: 600px) {.respdiv { width: 100% !important; color:white;  } } 
+@media screen and (max-width: 600px) {.respdiv { width: 100% !important; color:white;  }.col2divs{width:100% !important;} } 
 
 ul.no-bullets {   list-style-type: none;   margin: 0;   padding: 0; }
 .no-bullets>li{padding:5px 3px;text-align:left; color: var(--main-color-2);}
@@ -25,6 +25,7 @@ ul.no-bullets {   list-style-type: none;   margin: 0;   padding: 0; }
 .nav_iframe{border: 0px; width:70%;visibility: visible; height: 1478.67px;}
 #scrolltext{background-color:var(--main-color-2);color:white !important;padding:5px;}
 .Separator{	border-bottom: 1px solid #aaa;margin: 5px 0px;}
+.col2divs{width:50%;display:inline-block;}
 </style>
 </head>
 <body>
@@ -112,7 +113,8 @@ async function main(siteName) {
         break;
         
       case 'HTML':
-       	  navHTML += '<li>'+'decodeURI(\"' + encodeURI(j[2]) + '\");'+'</li>';
+            navHTML += '<li class="nav_item" id="nav'+listNo+++'" onclick="gid(\'contents_page\').innerHTML=decodeURI(\''+encodeURI(ncnts[2])+'\');"  >'+ncnts[0]+'</li>';
+            break;
           break;
       case 'EmptyLine':
        	  navHTML += '<li>'+'<br>'+'</li>';
