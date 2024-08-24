@@ -166,4 +166,4 @@
 .rtfTable>tbody>tr>th,.rtfTable>tbody>tr>th>div{background-color:lightgray;padding:3px !important;text-align:center;}
 .rtfTable>tbody>tr>td{padding:10px;}
 .col2divs{width:50%;display:inline-block;}
-@media screen and (max-width: 600px) {.col2divs{width:100% !important;} }
+@media screen and (max-width: 600px) {.col2divs{width:100% !important;vertical-align: text-top;} }
