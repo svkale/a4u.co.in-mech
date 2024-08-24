@@ -10,8 +10,9 @@
     --main-color-3: darkmagenta;
     --main-color-3: #fafafa;
     --main-color-4: #f4f4f4;
+    --back-color: ghostwhite;
 }
-
+body{background-color:var(--back-color);}
 @media screen and (max-width: 600px) {.respdiv { width: 100% !important; color:white;  } } 
 
 ul.no-bullets {   list-style-type: none;   margin: 0;   padding: 0; }
@@ -30,30 +31,31 @@ ul.no-bullets {   list-style-type: none;   margin: 0;   padding: 0; }
 <header><img style="width:100%" src="https://a4u.co.in/images/logo.jpg" /></header>
 <div id=scrolltext></div>
 <div>
-    <div class=respdiv style="width:250px;background-color:green;display:inline-block;">
+    <div class=respdiv style="width:250px;display:inline-block;border-right: inset;padding:5px;">
         <div id=navmenu></div>
     </div>
-    <div class=respdiv style="width:calc(100% - 270px);background-color:orange;display:inline-block;position:absolute;">
+    <div class=respdiv style="width:calc(100% - 270px);display:inline-block;position:absolute;padding:10px;">
         <div id=contents_page></div>
     </div>
 </div>
 
 <script>
+let siteName="";
 let loc=window.location.href
-let siteName=loc.split("/")[loc.split("/").length-1].split("#")[0];
-console.log(siteName,loc);
-
-
-async function fetchMyDocument(url) {      
-  try {
-    let response = await fetch(url);
-    return await response.text();
-  } catch (err) {
-    console.log('Fetch error:' + err);
-    return "";
-  }
+if(loc.split("#").length==1){
+  siteName="Test2";
+  window.location.href=window.location.href+"#"+siteName
+}else{
+  siteName=loc.split("#")[1];
 }
-async function main(siteName="Test2") {
+console.log(siteName);
+console.log(window.location.href)
+
+main(siteName);
+
+
+
+async function main(siteName) {    
   let url0="https://static-data.a4u.co.in/mech/staff-gdoc-links.json";
   let res0=await fetchMyDocument(url0);
   //res=res.replace(/<[^>]*>/g, '');
@@ -61,19 +63,24 @@ async function main(siteName="Test2") {
   res0 =JSON.parse(res0)
   //console.log(res0.stafflist);
   //console.log(res0.stafflist.col(0));
-  let index=res0.stafflist.col(0).indexOf(siteName);
+  //let index=res0.stafflist.col(0).indexOf(siteName);
+  let index=-1
+  for(let i=0; i<res0.stafflist.col(0).length; i++){
+    console.log(res0.stafflist.col(0)[i].toString().toLowerCase().replace(/ /g,''),siteName); 
+    if(res0.stafflist.col(0)[i].toString().toLowerCase().replace(/ /g,'')==siteName.toString().toLowerCase()){index=i;}    
+  }
   if(index==-1){gid("contents_page").innerHTML="Incorrect site address.";return "";}
   //console.log(res0.stafflist[index][1]);
   
   let url=res0.stafflist[index][1];  //"https://docs.google.com/document/d/e/2PACX-1vT1j7ezM4Oyt8Zw1mGIgyaRzSnMOIbkNcEff_vz8jak9bWP2A13YdfsjDeLezDNbr86zjlIb9FQbM0A/pub?embedded=true";
   let res=await fetchMyDocument(url);
   //res=res.replace(/<[^>]*>/g, '');
-  console.log("res",res);
+  //console.log("res",res);
   let nav_contents = res.substring(
         res.search("{NAVIGATION}") + 12,
         res.search("{/NAVIGATION}")
       ).split("|")
-  console.log("nav_contents",nav_contents);
+  //console.log("nav_contents",nav_contents);
   //numbers.forEach((item, index, arr)=>{return arr[index] = item * 10;})
   let navHTML='<ul class="no-bullets">',listNo=0,fetchcounter=0;
   nav_contents.forEach((item)=>{  
@@ -155,8 +162,16 @@ async function main(siteName="Test2") {
   //document.body.innerHTML += "<br><br>"+JSON.stringify(nav_contents);
 
 }
-main();
 
+async function fetchMyDocument(url) {      
+  try {
+    let response = await fetch(url);
+    return await response.text();
+  } catch (err) {
+    console.log('Fetch error:' + err);
+    return "";
+  }
+}
 
 async function getHitcount(site,eid){
   let url='https://script.google.com/macros/s/AKfycbw9eXxMIO6sw6CtNa7APdyeuFdiijxLlGpIe8UYY47LPGhitGU4qqbzOHnhIzy_s1oO3w/exec?fn=hitCounter&site='+site;  //a4u.co.in/Test2
