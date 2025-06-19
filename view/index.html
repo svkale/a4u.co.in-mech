@@ -1,0 +1,18 @@
+<!-- receiver.html -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Receiver</title>
+</head>
+<body>
+  <h2>Received Message:</h2>
+  <p id="output"></p>
+
+  <script>
+    // Read data from URL
+    const params = new URLSearchParams(window.location.search);
+    const message = params.get("msg");
+
+    // Display it
+    document.getElementById("output").textContent = message || "No message received.";
+  </script>
