@@ -163,13 +163,6 @@ function putins_make_page_from_gdoc(request_obj, params) {
             '<span class="u1" style="text-align: center;font-weight: bold;">' +
             j[2] +
             "</span>";
-      } else if(j[1]=="gSlideShow"){
-	    //getSlides(url,slideShowId)
-	    console.log("gSlideShow");console.log(j);
-	    nav_HTML +=
-            '<span class="u1" style="text-align: center;font-weight: bold;">' +
-            j[2] +
-            "</span>";
       }else if (j[1] == "PasteHTML") {
 	  /*
           nav_HTML +=
@@ -252,7 +245,7 @@ function putins_make_page_from_gdoc(request_obj, params) {
           "\").innerHTML=JSON.parse(decodeURI(\"" + rtfhtml + "\"));'><div";
         nav_HTML += ">" + j[0] + "</div></li>";	
       } else if (j[1] == "Image") {
-	console.log(j[2]);
+	//console.log(j[2]);
 	let img_str='<div align="center"><img src="'+j[2].replace("https://drive.google.com/file/d/","https://drive.google.com/thumbnail?id=").replace("/preview","")+'" ></div>';
 	nav_HTML +=
           "<li id='EID_"+eidno+++"' class='u1 doc_page' onclick='location.hash=this.innerText.trim();document.getElementById(\"" +
@@ -260,13 +253,22 @@ function putins_make_page_from_gdoc(request_obj, params) {
           "\").innerHTML=decodeURI(\"" + encodeURI(img_str) + "\");'><div";
         nav_HTML += ">" + j[0] + "</div></li>";	
       } else if (j[1] == "HTML") {
-	console.log(j[2]);
+	//console.log(j[2]);
 	nav_HTML +=
           "<li id='EID_"+eidno+++"' class='u1 doc_page' onclick='location.hash=this.innerText.trim();document.getElementById(\"" +
           doc_ele_id +
           "\").innerHTML=decodeURI(\"" + encodeURI(j[2]) + "\");'><div";
         nav_HTML += ">" + j[0] + "</div></li>";	
-      } else if (j[1] == "FramePage" || j[1] == "PDF" || j[1] == "GOOGLEFORM") {
+       } else if(j[1]=="gSlideShow"){
+	  //getSlides(url,slideShowId)
+	  console.log("gSlideShow");console.log(j);
+	  let div_str='<div align="center">j[2]</div>';
+	  nav_HTML +=
+	  "<li id='EID_"+eidno+++"' class='u1 doc_page' onclick='location.hash=this.innerText.trim();document.getElementById(\"" +
+          doc_ele_id +
+          "\").innerHTML=decodeURI(\"" + encodeURI(div_str) + "\");'><div";
+          nav_HTML += ">" + j[0] + "</div></li>";	
+     } else if (j[1] == "FramePage" || j[1] == "PDF" || j[1] == "GOOGLEFORM") {
         nav_HTML +=
           "<li id='EID_"+eidno+++"' class='u1 doc_page' onclick='let domParser=new DOMParser(),dom,doc_ele=document.getElementById(\"" +
           doc_ele_id +
