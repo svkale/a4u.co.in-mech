@@ -260,14 +260,17 @@ function putins_make_page_from_gdoc(request_obj, params) {
           "\").innerHTML=decodeURI(\"" + encodeURI(j[2]) + "\");'><div";
         nav_HTML += ">" + j[0] + "</div></li>";	
        } else if(j[1]=="gSlideShow"){
-	  //getSlides(url,slideShowId)
 	  console.log("gSlideShow");console.log(j);
-	  let div_str='<div align="center">j[2]</div>';
+	
+	  let div_str='<div align="center"><div id="slideshow" ></div></div>';
+	      //<div id="slideshow" ></div>
 	  nav_HTML +=
 	  "<li id='EID_"+eidno+++"' class='u1 doc_page' onclick='location.hash=this.innerText.trim();document.getElementById(\"" +
           doc_ele_id +
           "\").innerHTML=decodeURI(\"" + encodeURI(div_str) + "\");'><div";
-          nav_HTML += ">" + j[0] + "</div></li>";	
+          nav_HTML += ">" + j[0] + "</div></li>";
+	  let url="https://script.google.com/macros/s/AKfycbzy53ifIUTm2YNc_T_uv1Y0RV0PaLlE8i00V2DTvzBFCuG1Q8ocrvguw4mKUfkiykJSHA/exec?fn=fileList&transpose=false&folderID="+j[2],slideShowId="slideshow"
+	  getSlidesData(url,slideShowId);
      } else if (j[1] == "FramePage" || j[1] == "PDF" || j[1] == "GOOGLEFORM") {
         nav_HTML +=
           "<li id='EID_"+eidno+++"' class='u1 doc_page' onclick='let domParser=new DOMParser(),dom,doc_ele=document.getElementById(\"" +
@@ -859,6 +862,41 @@ function putins_make_subpage_from_HTML(dom, doc_ele, element) {
 		`;
     document.getElementsByTagName("html")[0].appendChild(frame_script);
   }, 500);
+	
+  function getSlidesData(url,slideShowId) {
+    const xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        processSlideShow(this.responseText,slideShowId);
+      }
+    };
+    xhttp.open("GET", url);
+    xhttp.send();
+  }
+
+  function processSlideShow(text,slideShowId){
+    let Data=JSON.parse(text);
+    Data.sort();
+    let itext="";
+    itext += '<div class="w3-content w3-section" style="max-width:500px">';
+    for(let i1=0;i1<Data.length;i1++){
+      let d="none";
+      console.log(i1,Data[i1][1]);
+      itext += '  <img class="mySlides" src="https://drive.google.com/thumbnail?id='+Data[i1][1]+'" style="width:100%;display:'+d+';">';
+    }
+    itext += '</div>';
+    document.getElementById(slideShowId).innerHTML = itext;
+    var myIndex = 0;
+    let startSlideShow=function() {
+      var x = document.getElementsByClassName("mySlides");
+      for (let i = 0; i < x.length; i++) {x[i].style.display = "none";}
+      myIndex++;
+      if (myIndex > x.length) {myIndex = 1}    
+      x[myIndex-1].style.display = "block";  
+      setTimeout(startSlideShow, 3000); // Change image every 2 seconds
+    }
+    startSlideShow();
+  }
 
   return;
 }
