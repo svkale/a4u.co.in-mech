@@ -163,7 +163,14 @@ function putins_make_page_from_gdoc(request_obj, params) {
             '<span class="u1" style="text-align: center;font-weight: bold;">' +
             j[2] +
             "</span>";
-      } else if (j[1] == "PasteHTML") {
+      } else if(j[1]=="gSlideShow"){
+	    //getSlides(url,slideShowId)
+	    console.log("gSlideShow");console.log(j);
+	    nav_HTML +=
+            '<span class="u1" style="text-align: center;font-weight: bold;">' +
+            j[2] +
+            "</span>";
+      }else if (j[1] == "PasteHTML") {
 	  /*
           nav_HTML +=
             "<li class='u1 dyn_data'><div class='putins' data-target-url='" +
