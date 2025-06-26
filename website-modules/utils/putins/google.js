@@ -881,9 +881,7 @@ function processSlideShow(text,slideShowId){
   let itext="";
   itext += '<div class="w3-content w3-section" style="max-width:500px">';
   for(let i1=0;i1<Data.length;i1++){
-    let d="none";
-    console.log(i1,Data[i1][1]);
-    itext += '  <img class="mySlides" src="https://drive.google.com/thumbnail?id='+Data[i1][1]+'" style="width:100%;display:'+d+';">';
+    itext += '<a class="mySlides" style="width:100%;display:none;" href="https://drive.google.com/uc?export=view&amp;id='+Data[i1][1]+'" target="_blank"> <img src="https://drive.google.com/thumbnail?id='+Data[i1][1]+'" alt="" width="100%" style="border:5px solid #023BA2;"></a>';
   }
   itext += '</div>';
   document.getElementById(slideShowId).innerHTML = itext;
