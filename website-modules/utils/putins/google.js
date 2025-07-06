@@ -881,20 +881,14 @@ function processSlideShow(text,slideShowId){
   Data.sort();
   console.log(Data);
   let itext="";
-  itext += '<div class="w3-content w3-section" style="max-width:500px">';
+  itext += '<div style="position: relative;">';
+  itext += '<div style="display: flex; animation: slide 12s infinite;">';
   for(let i1=0;i1<Data.length;i1++){
-    itext += '<a class="mySlides" style="width:100%;display:none;" href="https://drive.google.com/uc?export=view&amp;id='+Data[i1][1]+'" target="_blank"> <img src="https://drive.google.com/thumbnail?id='+Data[i1][1]+'" alt="" width="100%" style="border:5px solid #023BA2;"></a>';
+    itext += '<div style="width: 100%; flex-shrink: 0;">';
+    itext += '<a style="width:100%;" href="https://drive.google.com/uc?export=view&amp;id='+Data[i1][1]+'" target="_blank"> <img src="https://drive.google.com/thumbnail?id='+Data[i1][1]+'" alt="" style="border:5px solid #023BA2;height: auto;width:100%; object-fit: cover;"></a>';
+    itext += '</div>';
   }
   itext += '</div>';
+  itext += '</div></div>';
   document.getElementById(slideShowId).innerHTML = itext;
-  var myIndex = 0;
-  let startSlideShow=function() {
-    var x = document.getElementsByClassName("mySlides");
-    for (let i = 0; i < x.length; i++) {x[i].style.display = "none";}
-    myIndex++;
-    if (myIndex > x.length) {myIndex = 1}    
-    x[myIndex-1].style.display = "block";  
-    setTimeout(startSlideShow, 3000); // Change image every 2 seconds
-  }
-  startSlideShow();
 }
