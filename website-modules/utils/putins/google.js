@@ -884,7 +884,7 @@ function processSlideShow(text,slideShowId){
   itext += '<div style="position: relative;">';
   itext += '<div style="display: flex; animation: slide 12s infinite;">';
   for(let i1=0;i1<Data.length;i1++){
-    itext += '<div style="width: 100%; flex-shrink: 0;">';
+    itext += '<div class="slide" style="width: 100%; flex-shrink: 0;">';
     itext += '<a style="width:100%;" href="https://drive.google.com/uc?export=view&amp;id='+Data[i1][1]+'" target="_blank"> <img src="https://drive.google.com/thumbnail?id='+Data[i1][1]+'" alt="" style="border:5px solid #023BA2;height: auto;width:100%; object-fit: cover;"></a>';
     itext += '</div>';
   }
