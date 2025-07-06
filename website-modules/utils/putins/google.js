@@ -867,6 +867,7 @@ function putins_make_subpage_from_HTML(dom, doc_ele, element) {
 function getSlidesData(url,slideShowId) {
   const xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
+    console.log(this.responseText)
     if (this.readyState == 4 && this.status == 200) {
       processSlideShow(this.responseText,slideShowId);
     }
