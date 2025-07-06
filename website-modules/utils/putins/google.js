@@ -867,7 +867,7 @@ function putins_make_subpage_from_HTML(dom, doc_ele, element) {
 function getSlidesData(url,slideShowId) {
   const xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
-    console.log(this.responseText)
+    //console.log(this.responseText)
     if (this.readyState == 4 && this.status == 200) {
       processSlideShow(this.responseText,slideShowId);
     }
@@ -879,6 +879,7 @@ function getSlidesData(url,slideShowId) {
 function processSlideShow(text,slideShowId){
   let Data=JSON.parse(text);
   Data.sort();
+  console.log(Data);
   let itext="";
   itext += '<div class="w3-content w3-section" style="max-width:500px">';
   for(let i1=0;i1<Data.length;i1++){
