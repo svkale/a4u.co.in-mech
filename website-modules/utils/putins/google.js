@@ -262,7 +262,7 @@ function putins_make_page_from_gdoc(request_obj, params) {
        } else if(j[1]=="gSlideShow"){
 	  console.log("gSlideShow");console.log(j);
 	
-	  let div_str='<div align="center"><div id="slideshow" style="maxwidth:500px;"></div></div>';
+	  let div_str='<div align="center"><div id="slideshow" style="max-width:500px;"></div></div>';
 	      //<div id="slideshow" ></div>
 	  nav_HTML +=
 	  "<li id='EID_"+eidno+++"' class='u1 doc_page' onclick='location.hash=this.innerText.trim();document.getElementById(\"" +
