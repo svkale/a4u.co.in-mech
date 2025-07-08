@@ -267,6 +267,7 @@ function putins_make_page_from_gdoc(request_obj, params) {
 	  if(j[2].split("/").length>=2 && j[2].split("/")[2]!=""){timeInterval=j[2].split("/")[2];}
 	  if(j[2].split("/").length>=3 && j[2].split("/")[3]!=""){atag=j[2].split("/")[3];}
 	  if(j[2].split("/").length>=4 && j[2].split("/")[4]!=""){labelOnImage=j[2].split("/")[4];}
+	  if(j[2].split("/").length>=5 && j[2].split("/")[5]!=""){widthHeight=j[2].split("/")[5];}
 	  //console.log(slideShowId,timeInterval,atag,labelOnImage);
 	  let div_str='<div align="center"><div id="'+slideShowId+'" style="max-width:500px;overflow:hidden;'+widthHeight+'"></div></div>';
 	  nav_HTML +=
@@ -280,6 +281,7 @@ function putins_make_page_from_gdoc(request_obj, params) {
 	  if(j[2].split("/").length>=2 && j[2].split("/")[2]!=""){timeInterval=j[2].split("/")[2];}
 	  if(j[2].split("/").length>=3 && j[2].split("/")[3]!=""){atag=j[2].split("/")[3];}
 	  if(j[2].split("/").length>=4 && j[2].split("/")[4]!=""){labelOnImage=j[2].split("/")[4];}
+	  if(j[2].split("/").length>=5 && j[2].split("/")[5]!=""){widthHeight=j[2].split("/")[5];}
 	  //console.log(slideShowId,timeInterval,atag,labelOnImage);
 	
 	  let div_str='<div align="center"><div id="'+slideShowId+'" style="max-width:500px;overflow:hidden;'+widthHeight+'"></div></div>';
