@@ -895,7 +895,7 @@ function processSlideShow(text,slideShowId,timeInterval){
   //console.log(Data);
   let sshtml ='<div style="width:150px; overflow:hidden; position:relative; margin:auto; padding:1px;">';
 
-  sshtml +='<div class="slidesContainer" id="slidesContainer" style="display:flex; width:100%; height:100%; transition:transform 0.5s ease-in-out;">';
+  sshtml +='<div class="slidesContainer" id="'+slideShowId+'_slidesContainer" style="display:flex; width:100%; height:100%; transition:transform 0.5s ease-in-out;">';
 
   for (let i = 1; i <= Data.length; i++) {
     //console.log("Data["+(i-1)+"][1]",Data[i-1][1]);
@@ -905,7 +905,7 @@ function processSlideShow(text,slideShowId,timeInterval){
   document.getElementById(slideShowId).innerHTML=sshtml;
   let currentIndex = 0;
   setInterval(() => {
-    currentIndex = (currentIndex + 1) % Data.length;
-    document.getElementById("slidesContainer").style.transform = `translateX(-${currentIndex * 100}%)`;
+    currentIndex = (currentIndex) % Data.length;
+    document.getElementById(slideShowId+"_slidesContainer").style.transform = `translateX(-${currentIndex * 100}%)`;
   }, timeInterval);
 }
