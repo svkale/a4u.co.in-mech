@@ -868,6 +868,7 @@ function putins_make_subpage_from_HTML(dom, doc_ele, element) {
   return;
 }
 function getSlidesData(url,slideShowId,timeInterval=3000) {
+	console.log(text,slideShowId,timeInterval);
   const xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     //console.log(this.responseText)
@@ -880,6 +881,7 @@ function getSlidesData(url,slideShowId,timeInterval=3000) {
 }
 
 function processSlideShow(text,slideShowId,timeInterval){
+	console.log(text,slideShowId,timeInterval);
   let Data=JSON.parse(text);
   Data.sort();
   console.log(Data);
