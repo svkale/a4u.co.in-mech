@@ -271,9 +271,12 @@ function putins_make_page_from_gdoc(request_obj, params) {
 	  getSlidesData(url,slideShowId,timeInterval);
        } else if(j[1]=="gSlideShow"){
 	  //console.log("gSlideShow");console.log(j);
-	  let url="https://script.google.com/macros/s/AKfycbzy53ifIUTm2YNc_T_uv1Y0RV0PaLlE8i00V2DTvzBFCuG1Q8ocrvguw4mKUfkiykJSHA/exec?fn=fileList&transpose=false&folderID="+j[2].split("/")[0],slideShowId=j[2].split("/")[1],timeInterval=j[2].split("/")[2];
-	  if(!slideShowId || slideShowId.toString().length==0){slideShowId="slideshow";}
-	  if(!timeInterval || Number(timeInterval)<=0){timeInterval=3000;}
+	  let url="https://script.google.com/macros/s/AKfycbzy53ifIUTm2YNc_T_uv1Y0RV0PaLlE8i00V2DTvzBFCuG1Q8ocrvguw4mKUfkiykJSHA/exec?fn=fileList&transpose=false&folderID="+j[2].split("/")[0],
+	      slideShowId="slideshow",timeInterval=3000,atag=true,labelOnImage=false;
+	  if(j[2].split("/").length>=1 && j[2].split("/")[1]!=""){slideShowId=j[2].split("/")[1];}
+	  if(j[2].split("/").length>=2 && j[2].split("/")[2]!=""){timeInterval=j[2].split("/")[2];}
+	  if(j[2].split("/").length>=3 && j[2].split("/")[3]!=""){atag=j[2].split("/")[3];}
+	  if(j[2].split("/").length>=4 && j[2].split("/")[4]!=""){labelOnImage=j[2].split("/")[4];}
 	  //console.log(url,slideShowId,timeInterval);
 	
 	  let div_str='<div align="center"><div id="'+slideShowId+'" style="max-width:500px;overflow:hidden;"></div></div>';
@@ -282,7 +285,7 @@ function putins_make_page_from_gdoc(request_obj, params) {
           doc_ele_id +
           "\").innerHTML=decodeURI(\"" + encodeURI(div_str) + "\");'><div";
           nav_HTML += ">" + j[0] + "</div></li>";
-	  getSlidesData(url,slideShowId,timeInterval);
+	  getSlidesData(url,slideShowId,timeInterval,atag,labelOnImage);
      } else if (j[1] == "FramePage" || j[1] == "PDF" || j[1] == "GOOGLEFORM") {
         nav_HTML +=
           "<li id='EID_"+eidno+++"' class='u1 doc_page' onclick='let domParser=new DOMParser(),dom,doc_ele=document.getElementById(\"" +
@@ -876,20 +879,20 @@ function putins_make_subpage_from_HTML(dom, doc_ele, element) {
   }, 500);
   return;
 }
-function getSlidesData(url,slideShowId,timeInterval=3000) {
+function getSlidesData(url,slideShowId,timeInterval=3000,atag=true,labelOnImage=false) {
   //console.log(url,slideShowId,timeInterval);
   const xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     //console.log(this.responseText)
     if (this.readyState == 4 && this.status == 200) {
-      processSlideShow(this.responseText,slideShowId,timeInterval);
+      processSlideShow(this.responseText,slideShowId,timeInterval,atag,labelOnImage);
     }
   };
   xhttp.open("GET", url);
   xhttp.send();
 }
 
-function processSlideShow(text,slideShowId,timeInterval){
+function processSlideShow(text,slideShowId,timeInterval,atag,labelOnImage){
   let Data=JSON.parse(text);
   Data.sort();
   //console.log(Data);
@@ -899,7 +902,15 @@ function processSlideShow(text,slideShowId,timeInterval){
 
   for (let i = 1; i <= Data.length; i++) {
     //console.log("Data["+(i-1)+"][1]",Data[i-1][1]);
-    sshtml +='<div class="slide" align=center style="width: 100%; height: 100%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 2em; border: 1px solid navyblue;">  <a style="width:100%;height: 100%;" href="https://drive.google.com/uc?export=view&amp;id='+Data[i-1][1]+'" target="_blank"> <img class="strechImage" src="https://drive.google.com/thumbnail?id='+Data[i-1][1]+'" alt="" style="border:1px solid #023BA2;zoom: 2;  display: block; margin: auto;  height: auto; max-height: 100%;  width: auto; max-width: 100%;"></a></div>';
+    sshtml +='<div class="slide" align=center style="position: relative; width: 100%; height: 100%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 2em; border: 1px solid navyblue;">';
+    if(atag==true){sshtml +='<a style="width:100%;height: 100%;" href="https://drive.google.com/uc?export=view&amp;id='+Data[i-1][1]+'" target="_blank">';}
+    sshtml +='<img class="strechImage" src="https://drive.google.com/thumbnail?id='+Data[i-1][1]+'" alt="" style="border:1px solid #023BA2;zoom: 2;  display: block; margin: auto;  height: auto; max-height: 100%;  width: auto; max-width: 100%;">';
+    if(labelOnImage==true){
+	let ImageLabel=Data[i-1][0]; if(Data[i-1][0].split("...").length>=2){ImageLabel=Data[i-1][0].split("..")[1];}
+	sshtml += '<div style="position: absolute;bottom: 8px;left: 50%;transform: translate(-50%, 0%);" >'+ImageLabel+'</div>';
+    };
+    if(atag==true){sshtml +='</a>';}
+    sshtml +='</div>';
   }
   sshtml += '</div></div>';  //appendChild(slidesContainer);
   document.getElementById(slideShowId).innerHTML=sshtml;
