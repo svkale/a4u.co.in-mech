@@ -259,6 +259,16 @@ function putins_make_page_from_gdoc(request_obj, params) {
           doc_ele_id +
           "\").innerHTML=decodeURI(\"" + encodeURI(j[2]) + "\");'><div";
         nav_HTML += ">" + j[0] + "</div></li>";	
+       } else if(j[1]=="indexSlideShow"){  //slideshow in index column
+	  console.log("indexSlideShow");console.log(j);
+	  let url="https://script.google.com/macros/s/AKfycbzy53ifIUTm2YNc_T_uv1Y0RV0PaLlE8i00V2DTvzBFCuG1Q8ocrvguw4mKUfkiykJSHA/exec?fn=fileList&transpose=false&folderID="+j[2].split("/")[0],slideShowId=j[2].split("/")[1],timeInterval=j[2].split("/")[2];
+	  if(!slideShowId || slideShowId.toString().length==0){slideShowId="slideshow";}
+	  if(!timeInterval || Number(timeInterval)<=0){timeInterval=3000;}
+	  console.log(url,slideShowId,timeInterval);
+	  let div_str='<div align="center"><div id="'+slideShowId+'" style="max-width:500px;overflow:hidden;"></div></div>';
+	  nav_HTML +=
+          '<section class="cont" style="--cont-width: 50%; margin-left: 25%;"><div align="center"><div id="'+slideShowId+'" style="max-width:150px;overflow:hidden;"></div></div></section>';
+	  getSlidesData(url,slideShowId,timeInterval);
        } else if(j[1]=="gSlideShow"){
 	  console.log("gSlideShow");console.log(j);
 	  let url="https://script.google.com/macros/s/AKfycbzy53ifIUTm2YNc_T_uv1Y0RV0PaLlE8i00V2DTvzBFCuG1Q8ocrvguw4mKUfkiykJSHA/exec?fn=fileList&transpose=false&folderID="+j[2].split("/")[0],slideShowId=j[2].split("/")[1],timeInterval=j[2].split("/")[2];
