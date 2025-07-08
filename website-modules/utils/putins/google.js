@@ -612,13 +612,13 @@ function putins_make_subpage_from_HTML(dom, doc_ele, element) {
       .replace("{/noticeboard_layout}", "</section>");
     exec_noticeboard_script = 1;
   }
-  while (
-    dom.documentElement.innerText.includes("{htmlCode}") &&
-    dom.documentElement.innerText.includes("{/htmlCode}")
-  ) {
-	 let doc_html = dom.documentElement.innerHTML;
-	  //dom.documentElement.innerHTML = "Hello";
-  }
+  // while (
+  //   dom.documentElement.innerText.includes("{htmlCode}") &&
+  //   dom.documentElement.innerText.includes("{/htmlCode}")
+  // ) {
+	 // let doc_html = dom.documentElement.innerHTML;
+	 //  //dom.documentElement.innerHTML = "Hello";
+  // }
   while (
     dom.documentElement.innerText.includes("{notice}") &&
     dom.documentElement.innerText.includes("{/notice}")
