@@ -653,7 +653,6 @@ function putins_make_subpage_from_HTML(dom, doc_ele, element) {
       //   p.innerHTML= p.innerText.substr(0, p.innerText.length - 7).substr(6)
       // )	
     );
-	console.log(p.innerHTML);
   while (
     dom.documentElement.innerText.includes("{function}") &&
     dom.documentElement.innerText.includes("{/function}")
