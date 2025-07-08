@@ -906,13 +906,13 @@ function processSlideShow(text,slideShowId,timeInterval,atag,labelOnImage){
   for (let i = 1; i <= Data.length; i++) {
     //console.log("Data["+(i-1)+"][1]",Data[i-1][1]);
     sshtml +='<div class="slide" align=center style="position: relative; width: 100%; height: 100%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 2em; border: 1px solid navyblue;">';
-    if(atag==true){sshtml +='<a style="width:100%;height: 100%;" href="https://drive.google.com/uc?export=view&amp;id='+Data[i-1][1]+'" target="_blank">';}
+    if(atag==true || atag=="true"){sshtml +='<a style="width:100%;height: 100%;" href="https://drive.google.com/uc?export=view&amp;id='+Data[i-1][1]+'" target="_blank">';}
     sshtml +='<img class="strechImage" src="https://drive.google.com/thumbnail?id='+Data[i-1][1]+'" alt="" style="border:1px solid #023BA2;zoom: 2;  display: block; margin: auto;  height: auto; max-height: 100%;  width: auto; max-width: 100%;">';
-    if(labelOnImage==true){
+    if(labelOnImage==true || labelOnImage=="true"){
 	let ImageLabel=Data[i-1][0]; if(Data[i-1][0].split("...").length>=2){ImageLabel=Data[i-1][0].split("..")[1];}
 	sshtml += '<div style="position: absolute;bottom: 8px;left: 50%;transform: translate(-50%, 0%);" >'+ImageLabel+'</div>';
     };
-    if(atag==true){sshtml +='</a>';}
+    if(atag==true || atag=="true"){sshtml +='</a>';}
     sshtml +='</div>';
   }
   sshtml += '</div></div>';  //appendChild(slidesContainer);
