@@ -261,10 +261,13 @@ function putins_make_page_from_gdoc(request_obj, params) {
         nav_HTML += ">" + j[0] + "</div></li>";	
        } else if(j[1]=="indexSlideShow"){  //slideshow in index column
 	  //console.log("indexSlideShow");console.log(j);
-	  let url="https://script.google.com/macros/s/AKfycbzy53ifIUTm2YNc_T_uv1Y0RV0PaLlE8i00V2DTvzBFCuG1Q8ocrvguw4mKUfkiykJSHA/exec?fn=fileList&transpose=false&folderID="+j[2].split("/")[0],slideShowId=j[2].split("/")[1],timeInterval=j[2].split("/")[2];
-	  if(!slideShowId || slideShowId.toString().length==0){slideShowId="slideshow";}
-	  if(!timeInterval || Number(timeInterval)<=0){timeInterval=3000;}
-	  //console.log(url,slideShowId,timeInterval);
+	  let url="https://script.google.com/macros/s/AKfycbzy53ifIUTm2YNc_T_uv1Y0RV0PaLlE8i00V2DTvzBFCuG1Q8ocrvguw4mKUfkiykJSHA/exec?fn=fileList&transpose=false&folderID="+j[2].split("/")[0],
+	      slideShowId="slideshow",timeInterval=3000,atag=true,labelOnImage=false;
+	  if(j[2].split("/").length>=1 && j[2].split("/")[1]!=""){slideShowId=j[2].split("/")[1];}
+	  if(j[2].split("/").length>=2 && j[2].split("/")[2]!=""){timeInterval=j[2].split("/")[2];}
+	  if(j[2].split("/").length>=3 && j[2].split("/")[3]!=""){atag=j[2].split("/")[3];}
+	  if(j[2].split("/").length>=4 && j[2].split("/")[4]!=""){labelOnImage=j[2].split("/")[4];}
+	  console.log(slideShowId,timeInterval,atag,labelOnImage);
 	  let div_str='<div align="center"><div id="'+slideShowId+'" style="max-width:500px;overflow:hidden;"></div></div>';
 	  nav_HTML +=
           '<section class="cont" style="--cont-width: 50%; margin-left: 25%;"><div align="center"><div id="'+slideShowId+'" style="max-width:150px;overflow:hidden;"></div></div></section>';
