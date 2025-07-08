@@ -275,7 +275,7 @@ function putins_make_page_from_gdoc(request_obj, params) {
        } else if(j[1]=="gSlideShow"){
 	  //console.log("gSlideShow");console.log(j);
 	  let url="https://script.google.com/macros/s/AKfycbzy53ifIUTm2YNc_T_uv1Y0RV0PaLlE8i00V2DTvzBFCuG1Q8ocrvguw4mKUfkiykJSHA/exec?fn=fileList&transpose=false&folderID="+j[2].split("/")[0],
-	      slideShowId="slideshow",timeInterval=3000,atag=true,labelOnImage=false;
+	      slideShowId="slideshow",timeInterval=3000,atag=false,labelOnImage=false;
 	  if(j[2].split("/").length>=1 && j[2].split("/")[1]!=""){slideShowId=j[2].split("/")[1];}
 	  if(j[2].split("/").length>=2 && j[2].split("/")[2]!=""){timeInterval=j[2].split("/")[2];}
 	  if(j[2].split("/").length>=3 && j[2].split("/")[3]!=""){atag=j[2].split("/")[3];}
@@ -882,7 +882,7 @@ function putins_make_subpage_from_HTML(dom, doc_ele, element) {
   }, 500);
   return;
 }
-function getSlidesData(url,slideShowId,timeInterval=3000,atag=true,labelOnImage=false) {
+function getSlidesData(url,slideShowId,timeInterval=3000,atag=false,labelOnImage=false) {
   console.log(slideShowId,timeInterval,atag,labelOnImage);
   const xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
