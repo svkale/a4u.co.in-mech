@@ -911,7 +911,7 @@ function processSlideShow(text,slideShowId,timeInterval,atag,labelOnImage){
     if(labelOnImage==true || labelOnImage=="true"){
 	let ImageLabel=Data[i-1][0].slice(0, Data[i-1][0].lastIndexOf(".")); if(ImageLabel.split("...").length>=2){ImageLabel=ImageLabel.split("...")[1];}
 	ImageLabel=ImageLabel.replace("Dr. ","Dr.&nbsp;").replace("..",".&nbsp;");
-	sshtml += '<div style="position: absolute;bottom: 8px;left: 50%;transform: translate(-50%, 0%);background-color:rgba(0, 0, 0, 0.2);color:white;" >'+ImageLabel+'</div>';
+	sshtml += '<div style="position: absolute;bottom: 5px;left: 50%;transform: translate(-50%, 0%);background-color:rgba(0, 0, 0, 0.2);color:white;" >'+ImageLabel+'</div>';
     };
     if(atag==true || atag=="true"){sshtml +='</a>';}
     sshtml +='</div>';
