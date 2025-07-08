@@ -905,9 +905,8 @@ function processSlideShow(text,slideShowId,timeInterval){
   document.getElementById(slideShowId).innerHTML=sshtml;
   let currentIndex = 0;
   setInterval(() => {
-    currentIndex = (currentIndex) % Data.length;
+    //currentIndex = (currentIndex) % Data.length;
     let containerId=slideShowId+"_slidesContainer"
-	  console.log("containerId",containerId);
-    document.getElementById(containerId).style.transform = `translateX(-${currentIndex * 100}%)`;
+    document.getElementById(containerId).style.transform = `translateX(-${(currentIndex++)%Data.length * 100}%)`;
   }, timeInterval);
 }
