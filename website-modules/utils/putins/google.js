@@ -236,7 +236,8 @@ function putins_make_page_from_gdoc(request_obj, params) {
 	        doc_ele_HTML.indexOf("{/" + j[0] + "}")
 	      );		  
 	  } else rtfhtml = "<span>Error! Tag not found.</span>";  
-	console.log("RTF or Home");  //console.log("rtfhtml");console.log(rtfhtml);
+	//console.log("RTF or Home");  //console.log("rtfhtml");console.log(rtfhtml);
+	      console.log(rtfhtml);
 	rtfhtml=encodeURI(JSON.stringify(rtfhtml));
 	      
 	nav_HTML +=
