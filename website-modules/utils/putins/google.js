@@ -909,7 +909,8 @@ function processSlideShow(text,slideShowId,timeInterval,atag,labelOnImage){
     if(atag==true || atag=="true"){sshtml +='<a style="width:100%;height: 100%;" href="https://drive.google.com/uc?export=view&amp;id='+Data[i-1][1]+'" target="_blank">';}
     sshtml +='<img class="strechImage" src="https://drive.google.com/thumbnail?id='+Data[i-1][1]+'" alt="" style="border:1px solid #023BA2;zoom: 2;  display: block; margin: auto;  height: auto; max-height: 100%;  width: auto; max-width: 100%;">';
     if(labelOnImage==true || labelOnImage=="true"){
-	let ImageLabel=Data[i-1][0].split(".")[0]; if(Data[i-1][0].split("...").length>=2){ImageLabel=Data[i-1][0].split("...")[1].split(".")[0];}
+	let ImageLabel=Data[i-1][0].slice(0, Data[i-1][0].lastIndexOf(".")); if(ImageLabel.split("...").length>=2){ImageLabel=ImageLabel.split("...")[1];}
+	ImageLabel=ImageLabel.replace(/ /g,"&nbsp;");
 	sshtml += '<div style="position: absolute;bottom: 8px;left: 50%;transform: translate(-50%, 0%);background-color:rgba(0, 0, 0, 0.2);color:white;" >'+ImageLabel+'</div>';
     };
     if(atag==true || atag=="true"){sshtml +='</a>';}
