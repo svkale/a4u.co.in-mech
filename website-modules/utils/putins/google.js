@@ -650,11 +650,6 @@ function putins_make_subpage_from_HTML(dom, doc_ele, element) {
         p.innerText,
         p.innerHTML= p.innerText.substr(0, p.innerText.length - 7).substr(6)
       )	
-	        let ihtml=p.innerText.substr(0, p.innerText.length - 7).substr(6);
-	        let ihtml2=ihtml.replace(/&lt;/g,"<").replace(/&gt;/g,">").replace(/&amp;/g,"&");
-	      	console.log(ihtml2);
-	      	let doc = new DOMParser().parseFromString(ihtml2, 'text/html');
-    		doc.querySelectorAll('script').forEach((item1,i1)=>{console.log(item1.textContent);eval(item1.textContent);});
     );
   while (
     dom.documentElement.innerText.includes("{function}") &&
