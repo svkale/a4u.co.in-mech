@@ -616,7 +616,7 @@ function putins_make_subpage_from_HTML(dom, doc_ele, element) {
     dom.documentElement.innerText.includes("{htmlCode}") &&
     dom.documentElement.innerText.includes("{/htmlCode}")
   ) {
-	  console.log(“htmlCode”);
+	  console.log('htmlCode');
   }
   while (
     dom.documentElement.innerText.includes("{notice}") &&
