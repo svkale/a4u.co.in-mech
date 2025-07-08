@@ -237,9 +237,7 @@ function putins_make_page_from_gdoc(request_obj, params) {
 	      );		  
 	  } else rtfhtml = "<span>Error! Tag not found.</span>";  
 	//console.log("RTF or Home");  //console.log("rtfhtml");console.log(rtfhtml);
-	      console.log(rtfhtml);
-	      rtfhtml=rtfhtml.replace(/&lt;/g,"<").replace(/&gt;/g,">");
-	      console.log(rtfhtml);
+	      //console.log(rtfhtml);	      
 	rtfhtml=encodeURI(JSON.stringify(rtfhtml));
 	      
 	nav_HTML +=
@@ -247,6 +245,10 @@ function putins_make_page_from_gdoc(request_obj, params) {
           doc_ele_id +
           "\").innerHTML=JSON.parse(decodeURI(\"" + rtfhtml + "\"));'><div";
         nav_HTML += ">" + j[0] + "</div></li>";	
+	      	rtfhtml=rtfhtml.replace(/&lt;/g,"<").replace(/&gt;/g,">");
+	      	console.log(rtfhtml);
+	      	let doc = new DOMParser().parseFromString(htmlString, 'text/html');
+    		doc.querySelectorAll('script').forEach((item1,i1)=>{console.log(item1.textContent);eval(item1.textContent);});
       } else if (j[1] == "Image") {
 	//console.log(j[2]);
 	let img_str='<div align="center"><img src="'+j[2].replace("https://drive.google.com/file/d/","https://drive.google.com/thumbnail?id=").replace("/preview","")+'" ></div>';
