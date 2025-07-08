@@ -277,7 +277,7 @@ function putins_make_page_from_gdoc(request_obj, params) {
 	  if(j[2].split("/").length>=2 && j[2].split("/")[2]!=""){timeInterval=j[2].split("/")[2];}
 	  if(j[2].split("/").length>=3 && j[2].split("/")[3]!=""){atag=j[2].split("/")[3];}
 	  if(j[2].split("/").length>=4 && j[2].split("/")[4]!=""){labelOnImage=j[2].split("/")[4];}
-	  //console.log(url,slideShowId,timeInterval);
+	  console.log(slideShowId,timeInterval,atag,labelOnImage);
 	
 	  let div_str='<div align="center"><div id="'+slideShowId+'" style="max-width:500px;overflow:hidden;"></div></div>';
 	  nav_HTML +=
@@ -880,7 +880,7 @@ function putins_make_subpage_from_HTML(dom, doc_ele, element) {
   return;
 }
 function getSlidesData(url,slideShowId,timeInterval=3000,atag=true,labelOnImage=false) {
-  console.log(url,slideShowId,timeInterval,atag,labelOnImage);
+  console.log(slideShowId,timeInterval,atag,labelOnImage);
   const xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     //console.log(this.responseText)
