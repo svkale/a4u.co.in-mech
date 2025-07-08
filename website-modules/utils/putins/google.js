@@ -223,7 +223,7 @@ function putins_make_page_from_gdoc(request_obj, params) {
           nav_HTML += ' style="font-weight: bold;"';
         }
         nav_HTML += ">" + j[0] + "</div></li>";
-       } else if (j[1] == "RTF" || (j[1] == "Fixed" && j[0] == "Home")) {	  
+       } else if (j[1] == "RTF" || (j[1] == "Fixed" && j[0] == "Home")) {  
 	  //console.log(doc_ele_id,j);
 	  let doc_ele = document.getElementById(doc_ele_id), rtfhtml="";
 	  if (
@@ -238,7 +238,7 @@ function putins_make_page_from_gdoc(request_obj, params) {
 	  } else rtfhtml = "<span>Error! Tag not found.</span>";  
 	//console.log("RTF or Home");  //console.log("rtfhtml");console.log(rtfhtml);
 	      //console.log(rtfhtml);	    
-	      let rtfhtml2=rtfhtml.replace(/&lt;/g,"<").replace(/&gt;/g,">");
+	      let rtfhtml2=rtfhtml.replace(/&lt;/g,"<").replace(/&gt;/g,">").replace(/&amp;/g,"&");
 	rtfhtml=encodeURI(JSON.stringify(rtfhtml));
 	      
 	nav_HTML +=
