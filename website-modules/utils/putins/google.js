@@ -648,7 +648,7 @@ function putins_make_subpage_from_HTML(dom, doc_ele, element) {
       console.log(
         p,
         p.innerText,
-        p.innerHTML=p.innerText.substr(0, p.innerText.length - 7).substr(6);))
+        p.innerHTML=p.innerText.substr(0, p.innerText.length - 7).substr(6)
       )	
     );
   while (
