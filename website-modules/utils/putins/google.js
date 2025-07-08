@@ -272,7 +272,8 @@ function putins_make_page_from_gdoc(request_obj, params) {
 	  let url="https://script.google.com/macros/s/AKfycbzy53ifIUTm2YNc_T_uv1Y0RV0PaLlE8i00V2DTvzBFCuG1Q8ocrvguw4mKUfkiykJSHA/exec?fn=fileList&transpose=false&folderID="+j[2].split("|")[0],slideShowId=j[2].split("/")[1]
 	  if(j[2].split("/")[1].toString().length==0){slideShowId="slideshow";}
 	  if(j[2].split("/")[2].toString().length==0){timeInterval=3000;}
-	      getSlidesData(url,slideShowId,timeInterval);
+	  console.log(url,slideShowId,timeInterval);
+	  getSlidesData(url,slideShowId,timeInterval);
      } else if (j[1] == "FramePage" || j[1] == "PDF" || j[1] == "GOOGLEFORM") {
         nav_HTML +=
           "<li id='EID_"+eidno+++"' class='u1 doc_page' onclick='let domParser=new DOMParser(),dom,doc_ele=document.getElementById(\"" +
