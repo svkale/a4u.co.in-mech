@@ -908,5 +908,6 @@ function processSlideShow(text,slideShowId,timeInterval){
     //currentIndex = (currentIndex) % Data.length;
     let containerId=slideShowId+"_slidesContainer"
     document.getElementById(containerId).style.transform = `translateX(-${(currentIndex++)%Data.length * 100}%)`;
+	  console.log(currentIndex);
   }, timeInterval);
 }
