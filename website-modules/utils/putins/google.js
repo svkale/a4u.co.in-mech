@@ -269,8 +269,8 @@ function putins_make_page_from_gdoc(request_obj, params) {
           doc_ele_id +
           "\").innerHTML=decodeURI(\"" + encodeURI(div_str) + "\");'><div";
           nav_HTML += ">" + j[0] + "</div></li>";
-	  let url="https://script.google.com/macros/s/AKfycbzy53ifIUTm2YNc_T_uv1Y0RV0PaLlE8i00V2DTvzBFCuG1Q8ocrvguw4mKUfkiykJSHA/exec?fn=fileList&transpose=false&folderID="+j[2],slideShowId="slideshow"
-	  getSlidesData(url,slideShowId);
+	  let url="https://script.google.com/macros/s/AKfycbzy53ifIUTm2YNc_T_uv1Y0RV0PaLlE8i00V2DTvzBFCuG1Q8ocrvguw4mKUfkiykJSHA/exec?fn=fileList&transpose=false&folderID="+j[2].split("|")[0],slideShowId=j[2].split("|")[1]
+	  getSlidesData(url,j[2].split("|")[1],j[2].split("|")[2]);
      } else if (j[1] == "FramePage" || j[1] == "PDF" || j[1] == "GOOGLEFORM") {
         nav_HTML +=
           "<li id='EID_"+eidno+++"' class='u1 doc_page' onclick='let domParser=new DOMParser(),dom,doc_ele=document.getElementById(\"" +
@@ -864,31 +864,35 @@ function putins_make_subpage_from_HTML(dom, doc_ele, element) {
   }, 500);
   return;
 }
-function getSlidesData(url,slideShowId) {
+function getSlidesData(url,slideShowId,timeInterval=3000) {
   const xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     //console.log(this.responseText)
     if (this.readyState == 4 && this.status == 200) {
-      processSlideShow(this.responseText,slideShowId);
+      processSlideShow(this.responseText,slideShowId,timeInterval);
     }
   };
   xhttp.open("GET", url);
   xhttp.send();
 }
 
-function processSlideShow(text,slideShowId){
+function processSlideShow(text,slideShowId,timeInterval){
   let Data=JSON.parse(text);
   Data.sort();
   console.log(Data);
-  let itext="";
-  itext += '<div style="position: relative;">';
-  itext += '<div style="display: flex; animation: slide 12s infinite;">';
-  for(let i1=0;i1<Data.length;i1++){
-    itext += '<div class="slide" style="width: 100%; flex-shrink: 0;">';
-    itext += '<a style="width:100%;" href="https://drive.google.com/uc?export=view&amp;id='+Data[i1][1]+'" target="_blank"> <img src="https://drive.google.com/thumbnail?id='+Data[i1][1]+'" alt="" style="border:5px solid #023BA2;height: auto;width:100%; object-fit: cover;"></a>';
-    itext += '</div>';
+  let sshtml ='<div style="width:150px; overflow:hidden; position:relative; margin:auto; padding:1px;">';
+
+  sshtml +='<div class="slidesContainer" id="slidesContainer" style="display:flex; width:100%; height:100%; transition:transform 0.5s ease-in-out;">';
+
+  for (let i = 1; i <= Data.length; i++) {
+    console.log("Data["+(i-1)+"][1]",Data[i-1][1]);
+    sshtml +='<div class="slide" align=center style="width: 100%; height: 100%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 2em; border: 1px solid navyblue;">  <a style="width:100%;height: 100%;" href="https://drive.google.com/uc?export=view&amp;id='+Data[i-1][1]+'" target="_blank"> <img class="strechImage" src="https://drive.google.com/thumbnail?id='+Data[i-1][1]+'" alt="" style="border:1px solid #023BA2;zoom: 2;  display: block; margin: auto;  height: auto; max-height: 100%;  width: auto; max-width: 100%;"></a></div>';
   }
-  itext += '</div>';
-  itext += '</div></div>';
-  document.getElementById(slideShowId).innerHTML = itext;
+  sshtml += '</div></div>';  //appendChild(slidesContainer);
+  document.getElementById(slideShowId).innerHTML=sshtml;
+  let currentIndex = 0;
+  setInterval(() => {
+    currentIndex = (currentIndex + 1) % n;
+    document.getElementById("slidesContainer").style.transform = `translateX(-${currentIndex * 100}%)`;
+  }, timeInterval);
 }
