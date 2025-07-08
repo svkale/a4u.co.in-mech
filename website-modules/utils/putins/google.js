@@ -269,7 +269,7 @@ function putins_make_page_from_gdoc(request_obj, params) {
           doc_ele_id +
           "\").innerHTML=decodeURI(\"" + encodeURI(div_str) + "\");'><div";
           nav_HTML += ">" + j[0] + "</div></li>";
-	  let url="https://script.google.com/macros/s/AKfycbzy53ifIUTm2YNc_T_uv1Y0RV0PaLlE8i00V2DTvzBFCuG1Q8ocrvguw4mKUfkiykJSHA/exec?fn=fileList&transpose=false&folderID="+j[2].split("|")[0],slideShowId=j[2].split("/")[1],timeInterval=j[2].split("/")[1];
+	  let url="https://script.google.com/macros/s/AKfycbzy53ifIUTm2YNc_T_uv1Y0RV0PaLlE8i00V2DTvzBFCuG1Q8ocrvguw4mKUfkiykJSHA/exec?fn=fileList&transpose=false&folderID="+j[2].split("|")[0],slideShowId=j[2].split("/")[1],timeInterval=j[2].split("/")[2];
 	  if(!slideShowId || slideShowId.toString().length==0){slideShowId="slideshow";}
 	  if(!timeInterval || Number(timeInterval)<=0){timeInterval=3000;}
 	  console.log(url,slideShowId,timeInterval);
