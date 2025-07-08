@@ -261,18 +261,17 @@ function putins_make_page_from_gdoc(request_obj, params) {
         nav_HTML += ">" + j[0] + "</div></li>";	
        } else if(j[1]=="gSlideShow"){
 	  console.log("gSlideShow");console.log(j);
+	  let url="https://script.google.com/macros/s/AKfycbzy53ifIUTm2YNc_T_uv1Y0RV0PaLlE8i00V2DTvzBFCuG1Q8ocrvguw4mKUfkiykJSHA/exec?fn=fileList&transpose=false&folderID="+j[2].split("/")[0],slideShowId=j[2].split("/")[1],timeInterval=j[2].split("/")[2];
+	  if(!slideShowId || slideShowId.toString().length==0){slideShowId="slideshow";}
+	  if(!timeInterval || Number(timeInterval)<=0){timeInterval=3000;}
+	  console.log(url,slideShowId,timeInterval);
 	
-	  let div_str='<div align="center"><div id="slideshow" style="max-width:500px;overflow:hidden;"></div></div>';
-	      //<div id="slideshow" ></div>
+	  let div_str='<div align="center"><div id="'+slideShowId+'" style="max-width:500px;overflow:hidden;"></div></div>';
 	  nav_HTML +=
 	  "<li id='EID_"+eidno+++"' class='u1 doc_page' onclick='location.hash=this.innerText.trim();document.getElementById(\"" +
           doc_ele_id +
           "\").innerHTML=decodeURI(\"" + encodeURI(div_str) + "\");'><div";
           nav_HTML += ">" + j[0] + "</div></li>";
-	  let url="https://script.google.com/macros/s/AKfycbzy53ifIUTm2YNc_T_uv1Y0RV0PaLlE8i00V2DTvzBFCuG1Q8ocrvguw4mKUfkiykJSHA/exec?fn=fileList&transpose=false&folderID="+j[2].split("/")[0],slideShowId=j[2].split("/")[1],timeInterval=j[2].split("/")[2];
-	  if(!slideShowId || slideShowId.toString().length==0){slideShowId="slideshow";}
-	  if(!timeInterval || Number(timeInterval)<=0){timeInterval=3000;}
-	  console.log(url,slideShowId,timeInterval);
 	  getSlidesData(url,slideShowId,timeInterval);
      } else if (j[1] == "FramePage" || j[1] == "PDF" || j[1] == "GOOGLEFORM") {
         nav_HTML +=
@@ -868,6 +867,7 @@ function putins_make_subpage_from_HTML(dom, doc_ele, element) {
   return;
 }
 function getSlidesData(url,slideShowId,timeInterval=3000) {
+  console.log(url,slideShowId,timeInterval);
   const xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     //console.log(this.responseText)
