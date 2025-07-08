@@ -247,7 +247,7 @@ function putins_make_page_from_gdoc(request_obj, params) {
         nav_HTML += ">" + j[0] + "</div></li>";	
 	      	rtfhtml=rtfhtml.replace(/&lt;/g,"<").replace(/&gt;/g,">");
 	      	console.log(rtfhtml);
-	      	let doc = new DOMParser().parseFromString(htmlString, 'text/html');
+	      	let doc = new DOMParser().parseFromString(rtfhtml, 'text/html');
     		doc.querySelectorAll('script').forEach((item1,i1)=>{console.log(item1.textContent);eval(item1.textContent);});
       } else if (j[1] == "Image") {
 	//console.log(j[2]);
