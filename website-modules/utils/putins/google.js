@@ -910,7 +910,7 @@ function processSlideShow(text,slideShowId,timeInterval,atag,labelOnImage){
     sshtml +='<img class="strechImage" src="https://drive.google.com/thumbnail?id='+Data[i-1][1]+'" alt="" style="border:1px solid #023BA2;zoom: 2;  display: block; margin: auto;  height: auto; max-height: 100%;  width: auto; max-width: 100%;">';
     if(labelOnImage==true || labelOnImage=="true"){
 	let ImageLabel=Data[i-1][0].split(".")[0]; if(Data[i-1][0].split("...").length>=2){ImageLabel=Data[i-1][0].split("...")[1].split(".")[0];}
-	sshtml += '<div style="position: absolute;bottom: 8px;left: 50%;transform: translate(-50%, 0%);background-color: transparent;color:white;" >'+ImageLabel+'</div>';
+	sshtml += '<div style="position: absolute;bottom: 8px;left: 50%;transform: translate(-50%, 0%);background-color:rgba(0, 0, 0, 0.1);color:white;" >'+ImageLabel+'</div>';
     };
     if(atag==true || atag=="true"){sshtml +='</a>';}
     sshtml +='</div>';
