@@ -645,12 +645,12 @@ function putins_make_subpage_from_HTML(dom, doc_ele, element) {
       (p) => p.innerText.startsWith("{html}") && p.innerText.endsWith("{/html}")
     )
     .forEach((p) =>
-      let ihtml=p.innerText.substr(0, p.innerText.length - 7).substr(6));
+      let ihtml=p.innerText.substr(0, p.innerText.length - 7).substr(6);
       console.log(
         p,
         p.innerText,
         ihtml
-      ))
+      )
 	p.innerHTML=ihtml;
 	        let ihtml2=ihtml.replace(/&lt;/g,"<").replace(/&gt;/g,">").replace(/&amp;/g,"&");
 	      	console.log(ihtml2);
