@@ -237,17 +237,17 @@ function putins_make_page_from_gdoc(request_obj, params) {
 	      );		  
 	  } else rtfhtml = "<span>Error! Tag not found.</span>";  
 	//console.log("RTF or Home");  //console.log("rtfhtml");console.log(rtfhtml);
-	      //console.log(rtfhtml);	      
+	      //console.log(rtfhtml);	    
+	      let rtfhtml2=rtfhtml.replace(/&lt;/g,"<").replace(/&gt;/g,">");
 	rtfhtml=encodeURI(JSON.stringify(rtfhtml));
 	      
 	nav_HTML +=
           "<li id='EID_"+eidno+++"' class='u1 doc_page' onclick='location.hash=this.innerText.trim();document.getElementById(\"" +
           doc_ele_id +
           "\").innerHTML=JSON.parse(decodeURI(\"" + rtfhtml + "\"));'><div";
-        nav_HTML += ">" + j[0] + "</div></li>";	
-	      	rtfhtml=rtfhtml.replace(/&lt;/g,"<").replace(/&gt;/g,">");
-	      	console.log(rtfhtml);
-	      	let doc = new DOMParser().parseFromString(rtfhtml, 'text/html');
+        nav_HTML += ">" + j[0] + "</div></li>";		      	
+	      	console.log(rtfhtml2);
+	      	let doc = new DOMParser().parseFromString(rtfhtml2, 'text/html');
     		doc.querySelectorAll('script').forEach((item1,i1)=>{console.log(item1.textContent);eval(item1.textContent);});
       } else if (j[1] == "Image") {
 	//console.log(j[2]);
