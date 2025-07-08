@@ -267,7 +267,7 @@ function putins_make_page_from_gdoc(request_obj, params) {
 	  if(j[2].split("/").length>=2 && j[2].split("/")[2]!=""){timeInterval=j[2].split("/")[2];}
 	  if(j[2].split("/").length>=3 && j[2].split("/")[3]!=""){atag=j[2].split("/")[3];}
 	  if(j[2].split("/").length>=4 && j[2].split("/")[4]!=""){labelOnImage=j[2].split("/")[4];}
-	  console.log(slideShowId,timeInterval,atag,labelOnImage);
+	  //console.log(slideShowId,timeInterval,atag,labelOnImage);
 	  let div_str='<div align="center"><div id="'+slideShowId+'" style="max-width:500px;overflow:hidden;"></div></div>';
 	  nav_HTML +=
           '<section class="cont" style="--cont-width: 50%; margin-left: 25%;"><div align="center"><div id="'+slideShowId+'" style="max-width:150px;overflow:hidden;"></div></div></section>';
@@ -280,7 +280,7 @@ function putins_make_page_from_gdoc(request_obj, params) {
 	  if(j[2].split("/").length>=2 && j[2].split("/")[2]!=""){timeInterval=j[2].split("/")[2];}
 	  if(j[2].split("/").length>=3 && j[2].split("/")[3]!=""){atag=j[2].split("/")[3];}
 	  if(j[2].split("/").length>=4 && j[2].split("/")[4]!=""){labelOnImage=j[2].split("/")[4];}
-	  console.log(slideShowId,timeInterval,atag,labelOnImage);
+	  //console.log(slideShowId,timeInterval,atag,labelOnImage);
 	
 	  let div_str='<div align="center"><div id="'+slideShowId+'" style="max-width:500px;overflow:hidden;"></div></div>';
 	  nav_HTML +=
@@ -909,7 +909,7 @@ function processSlideShow(text,slideShowId,timeInterval,atag,labelOnImage){
     if(atag==true || atag=="true"){sshtml +='<a style="width:100%;height: 100%;" href="https://drive.google.com/uc?export=view&amp;id='+Data[i-1][1]+'" target="_blank">';}
     sshtml +='<img class="strechImage" src="https://drive.google.com/thumbnail?id='+Data[i-1][1]+'" alt="" style="border:1px solid #023BA2;zoom: 2;  display: block; margin: auto;  height: auto; max-height: 100%;  width: auto; max-width: 100%;">';
     if(labelOnImage==true || labelOnImage=="true"){
-	let ImageLabel=Data[i-1][0]; if(Data[i-1][0].split("...").length>=2){ImageLabel=Data[i-1][0].split("..")[1];}
+	let ImageLabel=Data[i-1][0].split(".")[0]; if(Data[i-1][0].split("...").length>=2){ImageLabel=Data[i-1][0].split("...")[1].split(".")[0];}
 	sshtml += '<div style="position: absolute;bottom: 8px;left: 50%;transform: translate(-50%, 0%);" >'+ImageLabel+'</div>';
     };
     if(atag==true || atag=="true"){sshtml +='</a>';}
