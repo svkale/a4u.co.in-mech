@@ -320,6 +320,14 @@ function putins_make_page_from_gdoc(request_obj, params) {
         if (document.getElementById("top_scroll_text")) {
           document.getElementById("top_scroll_text").innerHTML = j[2];
         }
+      } else if (j[1] == "ScrollText2" || (j[1] == "Fixed" && j[0] == "ScrollText2")) {
+        if (document.getElementById("top_scroll_text")) {
+          //document.getElementById("top_scroll_text").innerHTML = j[2]; 
+	  let headlinesSheetId=j[2].split("/")[0],headlinesSheetName=j[2].split("/")[1];
+	  let url="https://script.google.com/macros/s/AKfycbzy53ifIUTm2YNc_T_uv1Y0RV0PaLlE8i00V2DTvzBFCuG1Q8ocrvguw4mKUfkiykJSHA/exec?fn=GetRange&id="+headlinesSheetId+"&ssn="+headlinesSheetName+"&range=A1:A10";
+	  let headlinesId="top_scroll_text";
+	  set_a4u_Headlines(url,headlinesId);
+        }
       } else if (j[1] == "InputText") {
         nav_HTML +=
           '<input class="u1" type="text" id="' +
@@ -943,3 +951,18 @@ function processSlideShow(text,slideShowId,timeInterval,atag,labelOnImage){
     document.getElementById(containerId).style.transform = `translateX(-${(currentIndex++)%Data.length * 100}%)`;
   }, timeInterval);
 }
+function set_a4u_Headlines(url,headlinesId){ //ScrollText
+  const xhttp = new XMLHttpRequest();xhttp.onreadystatechange = function() { if (this.readyState == 4 && this.status == 200) {
+    console.log(this.responseText);
+    let Data=JSON.parse(this.responseText),text="";
+    Data.forEach((item1,i1)=>{
+      if(item1[0].length>0){
+  	// console.log(item1,item1[0].length,i1);
+        //		text+=item1[0]+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+	text+=item1[0]+"&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"
+        document.getElementById(headlinesId).innerHTML = text;
+      }
+    });
+  }}; xhttp.open("GET", url); xhttp.send();
+}
+
