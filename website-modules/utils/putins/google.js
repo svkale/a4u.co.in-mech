@@ -684,7 +684,8 @@ function putins_make_subpage_from_HTML(dom, doc_ele, element) {
     fs.innerText = doc_text
       .substring(doc_text.search("{eval}") + 6, doc_text.search("{/eval}"))
       .replace(/%%quot%%/g, '"')
-      .replace(/%%apos%%/g, "'");
+      .replace(/%%apos%%/g, "'")
+	  .replace(/“/g,'"').replace(/”/g,'"');
 	  console.log("fs",fs);
     document.getElementsByTagName("html")[0].appendChild(fs);
     //console.log(doc_html.search("{eval}"));
