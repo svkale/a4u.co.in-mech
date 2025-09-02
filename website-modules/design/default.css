@@ -4,7 +4,7 @@
 	margin: 0;
 	box-sizing: border-box;
 	overflow-wrap: break-word;
-	background-color: var(--main-color);
+	/*background-color: var(--main-color);*/
 	border-collapse: collapse;
 }
 html,iframe
