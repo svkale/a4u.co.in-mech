@@ -48,6 +48,7 @@ button>span,form input[type="button"],form input[type="submit"]
 	width: 100%;
 	padding: 0;
 	z-index: 10;
+	background-color: var(--main-color);
 }
 .hover_dropdown_list>li
 {
