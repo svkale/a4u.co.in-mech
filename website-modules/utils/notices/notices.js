@@ -150,6 +150,7 @@ function notice_board_post(p) {
   );
 }
 function notice_show_with_no(notice_group, notice_number) {
+  console.log(notice_group,notice_number);
   window.scrollTo(0, 0);
   document.getElementById(target_ele_id).style.display = "none";
   let notice_container = document.createElement("section");
