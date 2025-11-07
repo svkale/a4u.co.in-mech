@@ -206,6 +206,7 @@ function notice_show_with_no(notice_group, notice_number) {
   ) {
     notice_str += notices_obj[notice_group][notice_number][i];
   }
+  console.log(notices_obj[notice_group][notice_number][6]);
   notice_str += "<br><br></article>";
   notice_sec.insertAdjacentHTML("beforeend", notice_str);
   notice_sec.insertAdjacentHTML(
