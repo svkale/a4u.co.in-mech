@@ -227,7 +227,7 @@ function notice_show_with_no(notice_group, notice_number) {
       "/" +
       notices_obj[notice_group][notice_number][0] +
       '">' +
-      locati on.hostname +
+      location.hostname +
       "/notice/" +
       notice_group.split("_")[0] +
       "/" +
