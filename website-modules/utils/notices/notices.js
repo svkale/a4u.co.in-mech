@@ -52,7 +52,7 @@ function load_notice_as_page(id) {
 function notice_board_process_gs_request(request_obj, params) {
   notices_classlist = undefined;
   notices_obj = JSON.parse(request_obj.response);
-  console.log(notices_obj, params);
+  //console.log(notices_obj, params);
   target_ele_id = params[0];
   if (params[1]) {
     notices_classlist = params[1];
@@ -82,7 +82,7 @@ function notice_board_show_replace() {
 
 function notice_board_replace(notice_board_heading) {
   let notices_board = document.getElementById(notice_board_heading);
-  console.log(notices_board, notice_board_heading);
+  //console.log(notices_board, notice_board_heading);
   if (notices_classlist) {
     notices_board.setAttribute("class", notices_classlist);
   }
@@ -150,7 +150,7 @@ function notice_board_post(p) {
   );
 }
 function notice_show_with_no(notice_group, notice_number) {
-  console.log(notice_group,notice_number);
+  //console.log(notice_group,notice_number);
   window.scrollTo(0, 0);
   document.getElementById(target_ele_id).style.display = "none";
   let notice_container = document.createElement("section");
@@ -207,7 +207,7 @@ function notice_show_with_no(notice_group, notice_number) {
   ) {
     notice_str += notices_obj[notice_group][notice_number][i];
   }
-  console.log("nb-----",notices_obj[notice_group][notice_number]);
+  //console.log("nb-----",notices_obj[notice_group][notice_number]);
   if((notices_obj[notice_group][notice_number][6]).toString().length>0){
     // notice_str += '<br><div align=center><img src="'+notices_obj[notice_group][notice_number][6]+'" alt="Image" style="max-width:500px;max-height=300px;"></div>';
     notice_str += `<img src='https://drive.google.com/thumbnail?id=`+notices_obj[notice_group][notice_number][6].split("//")[0]+`' alt='`+notices_obj[notice_group][notice_number][6].split("//")[1]+`' style="max-width:500px;max-height=300px;">`
