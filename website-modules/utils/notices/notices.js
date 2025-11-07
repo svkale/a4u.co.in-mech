@@ -209,7 +209,8 @@ function notice_show_with_no(notice_group, notice_number) {
   }
   console.log("nb-----",notices_obj[notice_group][notice_number]);
   if((notices_obj[notice_group][notice_number][6]).toString().length>0){
-    notice_str += '<br><div align=center><img src="'+notices_obj[notice_group][notice_number][6]+'" alt="Image" style="max-width:500px;max-height=300px;"></div>';
+    // notice_str += '<br><div align=center><img src="'+notices_obj[notice_group][notice_number][6]+'" alt="Image" style="max-width:500px;max-height=300px;"></div>';
+    notice_str += `<img src='https://drive.google.com/thumbnail?id=`+notices_obj[notice_group][notice_number][6].split("//")[0]+`' alt='`+notices_obj[notice_group][notice_number][6].split("//")[1]+`' style="max-width:500px;max-height=300px;">`
   }
   notice_str += "<br><br></article>";
   notice_sec.insertAdjacentHTML("beforeend", notice_str);
