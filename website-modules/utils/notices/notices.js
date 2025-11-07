@@ -208,6 +208,12 @@ function notice_show_with_no(notice_group, notice_number) {
     notice_str += notices_obj[notice_group][notice_number][i];
   }
   console.log("nb-----",notices_obj[notice_group][notice_number]);
+  if((notices_obj[notice_group][notice_number][6]).toString().length>0){
+    notice_sec.insertAdjacentHTML(
+      "beforeend",
+      notice_str += '<br><div align=center><src img="'+notices_obj[notice_group][notice_number][6]+' alt="Image" style="max-width:500px;max-height=300px;"></div>';
+    );
+  }
   notice_str += "<br><br></article>";
   notice_sec.insertAdjacentHTML("beforeend", notice_str);
   notice_sec.insertAdjacentHTML(
@@ -216,12 +222,6 @@ function notice_show_with_no(notice_group, notice_number) {
       notices_obj[notice_group][notice_number][1] +
       "</div>"
   );
-  if((notices_obj[notice_group][notice_number][6]).toString().length>0){
-    notice_sec.insertAdjacentHTML(
-      "beforeend",
-      '<br><div align=center><src img="'+notices_obj[notice_group][notice_number][6]+' alt="Image" style="max-width:500px;max-height=300px;"></div>';
-    );
-  }
 
   notice_sec.insertAdjacentHTML(
     "beforeend",
