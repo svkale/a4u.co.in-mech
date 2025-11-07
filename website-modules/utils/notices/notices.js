@@ -216,6 +216,13 @@ function notice_show_with_no(notice_group, notice_number) {
       notices_obj[notice_group][notice_number][1] +
       "</div>"
   );
+  if((notices_obj[notice_group][notice_number][6]).toString().length>0){
+    notice_sec.insertAdjacentHTML(
+      "beforeend",
+      '<br><div align=center><src img="'+notices_obj[notice_group][notice_number][6]+' alt="Image" style="max-width:500px;max-height=300px;"></div>';
+    );
+  }
+
   notice_sec.insertAdjacentHTML(
     "beforeend",
     '<br><a target="_blank" href="/notice/' +
@@ -223,7 +230,7 @@ function notice_show_with_no(notice_group, notice_number) {
       "/" +
       notices_obj[notice_group][notice_number][0] +
       '">' +
-      location.hostname +
+      locati on.hostname +
       "/notice/" +
       notice_group.split("_")[0] +
       "/" +
