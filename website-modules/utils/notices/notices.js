@@ -209,7 +209,7 @@ function notice_show_with_no(notice_group, notice_number) {
   }
   console.log("nb-----",notices_obj[notice_group][notice_number]);
   if((notices_obj[notice_group][notice_number][6]).toString().length>0){
-    notice_str += '<br><div align=center><src img="'+notices_obj[notice_group][notice_number][6]+'" alt="Image" style="max-width:500px;max-height=300px;"></div>';
+    notice_str += '<br><div align=center><img="'+notices_obj[notice_group][notice_number][6]+'" alt="Image" style="max-width:500px;max-height=300px;"></div>';
   }
   notice_str += "<br><br></article>";
   notice_sec.insertAdjacentHTML("beforeend", notice_str);
