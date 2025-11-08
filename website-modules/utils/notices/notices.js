@@ -17,6 +17,7 @@ function load_notice_as_page(id) {
   ).parentElement.parentElement.innerHTML =
     document.getElementById("contents_page").outerHTML;
   document.getElementById("contents_page").setAttribute("class", "u1");
+  console.log("lps",location.pathname.substring(8),"id",id);
   request_promise(
     "https://script.google.com/macros/s/AKfycbxAZi2lXjzb1esOQAINMn_4XHDItOI5QqDsCiQVQQY0Jz_Ig-amBTouJ4W45PEldsRquw/exec?fn=getAnnouncement&announcement_id=" +
       location.pathname.substring(8) +
