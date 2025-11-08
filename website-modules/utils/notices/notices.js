@@ -302,7 +302,7 @@ function notice_parse(notice) {
     notice_str += notice[i];
   }
   if(notice[6].toString().length>0){
-    notice_str += "<br><img src='https://drive.google.com/thumbnail?id="+notice[6].toString().split("//")[0]+"' alt='notice_image' style='max-width:500px;max-height=300px;'>";
+    notice_str += "<br><div align=center><img src='https://drive.google.com/thumbnail?id="+notice[6].toString().split("//")[0]+"' alt='notice_image' style='max-width:500px;max-height=300px;'></div>";
   }
   notice_str += "<br><br></article>";
   notice_sec.insertAdjacentHTML("beforeend", notice_str);
