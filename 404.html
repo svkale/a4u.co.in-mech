@@ -266,6 +266,13 @@
         let path_arr =
             location.pathname.split("/")
         console.log(path_arr[1]);
+        if (path_arr[1] == "forms") {
+            document.getElementById(
+                        "contents_page"
+                    ).innerHTML =
+                        "<big>Forms will be shown here.</big>"
+                }
+        }
         if (path_arr[1] != "notice") {
             request_promise(
                 "https://static-data.a4u.co.in/mech/staff-gdoc-links.json"
