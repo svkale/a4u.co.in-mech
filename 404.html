@@ -327,7 +327,8 @@
                         "<big>404 Page not found.</big>"
                 },
                 (error) => {
-                    console.error(error)
+                    console.error(error);
+                    console.log(path_arr[1]);
                     document.getElementById(
                         "contents_page"
                     ).innerHTML =
@@ -335,7 +336,7 @@
                 }
             )
         } else {
-            console.log("lps",location.pathname.substring(8));
+            //console.log("lps",location.pathname.substring(8));
             document.getElementById(
                 "contents_page"
             ).innerHTML =
