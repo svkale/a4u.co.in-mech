@@ -265,6 +265,7 @@
     <script type="text/javascript">
         let path_arr =
             location.pathname.split("/")
+        console.log(path_arr[1]);
         if (path_arr[1] != "notice") {
             request_promise(
                 "https://static-data.a4u.co.in/mech/staff-gdoc-links.json"
