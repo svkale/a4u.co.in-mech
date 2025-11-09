@@ -279,7 +279,7 @@
                 (res) => {
                     document.getElementById(
                         "contents_page"
-                    ).innerHTML = res;
+                    ).innerHTML = JSON.parse(res.response);
                 }
             )
             
