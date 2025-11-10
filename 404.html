@@ -263,7 +263,7 @@
         type="text/javascript"
     ></script>
     <script type="text/javascript">
-        console.log(location);
+        console.log(location.search);
         let path_arr =
             location.pathname.split("/")
         console.log(path_arr[1]);
@@ -275,7 +275,7 @@
                         "<br>Loading form ..."
             request_promise(
                 "https://script.google.com/macros/s/AKfycbzy53ifIUTm2YNc_T_uv1Y0RV0PaLlE8i00V2DTvzBFCuG1Q8ocrvguw4mKUfkiykJSHA/exec?fn=showFormForAll&l=" +
-                    location.pathname
+                    location.pathname + "&search=" + location.search
             ).then(
                 (res) => {
                     document.getElementById(
