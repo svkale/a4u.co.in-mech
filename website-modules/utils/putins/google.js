@@ -144,7 +144,7 @@ function putins_make_page_from_gdoc(request_obj, params) {
   
   for (let i of nav_contents) {
     let j = i.split("<>");
-    if (j.length >= 2) {
+    if (j.length >= 2 && (j[0].toString().length<8 || j[0].toString().length>=8 && j[0].toString().slice(-8)!="_hidden_")) {
 	    //console.log(j);
       if(element==j[0]){elementIndex=eidno;}  //console.log("elementIndex",elementIndex);}
       if (j[1] == "Heading") {
